@@ -21,27 +21,48 @@
         android:layout_alignParentBottom="true"
         android:id="@+id/movie_item_text_holder">
 
-        <ImageView
-            android:layout_width="48dp"
-            android:padding="15dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:layout_height="48dp"
-            android:id="@+id/rate"
-            android:src="@mipmap/star"/>
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:id="@+id/container_info"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/rate"
+                android:src="@mipmap/star"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="2015"
+                android:gravity="center"
+                android:id="@+id/movie_year"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
 
         <TextView
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/rate"
+            android:layout_toLeftOf="@+id/container_info"
             android:layout_alignParentLeft="true"
             android:text="Star wars -  O Despertar da Força"
             android:id="@+id/title"
-            android:maxLines="1"
+            android:maxLines="2"
             android:ellipsize="end"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             android:textColor="#FFFFFF" />
 
@@ -50,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/title"
             android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@+id/rate"
+            android:layout_toLeftOf="@+id/container_info"
             android:text="Gêneros: Ação, Aventura, Sci-fi"
             android:maxLines="1"
             android:ellipsize="end"
