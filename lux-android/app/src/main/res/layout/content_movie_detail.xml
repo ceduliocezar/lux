@@ -26,6 +26,7 @@
             android:layout_marginBottom="@dimen/text_margin"
             android:layout_marginLeft="@dimen/text_margin"
             android:layout_marginRight="@dimen/text_margin"
+            android:id="@+id/movie_overview"
             android:text="@string/movie_overview_example" />
 
         <LinearLayout

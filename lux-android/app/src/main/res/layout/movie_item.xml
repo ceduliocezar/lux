@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.ceduliocezar.lux.RelativeSquareLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/secondaryText">
 
     <com.ceduliocezar.lux.SquareImageView
         android:id="@+id/movie_image"
@@ -11,12 +12,10 @@
         android:scaleType="centerCrop"
         android:src="@mipmap/img2" />
 
-
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#77000000"
+        android:background="#CC000000"
         android:paddingLeft="10dp"
         android:layout_alignParentBottom="true"
         android:id="@+id/movie_item_text_holder">
@@ -31,11 +30,32 @@
             android:id="@+id/container_info"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:id="@+id/rate"
-                android:src="@mipmap/star"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7"
+                    android:id="@+id/movie_rate_number"
+                    android:textSize="15sp"
+                    android:gravity="center"
+                    android:textColor="#ed8a19"
+                    android:layout_marginRight="5dp"/>
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:id="@+id/movie_rate"
+                    android:src="@mipmap/star"/>
+
+            </LinearLayout>
+
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -59,7 +79,7 @@
             android:layout_toLeftOf="@+id/container_info"
             android:layout_alignParentLeft="true"
             android:text="Star wars -  O Despertar da Força"
-            android:id="@+id/title"
+            android:id="@+id/movie_title"
             android:maxLines="2"
             android:ellipsize="end"
             android:textSize="14sp"
@@ -69,7 +89,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/title"
+            android:layout_below="@+id/movie_title"
+            android:id="@+id/movie_genre"
             android:layout_alignParentLeft="true"
             android:layout_toLeftOf="@+id/container_info"
             android:text="Gêneros: Ação, Aventura, Sci-fi"
@@ -80,4 +101,4 @@
     </RelativeLayout>
 
 
-</RelativeLayout>
+</com.ceduliocezar.lux.RelativeSquareLayout>
