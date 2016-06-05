@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.ceduliocezar.lux.RelativeSquareLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.ceduliocezar.lux.custom.ui.RelativeSquareLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@color/secondaryText">
 
-    <com.ceduliocezar.lux.SquareImageView
+    <com.ceduliocezar.lux.custom.ui.SquareImageView
         android:id="@+id/movie_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -101,4 +101,4 @@
     </RelativeLayout>
 
 
-</com.ceduliocezar.lux.RelativeSquareLayout>
+</com.ceduliocezar.lux.custom.ui.RelativeSquareLayout>

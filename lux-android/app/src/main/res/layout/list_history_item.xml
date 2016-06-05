@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+
+    <TextView
+        android:id="@+id/history_action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Watched"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/lightPrimary"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/history_movie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Star Wars: The Force Awakens"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/lightPrimary"
+        android:textSize="20sp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:textStyle="bold"/>
+</LinearLayout>

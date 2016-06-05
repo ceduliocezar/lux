@@ -1,4 +1,4 @@
-package com.ceduliocezar.lux;
+package com.ceduliocezar.lux.custom.ui;
 
 
 import android.content.Context;

@@ -24,7 +24,7 @@
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             android:elevation="1dp">
-            <com.ceduliocezar.lux.SquareImageView
+            <com.ceduliocezar.lux.custom.ui.SquareImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
