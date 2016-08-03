@@ -11,15 +11,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MovieDetailActivity"
-            android:parentActivityName=".SplashActivity"
+            android:name=".moviedetail.MovieDetailActivity"
+            android:parentActivityName=".moviedetail.MovieDetailActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ceduliocezar.lux.SplashActivity" />
+                android:value=".moviedetail.MovieDetailActivity" />
         </activity>
         <activity
-            android:name=".menu.MenuActivity"
+            android:name=".home.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,6 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".about.AboutActivity"></activity>
     </application>
 
 </manifest>

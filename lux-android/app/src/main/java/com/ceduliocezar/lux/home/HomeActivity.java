@@ -1,18 +1,16 @@
-package com.ceduliocezar.lux.menu;
+package com.ceduliocezar.lux.home;
 
 import android.support.v7.app.AppCompatActivity;
 
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 
 import com.ceduliocezar.lux.R;
 
-public class MenuActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
+public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
 
-    private SectionsAdapter mSectionsPagerAdapter;
+    private HomeFragmentAdapter mSectionsPagerAdapter;
 
     private ViewPager mViewPager;
     private View profileMarker;
@@ -24,7 +22,7 @@ public class MenuActivity extends AppCompatActivity implements ViewPager.OnPageC
 
         profileMarker = findViewById(R.id.profile_marker);
 
-        mSectionsPagerAdapter = new SectionsAdapter(getSupportFragmentManager());
+        mSectionsPagerAdapter = new HomeFragmentAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.addOnPageChangeListener(this);

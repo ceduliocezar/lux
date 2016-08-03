@@ -1,4 +1,4 @@
-package com.ceduliocezar.lux.menu.profile;
+package com.ceduliocezar.lux.home.profile;
 
 /**
  * Created by cedulio on 05/06/16.

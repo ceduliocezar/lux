@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".menu.profile.ProfileFragment">
+    tools:context=".home.profile.ProfileFragment">
 
     <LinearLayout
         android:id="@+id/container_options"
@@ -36,7 +36,7 @@
                 android:layout_width="99dp"
                 android:layout_height="99dp"
                 android:gravity="center"
-                android:text="Help"
+                android:text="@string/about"
                 android:textColor="@color/lightPrimary"
                 android:background="@color/colorPrimaryDark"
                 android:textSize="14sp" />

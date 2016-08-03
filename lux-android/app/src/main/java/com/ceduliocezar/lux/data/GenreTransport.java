@@ -1,4 +1,4 @@
-package com.ceduliocezar.lux.cloud;
+package com.ceduliocezar.lux.data;
 
 
 import com.google.gson.annotations.Expose;

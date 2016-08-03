@@ -1,4 +1,4 @@
-package com.ceduliocezar.lux.menu;
+package com.ceduliocezar.lux.home.movies;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,14 +17,14 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ceduliocezar.lux.MovieDetailActivity;
+import com.ceduliocezar.lux.moviedetail.MovieDetailActivity;
 import com.ceduliocezar.lux.R;
-import com.ceduliocezar.lux.cloud.Genre;
-import com.ceduliocezar.lux.cloud.GenreTransport;
-import com.ceduliocezar.lux.cloud.Movie;
-import com.ceduliocezar.lux.cloud.MovieAPI;
-import com.ceduliocezar.lux.cloud.MovieTransport;
-import com.ceduliocezar.lux.cloud.TheMovieDBAPI;
+import com.ceduliocezar.lux.data.Genre;
+import com.ceduliocezar.lux.data.GenreTransport;
+import com.ceduliocezar.lux.data.Movie;
+import com.ceduliocezar.lux.data.MovieAPI;
+import com.ceduliocezar.lux.data.MovieTransport;
+import com.ceduliocezar.lux.data.TheMovieDBAPI;
 import com.squareup.picasso.Picasso;
 
 import org.apache.commons.lang3.StringUtils;
@@ -38,9 +38,8 @@ import retrofit2.Call;
 /**
  * Created by cedulio on 05/06/16.
  */
-public class SectionFragment extends Fragment {
+public class MoviesFragment extends Fragment {
 
-    private static final String ARG_SECTION_NUMBER = "section_number";
 
     private MovieAdapter adapter;
     private List<Genre> genres;
@@ -49,13 +48,12 @@ public class SectionFragment extends Fragment {
     private SwipeRefreshLayout swipeContainer;
 
 
-    public SectionFragment() {
+    public MoviesFragment() {
     }
 
-    public static SectionFragment newInstance(int sectionNumber) {
-        SectionFragment fragment = new SectionFragment();
+    public static MoviesFragment newInstance() {
+        MoviesFragment fragment = new MoviesFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
     }
@@ -197,7 +195,7 @@ public class SectionFragment extends Fragment {
             }
 
             if (genres != null) {
-                SectionFragment.this.genres = genres;
+                MoviesFragment.this.genres = genres;
             }
 
             currentPage++;
@@ -268,7 +266,7 @@ public class SectionFragment extends Fragment {
 //            }
             ImageView imageView = (ImageView) convertView.findViewById(R.id.movie_image);
 
-            Picasso.with(SectionFragment.this.getActivity()).
+            Picasso.with(MoviesFragment.this.getActivity()).
                     load("http://image.tmdb.org/t/p/w500" + movie.getPosterPath()).
                     into(imageView);
 

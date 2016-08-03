@@ -1,4 +1,4 @@
-package com.ceduliocezar.lux.menu.profile;
+package com.ceduliocezar.lux.home.profile;
 
 
 import android.os.Bundle;

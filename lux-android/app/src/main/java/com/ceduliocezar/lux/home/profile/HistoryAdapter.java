@@ -1,4 +1,4 @@
-package com.ceduliocezar.lux.menu.profile;
+package com.ceduliocezar.lux.home.profile;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ceduliocezar.lux.R;
-import com.ceduliocezar.lux.cloud.Genre;
 
 import java.util.List;
 

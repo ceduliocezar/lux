@@ -1,39 +1,34 @@
-package com.ceduliocezar.lux.menu;
+package com.ceduliocezar.lux.home;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.ceduliocezar.lux.menu.genre.MoviesByGenreFragment;
-import com.ceduliocezar.lux.menu.profile.ProfileFragment;
+import com.ceduliocezar.lux.home.movies.MoviesFragment;
+import com.ceduliocezar.lux.home.profile.ProfileFragment;
 
 /**
  * Created by cedulio on 05/06/16.
  */
-public class SectionsAdapter extends FragmentPagerAdapter {
+public class HomeFragmentAdapter extends FragmentPagerAdapter {
 
-    public SectionsAdapter(FragmentManager fm) {
+    public HomeFragmentAdapter(FragmentManager fm) {
         super(fm);
     }
 
     @Override
     public Fragment getItem(int position) {
 
-
         if (position == 0) {
             return ProfileFragment.newInstance();
-        } else if (position == 1) {
-            return SectionFragment.newInstance(position + 1);
-        } else if (position == 2) {
-            return MoviesByGenreFragment.newInstance();
+        } else {
+            return MoviesFragment.newInstance();
         }
-
-        return SectionFragment.newInstance(position + 1);
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return 2;
     }
 
     @Override
