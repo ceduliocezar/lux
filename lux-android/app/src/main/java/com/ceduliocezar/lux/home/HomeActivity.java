@@ -10,6 +10,7 @@ import com.ceduliocezar.lux.R;
 
 public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
 
+    private static final int FEED_POSITION = 1;
     private HomeFragmentAdapter mSectionsPagerAdapter;
 
     private ViewPager mViewPager;
@@ -29,7 +30,7 @@ public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageC
         mViewPager.post(new Runnable() {
             @Override
             public void run() {
-                mViewPager.setCurrentItem(1);
+                mViewPager.setCurrentItem(FEED_POSITION);
             }
         });
     }

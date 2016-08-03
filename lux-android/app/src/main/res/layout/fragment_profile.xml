@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".home.profile.ProfileFragment">
+    tools:context=".settings.SettingsFragment">
 
     <LinearLayout
         android:id="@+id/container_options"
@@ -56,15 +56,23 @@
 
     </LinearLayout>
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/user_history"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/toolbar"
-        android:layout_toRightOf="@+id/container_options"
-        tools:listitem="@layout/list_history_item">
+        android:id="@+id/settings_container"
+        android:orientation="vertical">
 
-    </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/user_history"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_below="@+id/toolbar"-->
+        <!--android:layout_toRightOf="@+id/container_options"-->
+        <!--tools:listitem="@layout/list_history_item">-->
+
+    <!--</android.support.v7.widget.RecyclerView>-->
 </RelativeLayout>
