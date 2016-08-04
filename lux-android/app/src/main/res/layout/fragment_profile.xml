@@ -60,10 +60,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/settings_container"
-        android:orientation="vertical">
-
-
-    </LinearLayout>
+        android:orientation="vertical"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/toolbar"
+        android:layout_toRightOf="@+id/container_options"/>
 
     <!--<android.support.v7.widget.RecyclerView-->
         <!--android:id="@+id/user_history"-->

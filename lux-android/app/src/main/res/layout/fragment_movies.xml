@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/secondaryText"
+    tools:context=".moviedetail.MovieDetailActivity">
+
+
+    <LinearLayout
+        android:id="@+id/load_progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Looking for awesome movies!"
+            android:textColor="#FFF"
+            android:textSize="20sp" />
+
+        <ProgressBar
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp" />
+
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:id="@+id/profile_marker_space"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true">
+
+        <include layout="@layout/profile_marker" />
+
+    </FrameLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/profile_marker_space">
+
+        <GridView
+            android:id="@+id/movie_grid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/movie_load_progress"
+            android:layout_alignParentTop="true"
+            android:horizontalSpacing="0.5dp"
+            android:numColumns="@integer/number_of_columns"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="0.5dp" />
+
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+    <FrameLayout
+        android:id="@+id/movie_load_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="10dp"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:indeterminate="true" />
+
+    </FrameLayout>
+
+</RelativeLayout>
