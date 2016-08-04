@@ -22,7 +22,7 @@
                 android:layout_width="99dp"
                 android:layout_height="99dp"
                 android:gravity="center"
-                android:text="Preferences"
+                android:text="Genres"
                 android:textColor="@color/lightPrimary"
                 android:background="@color/colorPrimaryDark"
                 android:textSize="14sp" />
@@ -32,19 +32,7 @@
                 android:layout_height="0.5dp"
                 android:background="@color/divider" />
 
-            <TextView
-                android:layout_width="99dp"
-                android:layout_height="99dp"
-                android:gravity="center"
-                android:text="@string/about"
-                android:textColor="@color/lightPrimary"
-                android:background="@color/colorPrimaryDark"
-                android:textSize="14sp" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/divider" />
 
         </LinearLayout>
 

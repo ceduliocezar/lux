@@ -5,9 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import com.ceduliocezar.lux.R;
 import com.ceduliocezar.lux.data.Genre;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -43,8 +46,13 @@ public class FavoriteGenreAdapter extends BaseAdapter {
 //        Movie movie = genres.get(position);
 //
         if (convertView == null) {
-            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_item, null);
+            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.genre_item, null);
         }
+
+
+        TextView text = (TextView) convertView.findViewById(R.id.genre_item_name);
+
+        text.setText(genres.get(position).getName());
 //
 //        ImageView imageView = (ImageView) convertView.findViewById(R.id.movie_image);
 //

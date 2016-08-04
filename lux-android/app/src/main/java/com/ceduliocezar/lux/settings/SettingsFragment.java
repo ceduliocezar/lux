@@ -37,14 +37,6 @@ public class SettingsFragment extends Fragment {
                 .beginTransaction()
                 .replace(R.id.settings_container, GenrePickerFragment.newInstance())
                 .commit();
-//        getFragmentManager()
-//                .beginTransaction()
-//                .add(R.id.settings_container, GenrePickerFragment.newInstance())
-//                .commit();
-
-//        recycler = (RecyclerView) rootView.findViewById(R.id.user_history);
-//        recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
-//        recycler.setAdapter(new HistoryAdapter(history));
         return rootView;
     }
 
