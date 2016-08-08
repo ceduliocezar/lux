@@ -8,7 +8,7 @@ import java.util.List;
 import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
 
 /**
- * Created by TECBMCCS on 03/08/2016.
+ * Created by cedulio on 03/08/2016.
  */
 public class InMemoryGenresRepository implements  GenresRepository {
 
@@ -22,7 +22,7 @@ public class InMemoryGenresRepository implements  GenresRepository {
     }
 
     @Override
-    public void getGenres(@NonNull final LoadGenresCallback callback) {
+    public void getAllGenres(@NonNull final LoadGenresCallback callback) {
         checkNotNull(callback);
 
         if(cachedGenres ==  null){
@@ -39,12 +39,12 @@ public class InMemoryGenresRepository implements  GenresRepository {
     }
 
     @Override
-    public void selectGenreAsFavorite(Genre genre) {
+    public void saveGenreAsFavorite(Genre genre) {
         genresServiceApi.saveGenreAsFavorite(genre);
     }
 
     @Override
-    public void deSelectGenreAsFavorite(Genre genre) {
+    public void removeGenreAsFavorite(Genre genre) {
         genresServiceApi.removeGenreAsFavorite(genre);
     }
 }

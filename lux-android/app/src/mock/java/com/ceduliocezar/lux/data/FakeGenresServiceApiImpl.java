@@ -1,6 +1,5 @@
 package com.ceduliocezar.lux.data;
 
-import android.provider.ContactsContract;
 import android.support.v4.util.ArrayMap;
 
 import com.google.common.collect.Lists;
@@ -8,7 +7,7 @@ import com.google.common.collect.Lists;
 import java.util.List;
 
 /**
- * Created by TECBMCCS on 03/08/2016.
+ * Created by cedulio on 03/08/2016.
  */
 public class FakeGenresServiceApiImpl implements GenresServiceApi{
 

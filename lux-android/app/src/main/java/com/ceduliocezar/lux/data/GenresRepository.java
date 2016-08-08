@@ -3,7 +3,7 @@ package com.ceduliocezar.lux.data;
 import java.util.List;
 
 /**
- * Created by TECBMCCS on 03/08/2016.
+ * Created by cedulio on 03/08/2016.
  */
 public interface GenresRepository {
 
@@ -11,7 +11,7 @@ public interface GenresRepository {
         void onLoadGenres(List<Genre> genres);
     }
 
-    void getGenres(LoadGenresCallback callback);
-    void selectGenreAsFavorite(Genre genre);
-    void deSelectGenreAsFavorite(Genre genre);
+    void getAllGenres(LoadGenresCallback callback);
+    void saveGenreAsFavorite(Genre genre);
+    void removeGenreAsFavorite(Genre genre);
 }

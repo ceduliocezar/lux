@@ -20,14 +20,14 @@ public class GenrePickerPresenter implements GenrePickerContract.UserActionsList
 
     @Override
     public void selectGenre(Genre genre) {
-        genresRepository.deSelectGenreAsFavorite(genre);
+        genresRepository.removeGenreAsFavorite(genre);
         genrePickerView.animateGenreSelection(genre);
     }
 
     @Override
     public void unSelectGenre(Genre genre) {
         genrePickerView.animateGenreDeSelection(genre);
-        genresRepository.deSelectGenreAsFavorite(genre);
+        genresRepository.removeGenreAsFavorite(genre);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class GenrePickerPresenter implements GenrePickerContract.UserActionsList
 
         genrePickerView.setProgressIndicator(true);
 
-        genresRepository.getGenres(new GenresRepository.LoadGenresCallback() {
+        genresRepository.getAllGenres(new GenresRepository.LoadGenresCallback() {
             @Override
             public void onLoadGenres(List<Genre> genres) {
                 genrePickerView.setProgressIndicator(false);

@@ -1,6 +1,5 @@
 package com.ceduliocezar.lux.pickcgenre;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +8,6 @@ import android.widget.TextView;
 
 import com.ceduliocezar.lux.R;
 import com.ceduliocezar.lux.data.Genre;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -62,7 +59,7 @@ public class FavoriteGenreAdapter extends BaseAdapter {
 //
 //
 //        TextView tvGenres = (TextView) convertView.findViewById(R.id.movie_genre);
-//        tvGenres.setText(getGenres(movie));
+//        tvGenres.setText(getAllGenres(movie));
 //
 //        TextView tvTitle = (TextView) convertView.findViewById(R.id.movie_title);
 //        tvTitle.setText(movie.getTitle());
