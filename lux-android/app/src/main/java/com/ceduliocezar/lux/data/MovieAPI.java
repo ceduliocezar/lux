@@ -13,13 +13,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MovieAPI {
 
 
-    public static TheMovieDBAPI getInstance(Context context){
+    public static MovieRESTApi getInstance(Context context){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(context.getString(R.string.MOVIE_DB_BASE_URL))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        TheMovieDBAPI service = retrofit.create(TheMovieDBAPI.class);
+        MovieRESTApi service = retrofit.create(MovieRESTApi.class);
 
         return service;
     }

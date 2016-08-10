@@ -5,7 +5,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
-public interface TheMovieDBAPI {
+public interface MovieRESTApi {
     @GET("discover/movie?sort_by=popularity.desc")
     Call<MovieTransport> orderByRate(@Query("api_key") String apiKey, @Query("page") int page);
 
