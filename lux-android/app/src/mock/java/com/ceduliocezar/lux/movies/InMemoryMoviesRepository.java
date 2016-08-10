@@ -12,11 +12,11 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Created by cedulio on 08/08/2016.
  */
-public class InMemoryMoviesRepository implements MoviesRepository{
+public class InMemoryMoviesRepository implements MoviesRepository {
 
     private MoviesServiceApi moviesServiceApi;
 
-    public InMemoryMoviesRepository(@NonNull MoviesServiceApi moviesServiceApi){
+    public InMemoryMoviesRepository(@NonNull MoviesServiceApi moviesServiceApi) {
         this.moviesServiceApi = moviesServiceApi;
     }
 

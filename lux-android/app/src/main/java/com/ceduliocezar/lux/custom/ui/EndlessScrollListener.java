@@ -56,7 +56,7 @@ public abstract class EndlessScrollListener implements AbsListView.OnScrollListe
     }
 
     /**
-     *  Called then user reaches threshold
+     *  Called when user reaches threshold
      * @param page
      * @param totalItemsCount
      * @return true if loading more data

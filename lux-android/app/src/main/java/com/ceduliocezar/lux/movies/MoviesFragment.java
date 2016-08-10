@@ -22,6 +22,7 @@ import com.ceduliocezar.lux.custom.ui.EndlessScrollListener;
 import com.ceduliocezar.lux.data.Genre;
 import com.ceduliocezar.lux.data.Movie;
 import com.ceduliocezar.lux.moviedetail.MovieDetailActivity;
+import com.squareup.picasso.Picasso;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -77,7 +78,7 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_movies, container, false);
 
-        GridView gridView = (GridView) rootView.findViewById(R.id.movie_grid);
+        final GridView gridView = (GridView) rootView.findViewById(R.id.movie_grid);
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -313,6 +314,11 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
 //            Picasso.with(MoviesFragment.this.getActivity()).
 //                    load("http://image.tmdb.org/t/p/w500" + movie.getPosterPath()).
 //                    into(imageView);
+
+            Picasso.with(MoviesFragment.this.getActivity())
+                    .load(movie.getPosterPath())
+                    .into(imageView);
+
 
 
             TextView tvGenres = (TextView) convertView.findViewById(R.id.movie_genre);

@@ -68,7 +68,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:padding="10dp"
-        android:visibility="gone">
+        android:visibility="gone"
+        >
 
         <ProgressBar
             android:layout_width="50dp"

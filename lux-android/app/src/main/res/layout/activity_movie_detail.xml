@@ -28,8 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:id="@+id/movie_image"
-                android:src="@mipmap/img2" />
+                android:id="@+id/movie_image" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
