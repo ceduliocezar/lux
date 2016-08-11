@@ -14,6 +14,8 @@ public class MoviesContract {
     interface View{
         void showActivityIndicator();
         void hideActivityIndicator();
+        void showLazyLoad();
+        void hideLazyLoad();
         void showMovies(List<Movie> movies, int currentPage, int maxPage);
         void showMovieDetailUi(Integer movieId);
         void showError(Throwable e);

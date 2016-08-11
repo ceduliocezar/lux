@@ -42,6 +42,7 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
 
     private MoviesContract.UserActionsListener userActionsListener;
     private int maxPage = 0;
+    private GridView gridView;
 
     public MoviesFragment() {
 
@@ -78,7 +79,34 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_movies, container, false);
 
-        final GridView gridView = (GridView) rootView.findViewById(R.id.movie_grid);
+        initGridView(rootView);
+        initSwipeContainer(rootView);
+
+        return rootView;
+    }
+
+    private void initSwipeContainer(View rootView) {
+        swipeContainer = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeContainer);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+
+            @Override
+
+            public void onRefresh() {
+                startRefresh();
+            }
+
+        });
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+
+                android.R.color.holo_green_light,
+
+                android.R.color.holo_orange_light,
+
+                android.R.color.holo_red_light);
+    }
+
+    private void initGridView(View rootView) {
+        gridView = (GridView) rootView.findViewById(R.id.movie_grid);
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -99,33 +127,6 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
 
             }
         });
-
-
-        swipeContainer = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeContainer);
-
-        // Setup refresh listener which triggers new data loading
-
-        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-
-            @Override
-
-            public void onRefresh() {
-                startRefresh();
-            }
-
-        });
-
-
-        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
-
-                android.R.color.holo_green_light,
-
-                android.R.color.holo_orange_light,
-
-                android.R.color.holo_red_light);
-
-
-        return rootView;
     }
 
     private void showMovieDetail(int position) {
@@ -137,12 +138,6 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
         adapter.clear();
         adapter.notifyDataSetChanged();
         userActionsListener.loadMovies(true);
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-//        loadNewPage();
     }
 
     @Override

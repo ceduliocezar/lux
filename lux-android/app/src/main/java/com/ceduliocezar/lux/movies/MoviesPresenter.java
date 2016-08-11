@@ -3,6 +3,7 @@ package com.ceduliocezar.lux.movies;
 import android.support.annotation.NonNull;
 
 import com.ceduliocezar.lux.data.Movie;
+import com.ceduliocezar.lux.util.EspressoIdlingResource;
 
 import java.util.List;
 
@@ -27,15 +28,21 @@ public class MoviesPresenter implements MoviesContract.UserActionsListener {
     public void loadMovies(boolean forceUpdate) {
         moviesView.showActivityIndicator();
 
+        EspressoIdlingResource.increment();
+
         moviesRepository.getMovies(FIRST_PAGE, new MoviesRepository.LoadMoviesCallback() {
             @Override
             public void onLoadMovies(List<Movie> movies, int currentPage, int maxPage) {
+                EspressoIdlingResource.decrement();
+
                 moviesView.hideActivityIndicator();
                 moviesView.showMovies(movies, currentPage, maxPage);
             }
 
             @Override
             public void onErrorLoadingMovies(Throwable e) {
+                EspressoIdlingResource.decrement();
+
                 moviesView.hideActivityIndicator();
                 moviesView.showError(e);
             }
@@ -44,17 +51,17 @@ public class MoviesPresenter implements MoviesContract.UserActionsListener {
 
     @Override
     public void loadPage(int page) {
-        moviesView.showActivityIndicator();
+        moviesView.showLazyLoad();
         moviesRepository.getMovies(page, new MoviesRepository.LoadMoviesCallback() {
             @Override
             public void onLoadMovies(List<Movie> movies, int currentPage, int maxPage) {
-                moviesView.hideActivityIndicator();
+                moviesView.hideLazyLoad();
                 moviesView.appendPage(movies, currentPage);
             }
 
             @Override
             public void onErrorLoadingMovies(Throwable e) {
-                moviesView.hideActivityIndicator();
+                moviesView.hideLazyLoad();
                 moviesView.showError(e);
             }
         });

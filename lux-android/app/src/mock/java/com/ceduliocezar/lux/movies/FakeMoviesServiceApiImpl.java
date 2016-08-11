@@ -22,7 +22,7 @@ public class FakeMoviesServiceApiImpl implements MoviesServiceApi {
             + "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur "
             + "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt "
             + "mollit anim id est laborum.";
-    private static final String FAKE_TITLE = "Lorem ipsum dolor sit amet";
+    public static final String FAKE_TITLE = "MOVIE";
     private static final String FAKE_ORIGINAL_LANGUAGE = "en_US";
     private static final Double FAKE_POPULARITY = 9.0;
     private static final String FAKE_POSTER_PATH = "file:///android_asset/poster_test.jpg";

@@ -1,5 +1,7 @@
 package com.ceduliocezar.lux.home;
 
+import android.support.annotation.VisibleForTesting;
+import android.support.test.espresso.IdlingResource;
 import android.support.v7.app.AppCompatActivity;
 
 import android.support.v4.view.ViewPager;
@@ -7,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.ceduliocezar.lux.R;
+import com.ceduliocezar.lux.util.EspressoIdlingResource;
 
 public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
 
@@ -63,4 +66,9 @@ public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageC
     public void onPageScrollStateChanged(int state) {
 
     }
+    @VisibleForTesting
+    public IdlingResource getCountingIdlingResource() {
+        return EspressoIdlingResource.getIdlingResource();
+    }
+
 }
