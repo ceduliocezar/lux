@@ -60,7 +60,7 @@ public class HomeScreenTest {
                 .atPosition(19)
                 .check(matches(isDisplayed()));
 
-        onView(withId(R.id.movie_grid)).check(matches(hasNumberOfItems(60)));
+        onView(withId(R.id.movie_grid)).check(matches(hasNumberOfItems(40)));
 
     }
 
