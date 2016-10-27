@@ -1,12 +1,10 @@
 package com.ceduliocezar.lux.home;
 
+import android.os.Bundle;
 import android.support.annotation.VisibleForTesting;
 import android.support.test.espresso.IdlingResource;
-import android.support.v7.app.AppCompatActivity;
-
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
 
 import com.ceduliocezar.lux.R;
 import com.ceduliocezar.lux.util.EspressoIdlingResource;
@@ -17,14 +15,11 @@ public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageC
     private HomeFragmentAdapter mSectionsPagerAdapter;
 
     private ViewPager mViewPager;
-    private View profileMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
-
-        profileMarker = findViewById(R.id.profile_marker);
+        setContentView(R.layout.activity_home);
 
         mSectionsPagerAdapter = new HomeFragmentAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -43,29 +38,16 @@ public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     }
 
-    private void showProfileMarker() {
-        profileMarker.animate()
-                .translationX(0);
-    }
-
-    private void hideProfileMarker() {
-        profileMarker.animate()
-                .translationX(profileMarker.getWidth()*-1);
-    }
-
     @Override
     public void onPageSelected(int position) {
-        if(position == 0){
-            hideProfileMarker();
-        }else {
-            showProfileMarker();
-        }
+
     }
 
     @Override
     public void onPageScrollStateChanged(int state) {
 
     }
+
     @VisibleForTesting
     public IdlingResource getCountingIdlingResource() {
         return EspressoIdlingResource.getIdlingResource();

@@ -1,4 +1,4 @@
-package com.ceduliocezar.lux.movies;
+package com.ceduliocezar.lux.movie.list;
 
 import android.content.Context;
 import android.util.Log;

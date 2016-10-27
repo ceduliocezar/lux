@@ -1,9 +1,7 @@
-package com.ceduliocezar.lux.moviedetail;
+package com.ceduliocezar.lux.movie.detail;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.VisibleForTesting;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -20,9 +18,6 @@ import android.widget.TextView;
 import com.ceduliocezar.lux.R;
 import com.ceduliocezar.lux.data.Movie;
 import com.ceduliocezar.lux.util.EspressoIdlingResource;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.RequestCreator;
 
 public class MovieDetailActivity extends AppCompatActivity {
 

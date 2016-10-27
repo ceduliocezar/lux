@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/secondaryText"
-    tools:context=".moviedetail.MovieDetailActivity">
+    tools:context=".movie.detail.MovieDetailActivity">
 
 
     <LinearLayout
@@ -30,23 +30,10 @@
 
     </LinearLayout>
 
-
-    <FrameLayout
-        android:id="@+id/profile_marker_space"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true">
-
-        <include layout="@layout/profile_marker" />
-
-    </FrameLayout>
-
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_toRightOf="@+id/profile_marker_space">
+        android:layout_height="match_parent">
 
         <GridView
             android:id="@+id/movie_grid"

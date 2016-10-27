@@ -1,11 +1,10 @@
-package com.ceduliocezar.lux.movies;
+package com.ceduliocezar.lux.movie.list;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +20,7 @@ import com.ceduliocezar.lux.R;
 import com.ceduliocezar.lux.custom.ui.EndlessScrollListener;
 import com.ceduliocezar.lux.data.Genre;
 import com.ceduliocezar.lux.data.Movie;
-import com.ceduliocezar.lux.moviedetail.MovieDetailActivity;
+import com.ceduliocezar.lux.movie.detail.MovieDetailActivity;
 import com.squareup.picasso.Picasso;
 
 import org.apache.commons.lang3.StringUtils;
@@ -118,10 +117,10 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
         gridView.setOnScrollListener(new EndlessScrollListener() {
             @Override
             public boolean onLoadMore(int page, int totalItemsCount) {
-                if(page<=maxPage){
+                if (page <= maxPage) {
                     userActionsListener.loadPage(page);
                     return true;
-                }else{
+                } else {
                     return false;
                 }
 
@@ -313,7 +312,6 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
             Picasso.with(MoviesFragment.this.getActivity())
                     .load(movie.getPosterPath())
                     .into(imageView);
-
 
 
             TextView tvGenres = (TextView) convertView.findViewById(R.id.movie_genre);

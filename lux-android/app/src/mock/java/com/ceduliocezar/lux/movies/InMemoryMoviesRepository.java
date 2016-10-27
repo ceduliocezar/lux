@@ -2,8 +2,9 @@ package com.ceduliocezar.lux.movies;
 
 import android.support.annotation.NonNull;
 
-import com.ceduliocezar.lux.data.InMemoryGenresRepository;
 import com.ceduliocezar.lux.data.Movie;
+import com.ceduliocezar.lux.movie.list.MoviesRepository;
+import com.ceduliocezar.lux.movie.list.MoviesServiceApi;
 
 import java.util.List;
 

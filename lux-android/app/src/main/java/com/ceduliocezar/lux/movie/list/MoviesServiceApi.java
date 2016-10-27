@@ -1,11 +1,11 @@
-package com.ceduliocezar.lux.movies;
+package com.ceduliocezar.lux.movie.list;
 
 import com.ceduliocezar.lux.data.Movie;
 
 import java.util.List;
 
 /**
- * Created by TECBMCCS on 08/08/2016.
+ * Created by cedulio on 08/08/2016.
  */
 public interface MoviesServiceApi {
 

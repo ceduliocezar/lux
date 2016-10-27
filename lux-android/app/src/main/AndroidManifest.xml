@@ -11,12 +11,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".moviedetail.MovieDetailActivity"
-            android:parentActivityName=".moviedetail.MovieDetailActivity"
+            android:name=".movie.detail.MovieDetailActivity"
+            android:parentActivityName=".movie.detail.MovieDetailActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".moviedetail.MovieDetailActivity" />
+                android:value=".movie.detail.MovieDetailActivity" />
         </activity>
         <activity
             android:name=".home.HomeActivity"
@@ -27,7 +27,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".about.AboutActivity"></activity>
     </application>
 
 </manifest>
