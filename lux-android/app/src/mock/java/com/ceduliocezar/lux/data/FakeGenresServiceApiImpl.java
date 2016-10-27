@@ -12,8 +12,8 @@ import java.util.List;
 public class FakeGenresServiceApiImpl implements GenresServiceApi{
 
 
-    private static final ArrayMap<Integer, Genre> GENRES_SERVICE_DATA = new ArrayMap();
-    private static final ArrayMap<Integer, Genre> FAVORITE_GENRES_SERVICE_DATA = new ArrayMap();
+    private static final ArrayMap<Integer, Genre> GENRES_SERVICE_DATA = new ArrayMap<>();
+    private static final ArrayMap<Integer, Genre> FAVORITE_GENRES_SERVICE_DATA = new ArrayMap<>();
 
     @Override
     public void getGenres(GenresServiceCallback<List<Genre>> callback) {
