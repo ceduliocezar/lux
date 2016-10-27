@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.ceduliocezar.lux.R;
 import com.ceduliocezar.lux.data.Movie;
-import com.ceduliocezar.lux.util.EspressoIdlingResource;
+import com.ceduliocezar.lux.util.EspressoResourceIdling;
 
 public class MovieDetailActivity extends AppCompatActivity {
 
@@ -94,6 +94,6 @@ public class MovieDetailActivity extends AppCompatActivity {
 
     @VisibleForTesting
     public IdlingResource getCountingIdlingResource() {
-        return EspressoIdlingResource.getIdlingResource();
+        return EspressoResourceIdling.getIdlingResource();
     }
 }

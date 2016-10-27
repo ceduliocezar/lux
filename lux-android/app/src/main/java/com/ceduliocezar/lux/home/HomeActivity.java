@@ -7,7 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.ceduliocezar.lux.R;
-import com.ceduliocezar.lux.util.EspressoIdlingResource;
+import com.ceduliocezar.lux.util.EspressoResourceIdling;
 
 public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
 
@@ -50,7 +50,7 @@ public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     @VisibleForTesting
     public IdlingResource getCountingIdlingResource() {
-        return EspressoIdlingResource.getIdlingResource();
+        return EspressoResourceIdling.getIdlingResource();
     }
 
 }

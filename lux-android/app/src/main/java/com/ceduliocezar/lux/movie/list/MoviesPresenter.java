@@ -3,7 +3,7 @@ package com.ceduliocezar.lux.movie.list;
 import android.support.annotation.NonNull;
 
 import com.ceduliocezar.lux.data.Movie;
-import com.ceduliocezar.lux.util.EspressoIdlingResource;
+import com.ceduliocezar.lux.util.EspressoResourceIdling;
 
 import java.util.List;
 
@@ -28,12 +28,12 @@ public class MoviesPresenter implements MoviesContract.UserActionsListener {
     public void loadMovies(boolean forceUpdate) {
         moviesView.showActivityIndicator();
 
-        EspressoIdlingResource.increment();
+        EspressoResourceIdling.increment();
 
         moviesRepository.getMovies(FIRST_PAGE, new MoviesRepository.LoadMoviesCallback() {
             @Override
             public void onLoadMovies(List<Movie> movies, int currentPage, int maxPage) {
-                EspressoIdlingResource.decrement();
+                EspressoResourceIdling.decrement();
 
                 moviesView.hideActivityIndicator();
                 moviesView.showMovies(movies, currentPage, maxPage);
@@ -41,7 +41,7 @@ public class MoviesPresenter implements MoviesContract.UserActionsListener {
 
             @Override
             public void onErrorLoadingMovies(Throwable e) {
-                EspressoIdlingResource.decrement();
+                EspressoResourceIdling.decrement();
 
                 moviesView.hideActivityIndicator();
                 moviesView.showError(e);
