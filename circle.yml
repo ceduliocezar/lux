@@ -1,12 +1,14 @@
-dependencies:
-  pre:
-    - sudo gem install screengrab
-
 machine:
   environment:
     TERM: "dumb"
     ADB_INSTALL_TIMEOUT: "10"
     GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
+    ruby:
+      version: 2.3.1
+
+dependencies:
+  pre:
+    - sudo gem install screengrab
 
 test:
   override:
@@ -25,5 +27,7 @@ test:
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
     # copy the test results to the test results directory.
     - cp -r app/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
+    # Execute test for screenshots
+    - screengrab
     # Copy screengrab screenshots
-    - cp -r fast $CIRCLE_ARTIFACTS
+    - cp -r fastlane $CIRCLE_ARTIFACTS
