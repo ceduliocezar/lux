@@ -1,3 +1,7 @@
+dependencies:
+  pre:
+    - sudo apt-get update; sudo apt-get install screengrab
+
 machine:
   environment:
     TERM: "dumb"
@@ -21,3 +25,5 @@ test:
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
     # copy the test results to the test results directory.
     - cp -r app/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
+    # Copy screengrab screenshots
+    - cp -r fast $CIRCLE_ARTIFACTS

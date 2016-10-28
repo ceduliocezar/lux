@@ -13,9 +13,13 @@ import com.ceduliocezar.lux.movies.FakeMoviesServiceApiImpl;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import tools.fastlane.screengrab.Screengrab;
+import tools.fastlane.screengrab.UiAutomatorScreenshotStrategy;
 
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
@@ -39,6 +43,11 @@ public class HomeScreenTest {
     public ActivityTestRule<HomeActivity> homeActivityActivityTestRule
             = new ActivityTestRule<>(HomeActivity.class);
 
+    @Before
+    public void setUp(){
+        Screengrab.setDefaultScreenshotStrategy(new UiAutomatorScreenshotStrategy());
+    }
+
     @Test
     public void clickOnMovie_opensMovieDetailUi() throws Exception {
 
@@ -58,7 +67,7 @@ public class HomeScreenTest {
 
     }
 
-    public Matcher hasNumberOfItems(final int expectedSize) {
+    public static Matcher hasNumberOfItems(final int expectedSize) {
 
         Matcher matcher = new TypeSafeMatcher<View>() {
             @Override

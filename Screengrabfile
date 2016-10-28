@@ -1,0 +1,8 @@
+app_package_name 'com.ceduliocezar.lux'
+
+locales ['en-US', 'pt-BR']
+
+clear_previous_screenshots true
+
+tests_apk_path 'app/build/outputs/apk/app-mock-debug-androidTest.apk'
+app_apk_path 'app/build/outputs/apk/app-mock-debug.apk'
