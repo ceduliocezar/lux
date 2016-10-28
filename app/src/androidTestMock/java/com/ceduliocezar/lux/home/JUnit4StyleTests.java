@@ -11,6 +11,7 @@ import com.ceduliocezar.lux.movies.FakeMoviesServiceApiImpl;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
@@ -18,6 +19,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import tools.fastlane.screengrab.Screengrab;
+import tools.fastlane.screengrab.UiAutomatorScreenshotStrategy;
 import tools.fastlane.screengrab.locale.LocaleTestRule;
 
 import static android.support.test.espresso.Espresso.onData;
@@ -42,6 +44,11 @@ public class JUnit4StyleTests {
     @Rule
     public ActivityTestRule<HomeActivity> homeActivityActivityTestRule
             = new ActivityTestRule<>(HomeActivity.class);
+
+    @Before
+    public void setUp(){
+        Screengrab.setDefaultScreenshotStrategy(new UiAutomatorScreenshotStrategy());
+    }
 
     @Test
     public void clickOnMovie_opensMovieDetailUi() throws Exception {
