@@ -9,6 +9,7 @@ machine:
 
 dependencies:
   pre:
+    - ruby -version
     - sudo gem install screengrab
 
 test:
