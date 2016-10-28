@@ -1,4 +1,4 @@
-app_package_name 'com.ceduliocezar.lux'
+app_package_name 'com.ceduliocezar.lux.mock'
 
 locales ['en-US', 'pt-BR']
 
