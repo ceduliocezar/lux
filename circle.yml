@@ -32,6 +32,7 @@ test:
 
     # Screengrab screenshots
     - ./gradlew assembleDebug assembleAndroidTest
+    - adb shell input keyevent 82
     - screengrab
     # Copy screengrab screenshots
     - cp -r fastlane $CIRCLE_ARTIFACTS
