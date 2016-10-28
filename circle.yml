@@ -23,16 +23,13 @@ test:
     - adb shell input keyevent 82
     # run tests  against the emulator.
     - ./gradlew connectedMockDebugAndroidTest -PdisablePreDex
-    # copy the build outputs to artifacts
-    - cp -r app/build/outputs $CIRCLE_ARTIFACTS
-    # copy the test results to the test results directory.
-    - cp -r app/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
-
-
 
     # Screengrab screenshots
     - ./gradlew assembleDebug assembleAndroidTest
     - adb shell input keyevent 82
     - screengrab
-    # Copy screengrab screenshots
-    - cp -r fastlane $CIRCLE_ARTIFACTS
+
+    # copy the build outputs to artifacts
+    - cp -r app/build/outputs $CIRCLE_ARTIFACTS
+    # copy the test results to the test results directory.
+    - cp -r app/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS

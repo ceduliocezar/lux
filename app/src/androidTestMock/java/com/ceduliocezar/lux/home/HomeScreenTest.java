@@ -14,12 +14,14 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 import org.junit.Before;
+import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import tools.fastlane.screengrab.Screengrab;
 import tools.fastlane.screengrab.UiAutomatorScreenshotStrategy;
+import tools.fastlane.screengrab.locale.LocaleTestRule;
 
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
@@ -39,6 +41,9 @@ import static org.hamcrest.Matchers.instanceOf;
 @LargeTest
 public class HomeScreenTest {
 
+    @ClassRule
+    public static final LocaleTestRule localeTestRule = new LocaleTestRule();
+
     @Rule
     public ActivityTestRule<HomeActivity> homeActivityActivityTestRule
             = new ActivityTestRule<>(HomeActivity.class);
@@ -50,20 +55,27 @@ public class HomeScreenTest {
 
     @Test
     public void clickOnMovie_opensMovieDetailUi() throws Exception {
+        Screengrab.screenshot("beforeSelectmovie");
 
         onView(withText(FakeMoviesServiceApiImpl.FAKE_TITLE + 1)).perform(click());
 
         onView(withId(R.id.movie_overview)).check(matches(isDisplayed()));
+
+        Screengrab.screenshot("afterSelectmovie");
     }
 
     @Test
     public void scrollMovieGrid_loadNextPage() throws Exception {
+        Screengrab.screenshot("beforeLoadNextMovePage");
+
         onData(instanceOf(Movie.class))
                 .inAdapterView(allOf(withId(R.id.movie_grid), isDisplayed()))
                 .atPosition(19)
                 .check(matches(isDisplayed()));
 
         onView(withId(R.id.movie_grid)).check(matches(hasNumberOfItems(40)));
+
+        Screengrab.screenshot("afterLoadNextMovePage");
 
     }
 
