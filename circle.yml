@@ -27,7 +27,11 @@ test:
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
     # copy the test results to the test results directory.
     - cp -r app/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
-    # Execute test for screenshots
+
+
+
+    # Screengrab screenshots
+    - ./gradlew assembleDebug assembleAndroidTest
     - screengrab
     # Copy screengrab screenshots
     - cp -r fastlane $CIRCLE_ARTIFACTS
