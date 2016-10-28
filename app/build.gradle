@@ -51,6 +51,11 @@ android {
         testLogging {
             events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
         }
+
+        reports {
+            junitXml.enabled = false
+            html.enabled = true
+        }
     }
 }
 
