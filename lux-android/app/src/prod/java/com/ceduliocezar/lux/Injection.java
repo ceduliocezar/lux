@@ -1,7 +1,7 @@
 package com.ceduliocezar.lux;
 
 import com.ceduliocezar.lux.data.GenresRepository;
-import com.ceduliocezar.lux.movies.MoviesRepository;
+import com.ceduliocezar.lux.movie.list.MoviesRepository;
 
 /**
  * Created by cedulio on 27/10/16.

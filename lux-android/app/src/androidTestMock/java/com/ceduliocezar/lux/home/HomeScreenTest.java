@@ -1,7 +1,5 @@
 package com.ceduliocezar.lux.home;
 
-import android.support.annotation.IdRes;
-import android.support.test.espresso.assertion.ViewAssertions;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -14,7 +12,6 @@ import com.ceduliocezar.lux.movies.FakeMoviesServiceApiImpl;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
-import org.hamcrest.Matchers;
 import org.hamcrest.TypeSafeMatcher;
 import org.junit.Rule;
 import org.junit.Test;
@@ -23,14 +20,11 @@ import org.junit.runner.RunWith;
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.scrollTo;
-import static android.support.test.espresso.action.ViewActions.swipeUp;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.instanceOf;
 
 /**
@@ -46,15 +40,15 @@ public class HomeScreenTest {
             = new ActivityTestRule<>(HomeActivity.class);
 
     @Test
-    public void clickOnMovie_opensMovieDetailUi() throws Exception{
+    public void clickOnMovie_opensMovieDetailUi() throws Exception {
 
-        onView(withText(FakeMoviesServiceApiImpl.FAKE_TITLE + 1) ).perform(click());
+        onView(withText(FakeMoviesServiceApiImpl.FAKE_TITLE + 1)).perform(click());
 
         onView(withId(R.id.movie_overview)).check(matches(isDisplayed()));
     }
 
     @Test
-    public void scrollMovieGrid_loadNextPage() throws Exception{
+    public void scrollMovieGrid_loadNextPage() throws Exception {
         onData(instanceOf(Movie.class))
                 .inAdapterView(allOf(withId(R.id.movie_grid), isDisplayed()))
                 .atPosition(19)
