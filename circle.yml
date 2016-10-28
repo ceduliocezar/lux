@@ -1,16 +1,14 @@
 machine:
-  ruby:
-    version: ruby-2.3.1
-
   environment:
     TERM: "dumb"
     ADB_INSTALL_TIMEOUT: "10"
     GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
 
 dependencies:
+  cache_directories:
+    - "/opt/circleci/.rvm/gems"
   pre:
-    - ruby -v
-    - sudo gem install screengrab
+    - gem install fastlane
 
 test:
   override:
