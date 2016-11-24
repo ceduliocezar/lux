@@ -76,6 +76,9 @@ dependencies {
     compile "com.squareup.picasso:picasso:$rootProject.ext.picassoVersion"
     compile "org.apache.commons:commons-lang3:$rootProject.ext.commonsLangVersion"
 
+    compile "io.reactivex:rxandroid:$rootProject.ext.rxAndroidVersion"
+    compile "io.reactivex:rxjava:$rootProject.ext.rxJavaVersion"
+
     // Dependencies for local unit tests
     testCompile "junit:junit:$rootProject.ext.junitVersion"
     testCompile "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"
