@@ -1,6 +1,4 @@
-package com.ceduliocezar.lux.movie.list;
-
-import com.ceduliocezar.lux.data.Movie;
+package com.ceduliocezar.lux.data.movie;
 
 import java.util.List;
 

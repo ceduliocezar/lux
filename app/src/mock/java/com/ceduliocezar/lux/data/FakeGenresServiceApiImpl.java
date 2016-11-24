@@ -2,6 +2,8 @@ package com.ceduliocezar.lux.data;
 
 import android.support.v4.util.ArrayMap;
 
+import com.ceduliocezar.lux.data.genre.Genre;
+import com.ceduliocezar.lux.data.genre.GenresServiceApi;
 import com.google.common.collect.Lists;
 
 import java.util.List;
@@ -9,7 +11,7 @@ import java.util.List;
 /**
  * Created by cedulio on 03/08/2016.
  */
-public class FakeGenresServiceApiImpl implements GenresServiceApi{
+public class FakeGenresServiceApiImpl implements GenresServiceApi {
 
 
     private static final ArrayMap<Integer, Genre> GENRES_SERVICE_DATA = new ArrayMap<>();

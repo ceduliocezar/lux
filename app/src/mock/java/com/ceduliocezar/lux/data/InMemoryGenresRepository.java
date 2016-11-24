@@ -3,6 +3,10 @@ package com.ceduliocezar.lux.data;
 import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
 
+import com.ceduliocezar.lux.data.genre.Genre;
+import com.ceduliocezar.lux.data.genre.GenresRepository;
+import com.ceduliocezar.lux.data.genre.GenresServiceApi;
+
 import java.util.List;
 
 import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
@@ -10,7 +14,7 @@ import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
 /**
  * Created by cedulio on 03/08/2016.
  */
-public class InMemoryGenresRepository implements  GenresRepository {
+public class InMemoryGenresRepository implements GenresRepository {
 
     private final GenresServiceApi genresServiceApi;
 

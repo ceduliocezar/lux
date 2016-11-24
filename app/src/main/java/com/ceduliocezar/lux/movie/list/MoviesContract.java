@@ -2,7 +2,7 @@ package com.ceduliocezar.lux.movie.list;
 
 import android.support.annotation.NonNull;
 
-import com.ceduliocezar.lux.data.Movie;
+import com.ceduliocezar.lux.data.movie.Movie;
 
 import java.util.List;
 

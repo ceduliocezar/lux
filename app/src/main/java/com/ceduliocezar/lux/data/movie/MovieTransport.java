@@ -1,4 +1,4 @@
-package com.ceduliocezar.lux.data;
+package com.ceduliocezar.lux.data.movie;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

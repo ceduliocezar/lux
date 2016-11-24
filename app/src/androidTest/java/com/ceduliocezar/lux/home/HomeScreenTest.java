@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.GridView;
 
 import com.ceduliocezar.lux.R;
-import com.ceduliocezar.lux.data.Movie;
+import com.ceduliocezar.lux.data.movie.Movie;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;

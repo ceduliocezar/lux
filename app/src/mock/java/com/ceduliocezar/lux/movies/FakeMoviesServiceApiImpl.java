@@ -1,7 +1,7 @@
 package com.ceduliocezar.lux.movies;
 
-import com.ceduliocezar.lux.data.Movie;
-import com.ceduliocezar.lux.movie.list.MoviesServiceApi;
+import com.ceduliocezar.lux.data.movie.Movie;
+import com.ceduliocezar.lux.data.movie.MoviesServiceApi;
 
 import java.util.ArrayList;
 import java.util.Arrays;

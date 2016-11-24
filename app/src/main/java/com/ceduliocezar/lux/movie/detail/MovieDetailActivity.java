@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ceduliocezar.lux.R;
-import com.ceduliocezar.lux.data.Movie;
+import com.ceduliocezar.lux.data.movie.Movie;
 import com.ceduliocezar.lux.util.EspressoResourceIdling;
 
 public class MovieDetailActivity extends AppCompatActivity {

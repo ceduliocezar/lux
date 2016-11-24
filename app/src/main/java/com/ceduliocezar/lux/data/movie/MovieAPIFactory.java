@@ -1,4 +1,4 @@
-package com.ceduliocezar.lux.data;
+package com.ceduliocezar.lux.data.movie;
 
 import android.content.Context;
 
@@ -10,16 +10,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Created by cedulio on 05/06/16.
  */
-public class MovieAPI {
+public class MovieAPIFactory {
 
 
-    public static MovieRESTApi getInstance(Context context){
+    public static MovieDBRESTApi create(Context context) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(context.getString(R.string.MOVIE_DB_BASE_URL))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        MovieRESTApi service = retrofit.create(MovieRESTApi.class);
+        MovieDBRESTApi service = retrofit.create(MovieDBRESTApi.class);
 
         return service;
     }

@@ -1,7 +1,12 @@
 package com.ceduliocezar.lux;
 
-import com.ceduliocezar.lux.data.GenresRepository;
-import com.ceduliocezar.lux.movie.list.MoviesRepository;
+import android.content.Context;
+
+import com.ceduliocezar.lux.data.genre.GenresRepository;
+import com.ceduliocezar.lux.data.movie.MoviesRepository;
+import com.ceduliocezar.lux.data.poster.PosterHandler;
+import com.ceduliocezar.lux.movies.MoviesRepositoryImpl;
+import com.ceduliocezar.lux.poster.PosterHandlerImpl;
 
 /**
  * Created by cedulio on 27/10/16.
@@ -9,11 +14,15 @@ import com.ceduliocezar.lux.movie.list.MoviesRepository;
 
 public class Injection {
 
-    public static GenresRepository providesGenreRepository(){
+    public static GenresRepository providesGenreRepository() {
         return null; // TODO: 27/10/16  
     }
 
-    public static MoviesRepository providesMoviesRepository() {
-        return null; // TODO: 27/10/16
+    public static MoviesRepository providesMoviesRepository(Context context) {
+        return new MoviesRepositoryImpl(context);
+    }
+
+    public static PosterHandler providesPosterHandler() {
+        return new PosterHandlerImpl();
     }
 }

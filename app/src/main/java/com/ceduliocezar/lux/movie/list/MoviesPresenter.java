@@ -2,7 +2,8 @@ package com.ceduliocezar.lux.movie.list;
 
 import android.support.annotation.NonNull;
 
-import com.ceduliocezar.lux.data.Movie;
+import com.ceduliocezar.lux.data.movie.Movie;
+import com.ceduliocezar.lux.data.movie.MoviesRepository;
 import com.ceduliocezar.lux.util.EspressoResourceIdling;
 
 import java.util.List;
@@ -15,11 +16,12 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class MoviesPresenter implements MoviesContract.UserActionsListener {
 
 
-    private static final int FIRST_PAGE = 0;
+    private static final int FIRST_PAGE = 1;
     private final MoviesRepository moviesRepository;
     private final MoviesContract.View moviesView;
 
-    public MoviesPresenter(MoviesRepository moviesRepository, @NonNull MoviesContract.View moviesView) {
+    public MoviesPresenter(@NonNull MoviesRepository moviesRepository, @NonNull MoviesContract.View
+            moviesView) {
         this.moviesRepository = moviesRepository;
         this.moviesView = moviesView;
     }

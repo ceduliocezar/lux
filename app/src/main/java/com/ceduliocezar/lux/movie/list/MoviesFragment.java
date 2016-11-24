@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +19,10 @@ import android.widget.Toast;
 import com.ceduliocezar.lux.Injection;
 import com.ceduliocezar.lux.R;
 import com.ceduliocezar.lux.custom.ui.EndlessScrollListener;
-import com.ceduliocezar.lux.data.Genre;
-import com.ceduliocezar.lux.data.Movie;
+import com.ceduliocezar.lux.data.genre.Genre;
+import com.ceduliocezar.lux.data.movie.Movie;
+import com.ceduliocezar.lux.data.poster.PosterHandler;
 import com.ceduliocezar.lux.movie.detail.MovieDetailActivity;
-import com.squareup.picasso.Picasso;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -43,6 +44,7 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     private int maxPage = 0;
     private GridView gridView;
 
+
     public MoviesFragment() {
 
     }
@@ -51,7 +53,7 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         adapter = new MovieAdapter(new ArrayList<Movie>());
-        userActionsListener = new MoviesPresenter(Injection.providesMoviesRepository(), this);
+        userActionsListener = new MoviesPresenter(Injection.providesMoviesRepository(getContext()), this);
     }
 
     @Override
@@ -166,6 +168,7 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
 
     @Override
     public void showError(Throwable e) {
+        Log.d("error", Log.getStackTraceString(e));
         Toast.makeText(getActivity(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
     }
 
@@ -174,93 +177,6 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
         adapter.addAll(movies);
         adapter.notifyDataSetChanged();
     }
-
-//    public class LoadData extends AsyncTask<Void, Void, Void> {
-//
-//        private final int pageIndexToLoad;
-//        private final boolean lazy;
-//        private List<Movie> movies;
-//        private List<Genre> genres;
-//
-//        public LoadData(int pageIndexToLoad, boolean lazy) {
-//            this.pageIndexToLoad = pageIndexToLoad;
-//            this.lazy = lazy;
-//        }
-//
-//        @Override
-//        protected void onPreExecute() {
-//            super.onPreExecute();
-//
-//            if (lazy) {
-//                showLazyLoad();
-//            }
-//        }
-//
-//        @Override
-//        protected Void doInBackground(Void... params) {
-//
-//            try {
-//
-//                MovieRESTApi service = MovieAPI.getInstance(getContext());
-//
-//
-//                loadMovies(service);
-//                loadGenres(service);
-//
-////                http://image.tmdb.org/t/p/w500/inVq3FRqcYIRl2la8iZikYYxFNR.jpg
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//
-//            return null;
-//        }
-//
-//        private void loadGenres(MovieRESTApi service) throws IOException {
-//            Call<GenreTransport> response = service.getGenres(getString(R.string.MOVIE_DB_API_KEY));
-//            GenreTransport genreTransport = response.execute().body();
-//
-////            https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc?&api_key=4c2bf59aa34e0b47a51f9fe34a90c844
-//
-//            for (Genre genre : genreTransport.getGenres()) {
-//                Log.d("debug", "genre=" + genre.getName());
-//            }
-//
-//            this.genres = genreTransport.getGenres();
-//        }
-//
-//        private void loadMovies(MovieRESTApi service) throws java.io.IOException {
-//            Call<MovieTransport> response = service.orderByRate(getString(R.string.MOVIE_DB_API_KEY), pageIndexToLoad);
-//            MovieTransport movieTransport = response.execute().body();
-//
-////            https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc?&api_key=4c2bf59aa34e0b47a51f9fe34a90c844
-//
-//            for (Movie movie : movieTransport.getResults()) {
-//                Log.d("debug", "movie=" + movie.getTitle());
-//            }
-//
-//            this.movies = movieTransport.getResults();
-//        }
-//
-//        @Override
-//        protected void onPostExecute(Void aVoid) {
-//            super.onPostExecute(aVoid);
-//
-//            if (movies != null) {
-//                adapter.addAll(movies);
-//            }
-//
-//            if (genres != null) {
-//                MoviesFragment.this.genres = genres;
-//            }
-//
-//            currentPage++;
-//
-//            if (getView() != null) {
-//                hideLazyLoad();
-//                esconderLoader();
-//            }
-//        }
-//    }
 
     public void showLazyLoad() {
         getView().findViewById(R.id.movie_load_progress).setVisibility(View.VISIBLE);
@@ -273,10 +189,12 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
 
     private class MovieAdapter extends BaseAdapter {
 
+        private final PosterHandler posterHandler;
         private List<Movie> movies;
 
         public MovieAdapter(List<Movie> movies) {
             this.movies = movies;
+            this.posterHandler = Injection.providesPosterHandler();
         }
 
         @Override
@@ -303,31 +221,39 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
                 convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_item, null);
             }
 
-            ImageView imageView = (ImageView) convertView.findViewById(R.id.movie_image);
-
-//            Picasso.with(MoviesFragment.this.getActivity()).
-//                    load("http://image.tmdb.org/t/p/w500" + movie.getPosterPath()).
-//                    into(imageView);
-
-            Picasso.with(MoviesFragment.this.getActivity())
-                    .load(movie.getPosterPath())
-                    .into(imageView);
-
-
-            TextView tvGenres = (TextView) convertView.findViewById(R.id.movie_genre);
-            tvGenres.setText(getGenres(movie));
-
-            TextView tvTitle = (TextView) convertView.findViewById(R.id.movie_title);
-            tvTitle.setText(movie.getTitle());
-
-
-            TextView tvYear = (TextView) convertView.findViewById(R.id.movie_year);
-            tvYear.setText(getReleaseYear(movie));
-
-            TextView tvRateNumber = (TextView) convertView.findViewById(R.id.movie_rate_number);
-            tvRateNumber.setText(String.valueOf(movie.getVoteAverage()));
+            initImageView(convertView, movie);
+            initGenreView(convertView, movie);
+            initTitleView(convertView, movie);
+            initYearView(convertView, movie);
+            initRateView(convertView, movie);
 
             return convertView;
+        }
+
+        private void initRateView(View convertView, Movie movie) {
+            TextView tvRateNumber = (TextView) convertView.findViewById(R.id.movie_rate_number);
+            tvRateNumber.setText(String.valueOf(movie.getVoteAverage()));
+        }
+
+        private void initYearView(View convertView, Movie movie) {
+            TextView tvYear = (TextView) convertView.findViewById(R.id.movie_year);
+            tvYear.setText(getReleaseYear(movie));
+        }
+
+        private void initTitleView(View convertView, Movie movie) {
+            TextView tvTitle = (TextView) convertView.findViewById(R.id.movie_title);
+            tvTitle.setText(movie.getTitle());
+        }
+
+        private void initGenreView(View convertView, Movie movie) {
+            TextView tvGenres = (TextView) convertView.findViewById(R.id.movie_genre);
+            tvGenres.setText(getGenres(movie));
+        }
+
+        private void initImageView(View convertView, Movie movie) {
+            ImageView imageView = (ImageView) convertView.findViewById(R.id.movie_image);
+
+            posterHandler.loadImage(movie.getPosterPath(), imageView, getContext());
         }
 
         private String getReleaseYear(Movie movie) {

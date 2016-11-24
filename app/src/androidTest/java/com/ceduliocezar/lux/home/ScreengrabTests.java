@@ -5,8 +5,7 @@ import android.view.View;
 import android.widget.GridView;
 
 import com.ceduliocezar.lux.R;
-import com.ceduliocezar.lux.data.Movie;
-import com.ceduliocezar.lux.movies.FakeMoviesServiceApiImpl;
+import com.ceduliocezar.lux.data.movie.Movie;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -28,9 +27,9 @@ import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.is;
 
 /**
  * Created by cedulio on 28/10/16.
@@ -54,7 +53,7 @@ public class ScreengrabTests {
     public void clickOnMovie_opensMovieDetailUi() throws Exception {
         Screengrab.screenshot("beforeSelectmovie");
 
-        onView(withText(FakeMoviesServiceApiImpl.FAKE_TITLE + 1)).perform(click());
+        onData(is(instanceOf(Movie.class))).atPosition(0).perform(click());
 
         onView(withId(R.id.movie_overview)).check(matches(isDisplayed()));
 
