@@ -139,7 +139,8 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     }
 
     private void showMovieDetail(int position) {
-        Intent intent = MovieDetailActivity.getIntent(getActivity(), (Movie) adapter.getItem(position));
+        Intent intent = MovieDetailActivity.getIntent(getActivity(), ((Movie) adapter.getItem
+                (position)).getId());
         startActivity(intent);
     }
 
@@ -192,7 +193,7 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
         this.gridView.invalidateViews();
     }
 
-    public void showpageLoad() {
+    public void showPageLoad() {
         getView().findViewById(R.id.movie_load_progress).setVisibility(View.VISIBLE);
     }
 

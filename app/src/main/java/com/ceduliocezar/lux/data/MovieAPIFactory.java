@@ -1,4 +1,4 @@
-package com.ceduliocezar.lux.data.movie;
+package com.ceduliocezar.lux.data;
 
 import android.content.Context;
 

@@ -58,7 +58,7 @@ public class MoviesPresenter implements MoviesContract.UserActionsListener {
 
     @Override
     public void loadPage(int page) {
-        moviesView.showpageLoad();
+        moviesView.showPageLoad();
         moviesRepository.getMovies(page, new MoviesRepository.LoadMoviesCallback() {
             @Override
             public void onLoadMovies(List<Movie> movies, int currentPage, int maxPage) {
@@ -83,14 +83,18 @@ public class MoviesPresenter implements MoviesContract.UserActionsListener {
 
     @Override
     public void loadGenres() {
+
+        EspressoResourceIdling.increment();
         genresRepository.getGenres(new GenresRepository.LoadGenresCallback() {
             @Override
             public void onLoadGenres(List<Genre> genres) {
+                EspressoResourceIdling.decrement();
                 moviesView.onLoadGenres(genres);
             }
 
             @Override
             public void onError(Throwable t) {
+                EspressoResourceIdling.decrement();
                 moviesView.showError(t);
             }
         });

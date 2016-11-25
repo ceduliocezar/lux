@@ -41,6 +41,11 @@ public class FakeMoviesServiceApiImpl implements MoviesServiceApi {
         callback.onLoaded(MOVIES_SERVICE_DATA, page, MAX_NUM_PAGE);
     }
 
+    @Override
+    public void getMovie(int movieId, MovieServiceCallback callback) {
+        callback.onLoadMovie(createFakeMovie(movieId));
+    }
+
     private void fakeMovies() {
         for (int i = 0; i < MOVIE_DB_PAGE_SIZE; i++) {
             MOVIES_SERVICE_DATA.add(createFakeMovie(i));
@@ -53,7 +58,7 @@ public class FakeMoviesServiceApiImpl implements MoviesServiceApi {
         movie.setBackdropPath("");
         movie.setGenreIds(Arrays.asList(FAKE_GENRES));
         movie.setId(i);
-        movie.setOriginalLanguage(FAKE_ORIGINAL_LANGUAGE +i);
+        movie.setOriginalLanguage(FAKE_ORIGINAL_LANGUAGE + i);
         movie.setOriginalTitle(FAKE_TITLE + i);
         movie.setOverview(FAKE_OVERVIEW);
         movie.setPopularity(FAKE_POPULARITY);

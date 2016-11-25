@@ -7,10 +7,21 @@ import java.util.List;
  */
 public interface MoviesRepository {
 
+
     interface LoadMoviesCallback {
         void onLoadMovies(List<Movie> movies, int currentPage, int maxPage);
+
         void onErrorLoadingMovies(Throwable e);
     }
 
+    interface LoadMovieCallback {
+        void onLoadMovie(Movie movie);
+
+        void onErrorLoadingMovie(Throwable t);
+    }
+
+    void getMovie(int movieId, LoadMovieCallback callback);
+
     void getMovies(int pageIndex, LoadMoviesCallback callback);
+
 }

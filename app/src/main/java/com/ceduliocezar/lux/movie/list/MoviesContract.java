@@ -15,7 +15,7 @@ public class MoviesContract {
     interface View{
         void showActivityIndicator();
         void hideActivityIndicator();
-        void showpageLoad();
+        void showPageLoad();
         void hidePageLoad();
         void showMovies(List<Movie> movies, int currentPage, int maxPage);
         void showMovieDetailUi(Integer movieId);
