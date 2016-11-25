@@ -1,13 +1,6 @@
 <resources>
-    <string name="app_name">lux</string>
-    <string name="title_activity_movie_detail">MovieDetailActivity</string>
-    <string name="action_settings">Settings</string>
-    <string name="overview">Overview</string>
-    <string name="MOVIE_DB_API_KEY">4c2bf59aa34e0b47a51f9fe34a90c844</string>
-    <string name="MOVIE_DB_BASE_URL">https://api.themoviedb.org/3/</string>
-    <string name="title_activity_menu">MenuActivity</string>
-    <string name="about">About</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name" translatable="false">lux</string>
+    <string name="synopsis">Synopsis</string>
+    <string name="MOVIE_DB_API_KEY" translatable="false">4c2bf59aa34e0b47a51f9fe34a90c844</string>
+    <string name="MOVIE_DB_BASE_URL" translatable="false">https://api.themoviedb.org/3/</string>
 </resources>
