@@ -1,5 +1,8 @@
 package com.ceduliocezar.lux.movie.detail;
 
+import android.content.Context;
+
+import com.ceduliocezar.lux.R;
 import com.ceduliocezar.lux.data.movie.Movie;
 import com.ceduliocezar.lux.data.movie.MoviesRepository;
 import com.ceduliocezar.lux.data.video.Video;
@@ -16,17 +19,20 @@ public class MovieDetailPresenter implements MovieDetailContract.UserActionsList
     private final MovieDetailContract.View view;
     private final VideosRepository videosRepository;
     private final MoviesRepository moviesRepository;
+    private final Context context;
 
     public MovieDetailPresenter(MovieDetailContract.View view,
+                                Context context,
                                 VideosRepository videosRepository,
                                 MoviesRepository moviesRepository) {
         this.view = view;
         this.videosRepository = videosRepository;
         this.moviesRepository = moviesRepository;
+        this.context = context;
     }
 
     @Override
-    public void loadMovie(int movieId){
+    public void loadMovie(int movieId) {
         EspressoResourceIdling.increment();
         view.showLoading();
         moviesRepository.getMovie(movieId, new MoviesRepository.LoadMovieCallback() {
@@ -34,14 +40,19 @@ public class MovieDetailPresenter implements MovieDetailContract.UserActionsList
             public void onLoadMovie(Movie movie) {
                 EspressoResourceIdling.decrement();
                 view.hideLoading();
-                view.showMovie(movie);
+
+                if (movie != null) {
+                    view.showMovie(movie);
+                } else {
+                    view.showError(context.getString(R.string.error_unable_to_load_movie));
+                }
             }
 
             @Override
             public void onErrorLoadingMovie(Throwable t) {
                 EspressoResourceIdling.decrement();
                 view.hideLoading();
-                view.showError(t);
+                view.showError(t.getMessage());
             }
         });
     }
@@ -58,14 +69,19 @@ public class MovieDetailPresenter implements MovieDetailContract.UserActionsList
             public void onLoadVideos(List<Video> videos) {
                 EspressoResourceIdling.decrement();
                 view.hideLoadingVideos();
-                view.showVideos(videos);
+
+                if (videos == null || videos.isEmpty()) {
+                    view.hideContainerVideos();
+                } else {
+                    view.showVideos(videos);
+                }
             }
 
             @Override
             public void errorLoadingVideos(Throwable e) {
                 EspressoResourceIdling.decrement();
                 view.hideLoadingVideos();
-                view.showError(e);
+                view.showError(e.getMessage());
             }
         });
     }

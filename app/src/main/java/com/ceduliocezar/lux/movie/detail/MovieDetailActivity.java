@@ -9,7 +9,6 @@ import android.support.design.widget.Snackbar;
 import android.support.test.espresso.IdlingResource;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,8 +21,6 @@ import com.ceduliocezar.lux.util.EspressoResourceIdling;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.ceduliocezar.lux.R.id.toolbar;
 
 public class MovieDetailActivity extends AppCompatActivity implements MovieDetailContract.View {
 
@@ -59,6 +56,7 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
 
     private void initUserActionListener() {
         this.userActionsListener = new MovieDetailPresenter(this,
+                this,
                 Injection.providesVideosRepository(this),
                 Injection.providesMoviesRepository(this));
     }
@@ -135,12 +133,12 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
 
     @Override
     public void showLoading() {
-
+        // TODO: 25/11/16  
     }
 
     @Override
     public void hideLoading() {
-
+        // TODO: 25/11/16  
     }
 
     @Override
@@ -149,18 +147,18 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
     }
 
     @Override
-    public void showError(Throwable t) {
-        Toast.makeText(this, Log.getStackTraceString(t), Toast.LENGTH_SHORT).show();
+    public void showError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showLoadingVideos() {
-
+        // TODO: 25/11/16  
     }
 
     @Override
     public void hideLoadingVideos() {
-
+        // TODO: 25/11/16  
     }
 
     @Override
@@ -168,6 +166,11 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
         this.movie = movie;
         tvOverview.setText(movie.getOverview());
         toolbar.setTitle(movie.getTitle());
+    }
+
+    @Override
+    public void hideContainerVideos() {
+        // TODO: 25/11/16  
     }
 
 }

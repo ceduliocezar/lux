@@ -19,13 +19,15 @@ public class MovieDetailContract {
 
         void showVideos(List<Video> videos);
 
-        void showError(Throwable t);
+        void showError(String message);
 
         void showLoadingVideos();
 
         void hideLoadingVideos();
 
         void showMovie(Movie movie);
+
+        void hideContainerVideos();
     }
 
     interface UserActionsListener {
