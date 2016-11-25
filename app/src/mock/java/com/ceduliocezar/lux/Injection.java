@@ -2,8 +2,8 @@ package com.ceduliocezar.lux;
 
 import android.content.Context;
 
-import com.ceduliocezar.lux.data.FakeGenresServiceApiImpl;
-import com.ceduliocezar.lux.data.InMemoryGenresRepository;
+import com.ceduliocezar.lux.genres.FakeGenresServiceApiImpl;
+import com.ceduliocezar.lux.genres.InMemoryGenresRepository;
 import com.ceduliocezar.lux.data.genre.GenresRepository;
 import com.ceduliocezar.lux.data.movie.MoviesRepository;
 import com.ceduliocezar.lux.data.poster.PosterHandler;
@@ -17,7 +17,7 @@ import com.ceduliocezar.lux.poster.AssetPosterHandler;
 public class Injection {
 
 
-    public static GenresRepository providesGenreRepository() {
+    public static GenresRepository providesGenreRepository(Context context) {
         return new InMemoryGenresRepository(new FakeGenresServiceApiImpl());
     }
 

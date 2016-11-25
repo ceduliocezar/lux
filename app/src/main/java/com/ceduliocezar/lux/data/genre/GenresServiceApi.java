@@ -7,13 +7,12 @@ import java.util.List;
  */
 public interface GenresServiceApi {
 
-    interface GenresServiceCallback<T>{
+    interface GenresServiceCallback<T> {
         void onLoaded(T load);
+
+        void onError(Throwable t);
     }
 
     void getGenres(GenresServiceCallback<List<Genre>> callback);
 
-    void saveGenreAsFavorite(Genre genre);
-
-    void removeGenreAsFavorite(Genre genre);
 }

@@ -22,9 +22,11 @@ import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
 
 /**
  * Created by cedulio on 11/08/2016.
@@ -55,6 +57,14 @@ public class HomeScreenTest {
                 .check(matches(isDisplayed()));
 
         onView(withId(R.id.movie_grid)).check(matches(hasNumberOfItems(40)));
+
+    }
+
+    @Test
+    public void loadMovies_show_genres() throws Exception {
+
+        onData(is(instanceOf(Movie.class))).atPosition(0).onChildView(withId(R.id.movie_genre))
+                .check(matches(not(withText(""))));
 
     }
 

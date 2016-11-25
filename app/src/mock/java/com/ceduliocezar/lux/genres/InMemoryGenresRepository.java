@@ -1,6 +1,5 @@
-package com.ceduliocezar.lux.data;
+package com.ceduliocezar.lux.genres;
 
-import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
 
 import com.ceduliocezar.lux.data.genre.Genre;
@@ -21,34 +20,29 @@ public class InMemoryGenresRepository implements GenresRepository {
     @VisibleForTesting
     List<Genre> cachedGenres;
 
-    public InMemoryGenresRepository(GenresServiceApi genresServiceApi){
-        this.genresServiceApi =  genresServiceApi;
+    public InMemoryGenresRepository(GenresServiceApi genresServiceApi) {
+        this.genresServiceApi = genresServiceApi;
     }
 
     @Override
-    public void getAllGenres(@NonNull final LoadGenresCallback callback) {
+    public void getGenres(final LoadGenresCallback callback) {
         checkNotNull(callback);
 
-        if(cachedGenres ==  null){
+        if (cachedGenres == null) {
             genresServiceApi.getGenres(new GenresServiceApi.GenresServiceCallback<List<Genre>>() {
                 @Override
                 public void onLoaded(List<Genre> load) {
                     cachedGenres = load;
                     callback.onLoadGenres(cachedGenres);
                 }
+
+                @Override
+                public void onError(Throwable t) {
+                    callback.onError(t);
+                }
             });
-        }else {
+        } else {
             callback.onLoadGenres(cachedGenres);
         }
-    }
-
-    @Override
-    public void saveGenreAsFavorite(Genre genre) {
-        genresServiceApi.saveGenreAsFavorite(genre);
-    }
-
-    @Override
-    public void removeGenreAsFavorite(Genre genre) {
-        genresServiceApi.removeGenreAsFavorite(genre);
     }
 }

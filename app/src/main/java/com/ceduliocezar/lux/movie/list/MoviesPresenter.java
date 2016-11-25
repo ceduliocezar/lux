@@ -2,6 +2,8 @@ package com.ceduliocezar.lux.movie.list;
 
 import android.support.annotation.NonNull;
 
+import com.ceduliocezar.lux.data.genre.Genre;
+import com.ceduliocezar.lux.data.genre.GenresRepository;
 import com.ceduliocezar.lux.data.movie.Movie;
 import com.ceduliocezar.lux.data.movie.MoviesRepository;
 import com.ceduliocezar.lux.util.EspressoResourceIdling;
@@ -19,11 +21,14 @@ public class MoviesPresenter implements MoviesContract.UserActionsListener {
     private static final int FIRST_PAGE = 1;
     private final MoviesRepository moviesRepository;
     private final MoviesContract.View moviesView;
+    private final GenresRepository genresRepository;
 
-    public MoviesPresenter(@NonNull MoviesRepository moviesRepository, @NonNull MoviesContract.View
-            moviesView) {
+    public MoviesPresenter(@NonNull MoviesRepository moviesRepository,
+                           @NonNull GenresRepository genresRepository,
+                           @NonNull MoviesContract.View moviesView) {
         this.moviesRepository = moviesRepository;
         this.moviesView = moviesView;
+        this.genresRepository = genresRepository;
     }
 
     @Override
@@ -53,17 +58,17 @@ public class MoviesPresenter implements MoviesContract.UserActionsListener {
 
     @Override
     public void loadPage(int page) {
-        moviesView.showLazyLoad();
+        moviesView.showpageLoad();
         moviesRepository.getMovies(page, new MoviesRepository.LoadMoviesCallback() {
             @Override
             public void onLoadMovies(List<Movie> movies, int currentPage, int maxPage) {
-                moviesView.hideLazyLoad();
+                moviesView.hidePageLoad();
                 moviesView.appendPage(movies, currentPage);
             }
 
             @Override
             public void onErrorLoadingMovies(Throwable e) {
-                moviesView.hideLazyLoad();
+                moviesView.hidePageLoad();
                 moviesView.showError(e);
             }
         });
@@ -74,5 +79,20 @@ public class MoviesPresenter implements MoviesContract.UserActionsListener {
         checkNotNull(movie, "movie cannot be null");
 
         moviesView.showMovieDetailUi(movie.getId());
+    }
+
+    @Override
+    public void loadGenres() {
+        genresRepository.getGenres(new GenresRepository.LoadGenresCallback() {
+            @Override
+            public void onLoadGenres(List<Genre> genres) {
+                moviesView.onLoadGenres(genres);
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                moviesView.showError(t);
+            }
+        });
     }
 }

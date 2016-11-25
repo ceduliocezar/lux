@@ -5,6 +5,7 @@ import android.content.Context;
 import com.ceduliocezar.lux.data.genre.GenresRepository;
 import com.ceduliocezar.lux.data.movie.MoviesRepository;
 import com.ceduliocezar.lux.data.poster.PosterHandler;
+import com.ceduliocezar.lux.genre.GenresRepositoryImpl;
 import com.ceduliocezar.lux.movies.MoviesRepositoryImpl;
 import com.ceduliocezar.lux.poster.PosterHandlerImpl;
 
@@ -14,8 +15,8 @@ import com.ceduliocezar.lux.poster.PosterHandlerImpl;
 
 public class Injection {
 
-    public static GenresRepository providesGenreRepository() {
-        return null; // TODO: 27/10/16  
+    public static GenresRepository providesGenreRepository(Context context) {
+        return new GenresRepositoryImpl(context);
     }
 
     public static MoviesRepository providesMoviesRepository(Context context) {

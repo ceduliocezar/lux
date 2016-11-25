@@ -9,9 +9,8 @@ public interface GenresRepository {
 
     interface LoadGenresCallback{
         void onLoadGenres(List<Genre> genres);
+        void onError(Throwable t);
     }
 
-    void getAllGenres(LoadGenresCallback callback);
-    void saveGenreAsFavorite(Genre genre);
-    void removeGenreAsFavorite(Genre genre);
+    void getGenres(LoadGenresCallback callback);
 }

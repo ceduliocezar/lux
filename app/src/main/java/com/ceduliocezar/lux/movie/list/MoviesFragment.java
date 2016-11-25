@@ -20,7 +20,9 @@ import com.ceduliocezar.lux.Injection;
 import com.ceduliocezar.lux.R;
 import com.ceduliocezar.lux.custom.ui.EndlessScrollListener;
 import com.ceduliocezar.lux.data.genre.Genre;
+import com.ceduliocezar.lux.data.genre.GenresRepository;
 import com.ceduliocezar.lux.data.movie.Movie;
+import com.ceduliocezar.lux.data.movie.MoviesRepository;
 import com.ceduliocezar.lux.data.poster.PosterHandler;
 import com.ceduliocezar.lux.movie.detail.MovieDetailActivity;
 
@@ -53,13 +55,19 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         adapter = new MovieAdapter(new ArrayList<Movie>());
-        userActionsListener = new MoviesPresenter(Injection.providesMoviesRepository(getContext()), this);
+
+        MoviesRepository moviesRepository = Injection.providesMoviesRepository(getContext());
+        GenresRepository genresRepository = Injection.providesGenreRepository(getContext());
+
+        userActionsListener = new MoviesPresenter(moviesRepository, genresRepository, this);
     }
 
     @Override
     public void onResume() {
         super.onResume();
+
         userActionsListener.loadMovies(false);
+        userActionsListener.loadGenres();
     }
 
     @Override
@@ -178,11 +186,17 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
         adapter.notifyDataSetChanged();
     }
 
-    public void showLazyLoad() {
+    @Override
+    public void onLoadGenres(List<Genre> genres) {
+        this.genres = genres;
+        this.gridView.invalidateViews();
+    }
+
+    public void showpageLoad() {
         getView().findViewById(R.id.movie_load_progress).setVisibility(View.VISIBLE);
     }
 
-    public void hideLazyLoad() {
+    public void hidePageLoad() {
         getView().findViewById(R.id.movie_load_progress).setVisibility(View.GONE);
         swipeContainer.setRefreshing(false);
     }
