@@ -89,11 +89,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/movie_title"
+
             android:id="@+id/movie_genre"
             android:layout_alignParentLeft="true"
             android:layout_toLeftOf="@+id/container_info"
-            android:text="Gêneros: Ação, Aventura, Sci-fi"
+            android:text="Genres"
+            android:layout_alignBottom="@+id/container_info"
             android:maxLines="1"
             android:ellipsize="end"
             android:textSize="10sp"
