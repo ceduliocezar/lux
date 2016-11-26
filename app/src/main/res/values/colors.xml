@@ -6,4 +6,6 @@
     <color name="lightPrimary">#FFCCBC</color>
     <color name="colorAccent">#FF5722</color>
     <color name="secondaryText">#727272</color>
+
+    <color name="legend_background">#CC000000</color>
 </resources>

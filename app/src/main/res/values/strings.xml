@@ -2,7 +2,9 @@
     <string name="app_name" translatable="false">lux</string>
     <string name="synopsis">Synopsis</string>
     <string name="MOVIE_DB_API_KEY" translatable="false">4c2bf59aa34e0b47a51f9fe34a90c844</string>
+    <string name="YOUTUBE_API_KEY" translatable="false">AIzaSyAFKYxrOGgpQb6xaGRKzWz-W0LGUraUmj4</string>
     <string name="MOVIE_DB_BASE_URL" translatable="false">https://api.themoviedb.org/3/</string>
 
     <string name="error_unable_to_load_movie">"Oops, unable to load movide details."</string>
+    <string name="videos">Videos</string>
 </resources>

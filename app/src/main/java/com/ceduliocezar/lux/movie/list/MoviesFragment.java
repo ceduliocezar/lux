@@ -23,7 +23,7 @@ import com.ceduliocezar.lux.data.genre.Genre;
 import com.ceduliocezar.lux.data.genre.GenresRepository;
 import com.ceduliocezar.lux.data.movie.Movie;
 import com.ceduliocezar.lux.data.movie.MoviesRepository;
-import com.ceduliocezar.lux.data.poster.PosterHandler;
+import com.ceduliocezar.lux.data.poster.PosterProvider;
 import com.ceduliocezar.lux.movie.detail.MovieDetailActivity;
 
 import org.apache.commons.lang3.StringUtils;
@@ -204,12 +204,12 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
 
     private class MovieAdapter extends BaseAdapter {
 
-        private final PosterHandler posterHandler;
+        private final PosterProvider posterProvider;
         private List<Movie> movies;
 
         public MovieAdapter(List<Movie> movies) {
             this.movies = movies;
-            this.posterHandler = Injection.providesPosterHandler();
+            this.posterProvider = Injection.providesPosterProvider();
         }
 
         @Override
@@ -268,7 +268,7 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
         private void initImageView(View convertView, Movie movie) {
             ImageView imageView = (ImageView) convertView.findViewById(R.id.movie_image);
 
-            posterHandler.loadImage(movie.getPosterPath(), imageView, getContext());
+            posterProvider.loadImage(movie.getPosterPath(), imageView, getContext());
         }
 
         private String getReleaseYear(Movie movie) {

@@ -2,6 +2,7 @@ package com.ceduliocezar.lux.data;
 
 
 import com.ceduliocezar.lux.data.genre.GenreTransport;
+import com.ceduliocezar.lux.data.movie.Movie;
 import com.ceduliocezar.lux.data.movie.MovieTransport;
 import com.ceduliocezar.lux.data.video.VideosTransport;
 
@@ -18,8 +19,8 @@ public interface MovieDBRESTApi {
     Call<GenreTransport> getGenres(@Query("api_key") String apiKey);
 
     @GET("movie/{movie_id}/videos")
-    Call<VideosTransport> getVideos(@Query("api_key") String apiKey, @Path("movie_id") Integer
-            movieId);
+    Call<VideosTransport> getVideos(@Path("movie_id") Integer movieId, @Query("api_key") String apiKey);
 
-
+    @GET("movie/{movie_id}")
+    Call<Movie> getMovie(@Path("movie_id") Integer movieId, @Query("api_key") String apikey);
 }

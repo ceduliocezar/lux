@@ -7,7 +7,7 @@ import android.widget.ImageView;
  * Created by ceduliocezar on 24/11/16.
  */
 
-public interface PosterHandler {
+public interface PosterProvider {
 
     void loadImage(String imagePath, ImageView target, Context context);
 

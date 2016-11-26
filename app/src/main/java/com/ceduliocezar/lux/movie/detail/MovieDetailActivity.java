@@ -8,6 +8,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.test.espresso.IdlingResource;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 
 import com.ceduliocezar.lux.Injection;
 import com.ceduliocezar.lux.R;
+import com.ceduliocezar.lux.custom.ui.DividerItemDecoration;
 import com.ceduliocezar.lux.data.movie.Movie;
 import com.ceduliocezar.lux.data.video.Video;
 import com.ceduliocezar.lux.util.EspressoResourceIdling;
@@ -32,6 +35,10 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
     private List<Video> videos = new ArrayList<>();
     private TextView tvOverview;
     private Toolbar toolbar;
+    private RecyclerView recyclerViewVideos;
+    private LinearLayoutManager layoutManager;
+    private VideoAdapter videosAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,34 +82,9 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-//        final ImageView imageView = (ImageView) findViewById(R.id.movie_image);
-//
-//        final RequestCreator requestCreator = Picasso.with(this).load("http://image.tmdb.org/t/p/w500" + movie.getPosterPath());
-//
-//        requestCreator.into(imageView, new Callback() {
-//            @Override
-//            public void onSuccess() {
-//                Palette.PaletteAsyncListener paletteListener = new Palette.PaletteAsyncListener() {
-//                    public void onGenerated(Palette palette) {
-//                        changeToolbarColor(palette);
-//                    }
-//                };
-//
-//                Bitmap myBitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
-//                if (myBitmap != null && !myBitmap.isRecycled()) {
-//                    Palette.from(myBitmap).generate(paletteListener);
-//                }
-//            }
-//
-//            @Override
-//            public void onError() {
-//
-//            }
-//        });
-
-
         tvOverview = (TextView) findViewById(R.id.movie_overview);
+
+        recyclerViewVideos = (RecyclerView) findViewById(R.id.videos_recycler);
     }
 
     private void loadParams() {
@@ -144,6 +126,17 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
     @Override
     public void showVideos(List<Video> videos) {
         this.videos = videos;
+
+        recyclerViewVideos.setHasFixedSize(true);
+
+        layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewVideos.setLayoutManager(layoutManager);
+
+        videosAdapter = new VideoAdapter(videos);
+        recyclerViewVideos.setAdapter(videosAdapter);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL_LIST);
+        recyclerViewVideos.addItemDecoration(dividerItemDecoration);
     }
 
     @Override
@@ -172,5 +165,6 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
     public void hideContainerVideos() {
         // TODO: 25/11/16  
     }
+
 
 }

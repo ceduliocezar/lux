@@ -25,6 +25,21 @@ public class MoviesRepositoryImpl implements MoviesRepository {
 
 
     @Override
+    public void getMovie(int movieId, final LoadMovieCallback callback) {
+        moviesServiceApi.getMovie(movieId, new MoviesServiceApi.MovieServiceCallback() {
+            @Override
+            public void onLoadMovie(Movie movie) {
+                callback.onLoadMovie(movie);
+            }
+
+            @Override
+            public void errorLoadingMovie(Throwable t) {
+                callback.onErrorLoadingMovie(t);
+            }
+        });
+    }
+
+    @Override
     public void getMovies(final int pageIndex, final LoadMoviesCallback callback) {
 
         checkNotNull(callback);

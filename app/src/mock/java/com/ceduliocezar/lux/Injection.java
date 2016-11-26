@@ -4,13 +4,15 @@ import android.content.Context;
 
 import com.ceduliocezar.lux.data.genre.GenresRepository;
 import com.ceduliocezar.lux.data.movie.MoviesRepository;
-import com.ceduliocezar.lux.data.poster.PosterHandler;
+import com.ceduliocezar.lux.data.poster.PosterProvider;
+import com.ceduliocezar.lux.data.thumbnail.ThumbnailProvider;
 import com.ceduliocezar.lux.data.video.VideosRepository;
 import com.ceduliocezar.lux.genres.FakeGenresServiceApiImpl;
 import com.ceduliocezar.lux.genres.InMemoryGenresRepository;
 import com.ceduliocezar.lux.movies.FakeMoviesServiceApiImpl;
 import com.ceduliocezar.lux.movies.InMemoryMoviesRepository;
-import com.ceduliocezar.lux.poster.AssetPosterHandler;
+import com.ceduliocezar.lux.poster.AssetPosterProvider;
+import com.ceduliocezar.lux.thumbnail.AssetThumbnailProvider;
 import com.ceduliocezar.lux.video.FakeVideosServiceApiImpl;
 import com.ceduliocezar.lux.video.InMemoryVideosRepository;
 
@@ -32,7 +34,11 @@ public class Injection {
         return new InMemoryMoviesRepository(new FakeMoviesServiceApiImpl());
     }
 
-    public static PosterHandler providesPosterHandler() {
-        return new AssetPosterHandler();
+    public static PosterProvider providesPosterProvider() {
+        return new AssetPosterProvider();
+    }
+
+    public static ThumbnailProvider providesThumbnailProvider(){
+        return new AssetThumbnailProvider();
     }
 }
