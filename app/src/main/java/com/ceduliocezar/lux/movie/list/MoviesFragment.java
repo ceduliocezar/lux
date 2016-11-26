@@ -66,7 +66,7 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     public void onResume() {
         super.onResume();
 
-        userActionsListener.loadMovies(false);
+        userActionsListener.loadMovies();
         userActionsListener.loadGenres();
     }
 
@@ -147,7 +147,7 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     private void startRefresh() {
         adapter.clear();
         adapter.notifyDataSetChanged();
-        userActionsListener.loadMovies(true);
+        userActionsListener.loadMovies();
     }
 
     @Override
@@ -191,6 +191,11 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     public void onLoadGenres(List<Genre> genres) {
         this.genres = genres;
         this.gridView.invalidateViews();
+    }
+
+    @Override
+    public void showNoMoviesFoundView() {
+        // TODO: 26/11/16  
     }
 
     public void showPageLoad() {

@@ -10,8 +10,6 @@ import com.ceduliocezar.lux.util.EspressoResourceIdling;
 
 import java.util.List;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 /**
  * Created by cedulio on 08/08/2016.
  */
@@ -32,7 +30,7 @@ public class MoviesPresenter implements MoviesContract.UserActionsListener {
     }
 
     @Override
-    public void loadMovies(boolean forceUpdate) {
+    public void loadMovies() {
         moviesView.showActivityIndicator();
 
         EspressoResourceIdling.increment();
@@ -43,7 +41,12 @@ public class MoviesPresenter implements MoviesContract.UserActionsListener {
                 EspressoResourceIdling.decrement();
 
                 moviesView.hideActivityIndicator();
-                moviesView.showMovies(movies, currentPage, maxPage);
+
+                if (movies.isEmpty()) {
+                    moviesView.showNoMoviesFoundView();
+                } else {
+                    moviesView.showMovies(movies, currentPage, maxPage);
+                }
             }
 
             @Override
@@ -72,13 +75,6 @@ public class MoviesPresenter implements MoviesContract.UserActionsListener {
                 moviesView.showError(e);
             }
         });
-    }
-
-    @Override
-    public void openMovieDetail(@NonNull Movie movie) {
-        checkNotNull(movie, "movie cannot be null");
-
-        moviesView.showMovieDetailUi(movie.getId());
     }
 
     @Override

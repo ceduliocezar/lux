@@ -153,6 +153,7 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
 
         this.tvOverview.setText(movie.getOverview());
         this.toolbar.setTitle(movie.getTitle());
+        this.setSupportActionBar(toolbar);
         this.tvMovieYear.setText(formatReleaseYear(movie));
     }
 

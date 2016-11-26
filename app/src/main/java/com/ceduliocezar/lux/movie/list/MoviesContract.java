@@ -1,7 +1,5 @@
 package com.ceduliocezar.lux.movie.list;
 
-import android.support.annotation.NonNull;
-
 import com.ceduliocezar.lux.data.genre.Genre;
 import com.ceduliocezar.lux.data.movie.Movie;
 
@@ -24,12 +22,13 @@ public class MoviesContract {
         void appendPage(List<Movie> movies, int currentPage);
 
         void onLoadGenres(List<Genre> genres);
+
+        void showNoMoviesFoundView();
     }
 
     interface UserActionsListener{
-        void loadMovies(boolean forceUpdate);
+        void loadMovies();
         void loadPage(int page);
-        void openMovieDetail(@NonNull Movie movie);
         void loadGenres();
     }
 }
