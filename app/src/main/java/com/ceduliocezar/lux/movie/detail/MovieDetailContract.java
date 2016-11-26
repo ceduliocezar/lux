@@ -28,6 +28,8 @@ public class MovieDetailContract {
         void showMovie(Movie movie);
 
         void hideContainerVideos();
+
+        void watchYoutubeVideo(Video video);
     }
 
     interface UserActionsListener {

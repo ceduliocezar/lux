@@ -1,17 +1,16 @@
 package com.ceduliocezar.lux.movie.detail;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.VisibleForTesting;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.test.espresso.IdlingResource;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +24,7 @@ import com.ceduliocezar.lux.util.EspressoResourceIdling;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MovieDetailActivity extends AppCompatActivity implements MovieDetailContract.View {
+public class MovieDetailActivity extends AppCompatActivity implements MovieDetailContract.View, VideoAdapter.VideoAdapterListener {
 
     public static final String MOVIE_ID_PARAM = "MOVIE_ID_PARAM";
 
@@ -38,6 +37,7 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
     private RecyclerView recyclerViewVideos;
     private LinearLayoutManager layoutManager;
     private VideoAdapter videosAdapter;
+    private TextView tvMovieYear;
 
 
     @Override
@@ -71,18 +71,11 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
     private void initViews() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         tvOverview = (TextView) findViewById(R.id.movie_overview);
+
+        tvMovieYear = (TextView) findViewById(R.id.movie_year);
 
         recyclerViewVideos = (RecyclerView) findViewById(R.id.videos_recycler);
     }
@@ -132,7 +125,7 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
         layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerViewVideos.setLayoutManager(layoutManager);
 
-        videosAdapter = new VideoAdapter(videos);
+        videosAdapter = new VideoAdapter(videos, this);
         recyclerViewVideos.setAdapter(videosAdapter);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL_LIST);
@@ -157,8 +150,19 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
     @Override
     public void showMovie(Movie movie) {
         this.movie = movie;
-        tvOverview.setText(movie.getOverview());
-        toolbar.setTitle(movie.getTitle());
+
+        this.tvOverview.setText(movie.getOverview());
+        this.toolbar.setTitle(movie.getTitle());
+        this.tvMovieYear.setText(formatReleaseYear(movie));
+    }
+
+    private String formatReleaseYear(Movie movie) {
+
+        if (movie.getReleaseDate().isEmpty()) {
+            return "";
+        }
+
+        return movie.getReleaseDate().substring(0, 4);
     }
 
     @Override
@@ -166,5 +170,21 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
         // TODO: 25/11/16  
     }
 
+    @Override
+    public void watchYoutubeVideo(Video video) {
+        Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + video.getKey()));
+        Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                Uri.parse("http://www.youtube.com/watch?v=" + video.getKey()));
+        try {
+            startActivity(appIntent);
+        } catch (ActivityNotFoundException ex) {
+            startActivity(webIntent);
+        }
+    }
 
+
+    @Override
+    public void onClickVideo(Video video) {
+        userActionsListener.userClickedVideo(video);
+    }
 }

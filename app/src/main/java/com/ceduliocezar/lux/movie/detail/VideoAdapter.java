@@ -22,23 +22,31 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
 
     private List<Video> videos;
     private ThumbnailProvider thumbnailProvider;
+    private VideoAdapterListener listener;
+
+    public interface VideoAdapterListener {
+        void onClickVideo(Video video);
+    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView tvTitle;
         public ImageView trailerImage;
+        public View view;
 
         public ViewHolder(View view) {
             super(view);
-            tvTitle = (TextView) view.findViewById(R.id.video_title);
-            trailerImage = (ImageView) view.findViewById(R.id.video_image);
+            this.view = view;
+            this.tvTitle = (TextView) view.findViewById(R.id.video_title);
+            this.trailerImage = (ImageView) view.findViewById(R.id.video_image);
         }
     }
 
 
-    public VideoAdapter(List<Video> videos) {
+    public VideoAdapter(List<Video> videos, VideoAdapterListener listener) {
         this.videos = videos;
         this.thumbnailProvider = Injection.providesThumbnailProvider();
+        this.listener = listener;
     }
 
     @Override
@@ -53,12 +61,19 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        Video video = videos.get(position);
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+        final Video video = videos.get(position);
         holder.tvTitle.setText(video.getName());
         thumbnailProvider.loadThumbnail(holder.trailerImage, video, holder.tvTitle.getContext());
-    }
 
+        holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onClickVideo(videos.get(position));
+            }
+        });
+
+    }
 
     @Override
     public int getItemCount() {

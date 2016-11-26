@@ -86,4 +86,7 @@ public class MovieDetailPresenter implements MovieDetailContract.UserActionsList
         });
     }
 
+    public void userClickedVideo(Video video) {
+        view.watchYoutubeVideo(video);
+    }
 }
