@@ -63,7 +63,7 @@ public class MoviesPresenterTest {
 
 
     @Test
-    public void loadMovies_force_update() throws Exception {
+    public void loadMovies() throws Exception {
 
         int maxPage = 10;
         presenter.loadMovies();
@@ -79,7 +79,23 @@ public class MoviesPresenterTest {
     }
 
     @Test
-    public void loadMovies_force_empty() throws Exception {
+    public void loadMovies_error() throws Exception {
+
+        presenter.loadMovies();
+
+        verify(moviesRepository).getMovies(pageCaptor.capture(), loadMoviesCallbackArgumentCaptor.capture());
+
+        Exception exception = Mockito.mock(Exception.class);
+        loadMoviesCallbackArgumentCaptor.getValue().onErrorLoadingMovies(exception);
+
+        InOrder inOrder = Mockito.inOrder(moviesView);
+
+        inOrder.verify(moviesView).hideActivityIndicator();
+        inOrder.verify(moviesView).showError(exception);
+    }
+
+    @Test
+    public void loadMovies_empty() throws Exception {
 
         int maxPage = 10;
         presenter.loadMovies();
@@ -115,6 +131,41 @@ public class MoviesPresenterTest {
     }
 
     @Test
+    public void loadPage_error() throws Exception {
+
+        int page = 2;
+        presenter.loadPage(page);
+
+        verify(moviesRepository).getMovies(pageCaptor.capture(), loadMoviesCallbackArgumentCaptor.capture());
+
+        Exception exception = Mockito.mock(Exception.class);
+
+        loadMoviesCallbackArgumentCaptor.getValue().onErrorLoadingMovies(exception);
+
+        InOrder inOrder = Mockito.inOrder(moviesView);
+
+        inOrder.verify(moviesView).hidePageLoad();
+        inOrder.verify(moviesView).showError(exception);
+    }
+
+    @Test
+    public void loadPage_empty() throws Exception {
+
+        int page = 2;
+        int maxPage = 10;
+        presenter.loadPage(page);
+
+        verify(moviesRepository).getMovies(pageCaptor.capture(), loadMoviesCallbackArgumentCaptor.capture());
+
+        loadMoviesCallbackArgumentCaptor.getValue().onLoadMovies(EMPTY_MOVIES, page, maxPage);
+
+        InOrder inOrder = Mockito.inOrder(moviesView);
+
+        inOrder.verify(moviesView).hidePageLoad();
+        inOrder.verify(moviesView).appendPage(EMPTY_MOVIES, pageCaptor.getValue());
+    }
+
+    @Test
     public void loadGenres() throws Exception {
         presenter.loadGenres();
 
@@ -125,6 +176,21 @@ public class MoviesPresenterTest {
         InOrder inOrder = Mockito.inOrder(moviesView);
 
         inOrder.verify(moviesView).onLoadGenres(GENRES);
+    }
+
+    @Test
+    public void loadGenres_error() throws Exception {
+        presenter.loadGenres();
+
+        verify(genresRepository).getGenres(loadGenresArgumentCaptor.capture());
+
+        Exception exception = Mockito.mock(Exception.class);
+
+        loadGenresArgumentCaptor.getValue().onError(exception);
+
+        InOrder inOrder = Mockito.inOrder(moviesView);
+
+        inOrder.verify(moviesView).showError(exception);
     }
 
     @Test

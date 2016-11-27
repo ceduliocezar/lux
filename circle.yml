@@ -17,6 +17,8 @@ test:
     - adb shell input keyevent 82
     # run tests  against the emulator.
     - ./gradlew connectedMockDebugAndroidTest -PdisablePreDex
+    # run tests
+    - ./gradlew test
     # copy the build outputs to artifacts
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
     # copy the test results to the test results directory.
