@@ -1,10 +1,4 @@
-package com.ceduliocezar.lux.videos;
-
-import android.content.Context;
-
-import com.ceduliocezar.lux.data.video.Video;
-import com.ceduliocezar.lux.data.video.VideoServiceApi;
-import com.ceduliocezar.lux.data.video.VideosRepository;
+package com.ceduliocezar.lux.data.video;
 
 import java.util.List;
 
@@ -14,15 +8,15 @@ import java.util.List;
 
 public class VideosRepositoryImpl implements VideosRepository {
 
-    private final VideoServiceApiEndpoint serviceEndpoit;
+    private final VideoServiceApi videoServiceApi;
 
-    public VideosRepositoryImpl(Context context) {
-        this.serviceEndpoit = new VideoServiceApiEndpoint(context);
+    public VideosRepositoryImpl(VideoServiceApi videoServiceApi) {
+        this.videoServiceApi = videoServiceApi;
     }
 
     @Override
     public void getMovies(int movieId, final LoadVideosCallback callback) {
-        serviceEndpoit.getVideos(movieId, new VideoServiceApi.VideosServiceCallback() {
+        videoServiceApi.getVideos(movieId, new VideoServiceApi.VideosServiceCallback() {
             @Override
             public void onLoaded(List<Video> videos) {
                 callback.onLoadVideos(videos);

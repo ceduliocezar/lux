@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 /**
- * Created by TECBMCCS on 25/11/16.
+ * Created by cedulio on 25/11/16.
  */
 
 public class Video implements Serializable {

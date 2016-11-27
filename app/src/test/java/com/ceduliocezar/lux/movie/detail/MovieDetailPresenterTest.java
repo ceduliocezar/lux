@@ -26,7 +26,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
- * Created by TECBMCCS on 25/11/16.
+ * Created by cedulio on 25/11/16.
  */
 public class MovieDetailPresenterTest {
 

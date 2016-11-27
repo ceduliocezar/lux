@@ -1,6 +1,7 @@
 package com.ceduliocezar.lux.movie.detail;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import com.ceduliocezar.lux.R;
 import com.ceduliocezar.lux.data.movie.Movie;
@@ -11,8 +12,10 @@ import com.ceduliocezar.lux.util.EspressoResourceIdling;
 
 import java.util.List;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
- * Created by TECBMCCS on 25/11/16.
+ * Created by cedulio on 25/11/16.
  */
 
 public class MovieDetailPresenter implements MovieDetailContract.UserActionsListener {
@@ -21,14 +24,15 @@ public class MovieDetailPresenter implements MovieDetailContract.UserActionsList
     private final MoviesRepository moviesRepository;
     private final Context context;
 
-    public MovieDetailPresenter(MovieDetailContract.View view,
-                                Context context,
-                                VideosRepository videosRepository,
-                                MoviesRepository moviesRepository) {
-        this.view = view;
-        this.videosRepository = videosRepository;
-        this.moviesRepository = moviesRepository;
-        this.context = context;
+    public MovieDetailPresenter(@NonNull MovieDetailContract.View view,
+                                @NonNull Context context,
+                                @NonNull VideosRepository videosRepository,
+                                @NonNull MoviesRepository moviesRepository) {
+
+        this.view = checkNotNull(view, "movie detail view can not be null");
+        this.videosRepository = checkNotNull(videosRepository, "videos repository can not be null");
+        this.moviesRepository = checkNotNull(moviesRepository, "videos repository can not be null");
+        this.context = checkNotNull(context, "context can not be null");
     }
 
     @Override
@@ -87,6 +91,7 @@ public class MovieDetailPresenter implements MovieDetailContract.UserActionsList
     }
 
     public void userClickedVideo(Video video) {
+        checkNotNull(video, "video can not be null");
         view.watchYoutubeVideo(video);
     }
 }

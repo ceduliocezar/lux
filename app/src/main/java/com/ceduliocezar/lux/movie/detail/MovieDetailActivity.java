@@ -125,7 +125,7 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
         layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerViewVideos.setLayoutManager(layoutManager);
 
-        videosAdapter = new VideoAdapter(videos, this);
+        videosAdapter = new VideoAdapter(videos, this, Injection.providesThumbnailProvider());
         recyclerViewVideos.setAdapter(videosAdapter);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL_LIST);

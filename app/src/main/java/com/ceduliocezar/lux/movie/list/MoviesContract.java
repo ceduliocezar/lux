@@ -16,13 +16,9 @@ public class MoviesContract {
         void showPageLoad();
         void hidePageLoad();
         void showMovies(List<Movie> movies, int currentPage, int maxPage);
-        void showMovieDetailUi(Integer movieId);
         void showError(Throwable e);
-
         void appendPage(List<Movie> movies, int currentPage);
-
         void onLoadGenres(List<Genre> genres);
-
         void showNoMoviesFoundView();
     }
 

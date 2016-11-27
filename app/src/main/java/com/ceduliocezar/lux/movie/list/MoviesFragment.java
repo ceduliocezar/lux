@@ -171,11 +171,6 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     }
 
     @Override
-    public void showMovieDetailUi(Integer movieId) {
-        showMovieDetail(movieId);
-    }
-
-    @Override
     public void showError(Throwable e) {
         Log.d("error", Log.getStackTraceString(e));
         Toast.makeText(getActivity(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();

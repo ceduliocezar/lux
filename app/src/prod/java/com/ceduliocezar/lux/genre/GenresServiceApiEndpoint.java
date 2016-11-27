@@ -16,7 +16,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by TECBMCCS on 25/11/16.
+ * Created by cedulio on 25/11/16.
  */
 
 public class GenresServiceApiEndpoint implements GenresServiceApi {

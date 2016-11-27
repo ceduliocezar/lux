@@ -10,6 +10,8 @@ import com.ceduliocezar.lux.util.EspressoResourceIdling;
 
 import java.util.List;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * Created by cedulio on 08/08/2016.
  */
@@ -24,9 +26,11 @@ public class MoviesPresenter implements MoviesContract.UserActionsListener {
     public MoviesPresenter(@NonNull MoviesRepository moviesRepository,
                            @NonNull GenresRepository genresRepository,
                            @NonNull MoviesContract.View moviesView) {
-        this.moviesRepository = moviesRepository;
-        this.moviesView = moviesView;
-        this.genresRepository = genresRepository;
+
+        this.moviesRepository = checkNotNull(moviesRepository, "movies repository can not be null");
+        this.moviesView = checkNotNull(moviesView, "movies view can not be null");
+        this.genresRepository = checkNotNull(genresRepository, "genres repository can not be null");
+
     }
 
     @Override

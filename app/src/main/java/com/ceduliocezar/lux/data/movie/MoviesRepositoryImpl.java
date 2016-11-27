@@ -1,25 +1,22 @@
-package com.ceduliocezar.lux.movies;
-
-import android.support.annotation.NonNull;
-
-import com.ceduliocezar.lux.data.movie.Movie;
-import com.ceduliocezar.lux.data.movie.MoviesRepository;
-import com.ceduliocezar.lux.data.movie.MoviesServiceApi;
+package com.ceduliocezar.lux.data.movie;
 
 import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Created by cedulio on 08/08/2016.
+ * Created by ceduliocezar on 24/11/16.
  */
-public class InMemoryMoviesRepository implements MoviesRepository {
 
-    private MoviesServiceApi moviesServiceApi;
+public class MoviesRepositoryImpl implements MoviesRepository {
 
-    public InMemoryMoviesRepository(@NonNull MoviesServiceApi moviesServiceApi) {
+
+    private final MoviesServiceApi moviesServiceApi;
+
+    public MoviesRepositoryImpl(MoviesServiceApi moviesServiceApi) {
         this.moviesServiceApi = moviesServiceApi;
     }
+
 
     @Override
     public void getMovie(int movieId, final LoadMovieCallback callback) {
@@ -37,13 +34,14 @@ public class InMemoryMoviesRepository implements MoviesRepository {
     }
 
     @Override
-    public void getMovies(final int pageIndex, @NonNull final LoadMoviesCallback callback) {
+    public void getMovies(final int pageIndex, final LoadMoviesCallback callback) {
+
         checkNotNull(callback);
 
         moviesServiceApi.getMovies(pageIndex, new MoviesServiceApi.MoviesServiceCallback<List<Movie>>() {
             @Override
-            public void onLoaded(List<Movie> load, int page, int maxPage) {
-                callback.onLoadMovies(load, pageIndex, maxPage);
+            public void onLoaded(List<Movie> load, int currentPage, int maxPage) {
+                callback.onLoadMovies(load, currentPage, maxPage);
             }
 
             @Override
@@ -51,6 +49,6 @@ public class InMemoryMoviesRepository implements MoviesRepository {
                 callback.onErrorLoadingMovies(e);
             }
         });
-
     }
+
 }

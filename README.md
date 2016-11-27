@@ -1,3 +1,4 @@
+[![CircleCI](https://circleci.com/gh/ceduliocezar/lux.svg?style=svg)](https://circleci.com/gh/ceduliocezar/lux)
 # lux
 Mobile App for movieDB API
 
