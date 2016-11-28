@@ -3,6 +3,8 @@ package com.ceduliocezar.lux.movie.detail;
 import android.content.Context;
 
 import com.ceduliocezar.lux.R;
+import com.ceduliocezar.lux.data.backdrop.Backdrop;
+import com.ceduliocezar.lux.data.backdrop.BackdropRepository;
 import com.ceduliocezar.lux.data.movie.Movie;
 import com.ceduliocezar.lux.data.movie.MoviesRepository;
 import com.ceduliocezar.lux.data.video.Video;
@@ -31,6 +33,8 @@ import static org.mockito.Mockito.when;
 public class MovieDetailPresenterTest {
 
 
+    private static final List<Backdrop> BACKDROPS = Lists.newArrayList(new Backdrop(), new Backdrop());
+    private static final List<Backdrop> EMPTY_BACKDROPS = Lists.newArrayList();
     private static List<Video> VIDEOS = Lists.newArrayList(new Video(), new Video());
 
     @Mock
@@ -40,7 +44,13 @@ public class MovieDetailPresenterTest {
     private MoviesRepository moviesRepository;
 
     @Mock
+    private BackdropRepository backdropRepository;
+
+    @Mock
     private MovieDetailContract.View view;
+
+    @Mock
+    private Exception exception;
 
     @Mock
     private Movie movie;
@@ -59,6 +69,9 @@ public class MovieDetailPresenterTest {
     @Mock
     private Context context;
 
+    @Captor
+    private ArgumentCaptor<BackdropRepository.LoadBackdropCallback> loadBackdropArgumentCaptor;
+
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
@@ -66,11 +79,12 @@ public class MovieDetailPresenterTest {
         movieDetailPresenter = new MovieDetailPresenter(view,
                 context,
                 videosRepository,
-                moviesRepository);
+                moviesRepository,
+                backdropRepository);
     }
 
     @Test
-    public void loadMovie() throws Exception {
+    public void loadMovie() {
 
         int movieId = 0;
 
@@ -86,7 +100,7 @@ public class MovieDetailPresenterTest {
     }
 
     @Test
-    public void loadMovie_null_movie() throws Exception {
+    public void loadMovie_null_movie() {
 
         int movieId = 0;
 
@@ -104,7 +118,7 @@ public class MovieDetailPresenterTest {
     }
 
     @Test
-    public void loadVideos() throws Exception {
+    public void loadVideos() {
 
         int movieId = 0;
 
@@ -123,7 +137,7 @@ public class MovieDetailPresenterTest {
     }
 
     @Test
-    public void loadVideos_empty_list() throws Exception {
+    public void loadVideos_empty_list() {
 
         int movieId = 0;
 
@@ -142,7 +156,7 @@ public class MovieDetailPresenterTest {
     }
 
     @Test
-    public void loadVideos_null_list() throws Exception {
+    public void loadVideos_null_list() {
 
         int movieId = 0;
 
@@ -157,6 +171,62 @@ public class MovieDetailPresenterTest {
         inOrder.verify(view).showLoadingVideos();
         inOrder.verify(view).hideLoadingVideos();
         inOrder.verify(view).hideContainerVideos();
+    }
+
+    @Test
+    public void loadBackdrops() {
+        int movieId = 0;
+
+        movieDetailPresenter.loadBackdrops(movieId);
+
+        verify(backdropRepository).getBackdrops(movieIdArgumentCaptor.capture(), loadBackdropArgumentCaptor.capture());
+
+        loadBackdropArgumentCaptor.getValue().onLoadBackdrops(BACKDROPS);
+
+        InOrder inOrder = Mockito.inOrder(view);
+
+        inOrder.verify(view).showLoadingBackdrops();
+        inOrder.verify(view).hideLoadingBackdrops();
+        inOrder.verify(view).showBackdrops(BACKDROPS);
+
+    }
+
+    @Test
+    public void loadBackdrops_empty() {
+        int movieId = 0;
+
+        movieDetailPresenter.loadBackdrops(movieId);
+
+        verify(backdropRepository).getBackdrops(movieIdArgumentCaptor.capture(), loadBackdropArgumentCaptor.capture());
+
+        loadBackdropArgumentCaptor.getValue().onLoadBackdrops(EMPTY_BACKDROPS);
+
+        InOrder inOrder = Mockito.inOrder(view);
+
+        inOrder.verify(view).showLoadingBackdrops();
+        inOrder.verify(view).hideLoadingBackdrops();
+        inOrder.verify(view).showBackdrops(EMPTY_BACKDROPS);
+
+    }
+
+    @Test
+    public void loadBackdrops_error() {
+        int movieId = 0;
+
+        when(exception.getMessage()).thenReturn("FAKE_MESSAGE");
+
+        movieDetailPresenter.loadBackdrops(movieId);
+
+        verify(backdropRepository).getBackdrops(movieIdArgumentCaptor.capture(), loadBackdropArgumentCaptor.capture());
+
+        loadBackdropArgumentCaptor.getValue().errorLoadingBackdrops(exception);
+
+        InOrder inOrder = Mockito.inOrder(view);
+
+        inOrder.verify(view).showLoadingBackdrops();
+        inOrder.verify(view).hideLoadingBackdrops();
+        inOrder.verify(view).showError(exception.getMessage());
+
     }
 
 }

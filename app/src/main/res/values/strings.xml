@@ -7,4 +7,5 @@
 
     <string name="error_unable_to_load_movie">"Oops, unable to load movide details."</string>
     <string name="videos">Videos</string>
+    <string name="images">Images</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.ceduliocezar.lux.movie.detail;
 
+import com.ceduliocezar.lux.data.backdrop.Backdrop;
 import com.ceduliocezar.lux.data.movie.Movie;
 import com.ceduliocezar.lux.data.video.Video;
 
@@ -30,11 +31,19 @@ public class MovieDetailContract {
         void hideContainerVideos();
 
         void watchYoutubeVideo(Video video);
+
+        void showLoadingBackdrops();
+
+        void hideLoadingBackdrops();
+
+        void showBackdrops(List<Backdrop> backdrops);
     }
 
     interface UserActionsListener {
         void loadVideos(int movieId);
 
         void loadMovie(int movieId);
+
+        void loadBackdrops(int movieId);
     }
 }

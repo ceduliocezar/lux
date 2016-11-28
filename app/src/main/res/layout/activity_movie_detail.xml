@@ -25,7 +25,7 @@
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <com.ceduliocezar.lux.custom.ui.SquareImageView
+            <ImageView
                 android:id="@+id/movie_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.ceduliocezar.lux.R;
+import com.ceduliocezar.lux.data.backdrop.Backdrop;
+import com.ceduliocezar.lux.data.backdrop.BackdropRepository;
 import com.ceduliocezar.lux.data.movie.Movie;
 import com.ceduliocezar.lux.data.movie.MoviesRepository;
 import com.ceduliocezar.lux.data.video.Video;
@@ -23,15 +25,18 @@ public class MovieDetailPresenter implements MovieDetailContract.UserActionsList
     private final VideosRepository videosRepository;
     private final MoviesRepository moviesRepository;
     private final Context context;
+    private final BackdropRepository backdropRepository;
 
     public MovieDetailPresenter(@NonNull MovieDetailContract.View view,
                                 @NonNull Context context,
                                 @NonNull VideosRepository videosRepository,
-                                @NonNull MoviesRepository moviesRepository) {
+                                @NonNull MoviesRepository moviesRepository,
+                                @NonNull BackdropRepository backdropRepository) {
 
         this.view = checkNotNull(view, "movie detail view can not be null");
         this.videosRepository = checkNotNull(videosRepository, "videos repository can not be null");
-        this.moviesRepository = checkNotNull(moviesRepository, "videos repository can not be null");
+        this.moviesRepository = checkNotNull(moviesRepository, "movies repository can not be null");
+        this.backdropRepository = checkNotNull(backdropRepository, "backdrop repository can not be null");
         this.context = checkNotNull(context, "context can not be null");
     }
 
@@ -56,6 +61,32 @@ public class MovieDetailPresenter implements MovieDetailContract.UserActionsList
             public void onErrorLoadingMovie(Throwable t) {
                 EspressoResourceIdling.decrement();
                 view.hideLoading();
+                view.showError(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void loadBackdrops(int movieId) {
+
+        EspressoResourceIdling.increment();
+
+        view.showLoadingBackdrops();
+
+        backdropRepository.getBackdrops(movieId, new BackdropRepository.LoadBackdropCallback() {
+            @Override
+            public void onLoadBackdrops(List<Backdrop> backdrops) {
+                EspressoResourceIdling.decrement();
+
+                view.hideLoadingBackdrops();
+                view.showBackdrops(backdrops);
+            }
+
+            @Override
+            public void errorLoadingBackdrops(Throwable t) {
+                EspressoResourceIdling.decrement();
+
+                view.hideLoadingBackdrops();
                 view.showError(t.getMessage());
             }
         });

@@ -2,6 +2,11 @@ package com.ceduliocezar.lux;
 
 import android.content.Context;
 
+import com.ceduliocezar.lux.backdrop.AssetBackdropImageProvider;
+import com.ceduliocezar.lux.backdrop.FakeBackdropServiceApi;
+import com.ceduliocezar.lux.data.backdrop.BackdropImageProvider;
+import com.ceduliocezar.lux.data.backdrop.BackdropRepository;
+import com.ceduliocezar.lux.data.backdrop.BackdropRepositoryImpl;
 import com.ceduliocezar.lux.data.genre.GenresRepository;
 import com.ceduliocezar.lux.data.genre.GenresRepositoryImpl;
 import com.ceduliocezar.lux.data.movie.MoviesRepository;
@@ -22,6 +27,14 @@ import com.ceduliocezar.lux.video.FakeVideosServiceApiImpl;
 public class Injection {
 
 
+    public static BackdropRepository providesBackdropsRepository(Context context) {
+        return new BackdropRepositoryImpl(new FakeBackdropServiceApi());
+    }
+
+    public static BackdropImageProvider providesBackdropImageProvider(Context context) {
+        return new AssetBackdropImageProvider();
+    }
+
     public static VideosRepository providesVideosRepository(Context context) {
         return new VideosRepositoryImpl(new FakeVideosServiceApiImpl(context));
     }
@@ -38,7 +51,7 @@ public class Injection {
         return new AssetPosterProvider();
     }
 
-    public static ThumbnailProvider providesThumbnailProvider(){
+    public static ThumbnailProvider providesThumbnailProvider() {
         return new AssetThumbnailProvider();
     }
 }

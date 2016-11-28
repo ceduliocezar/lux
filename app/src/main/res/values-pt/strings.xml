@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="synopsis">Sinopse</string>
+    <string name="error_unable_to_load_movie">Oops, não foi carregar os datalhes do filme.</string>
+    <string name="images">Imagens</string>
+    <string name="videos">Vídeos</string>
 </resources>
