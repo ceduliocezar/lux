@@ -34,9 +34,9 @@ public class FakeBackdropServiceApi implements BackdropServiceApi {
 
         backdrop.setAspectRatio(Double.valueOf(i));
         backdrop.setFilePath(FAKE_BACKDROP_ASSETS_PATH);
-        backdrop.setHeight(500);
+        backdrop.setHeight(500.0);
         backdrop.setIso6391(FAKE_ISO_6391);
-        backdrop.setVoteAverage(i);
+        backdrop.setVoteAverage(Double.valueOf(i));
         backdrop.setVoteCount(i);
         backdrop.setWidth(500 * i);
 

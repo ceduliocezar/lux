@@ -8,6 +8,7 @@ import com.ceduliocezar.lux.data.MovieAPIFactory;
 import com.ceduliocezar.lux.data.MovieDBRESTApi;
 import com.ceduliocezar.lux.data.backdrop.Backdrop;
 import com.ceduliocezar.lux.data.backdrop.BackdropServiceApi;
+import com.ceduliocezar.lux.data.backdrop.BackdropTransport;
 
 import java.util.List;
 
@@ -33,11 +34,11 @@ public class BackdropServiceApiEndpoint implements BackdropServiceApi {
     @Override
     public void getBackdrops(int movieId, final BackdropServiceApiCallback<List<Backdrop>> callback) {
 
-        Call<ImagesTransport> call = service.getMovieImages(movieId, getAPIKey());
+        Call<BackdropTransport> call = service.getMovieImages(movieId, getAPIKey());
 
-        call.enqueue(new Callback<ImagesTransport>() {
+        call.enqueue(new Callback<BackdropTransport>() {
             @Override
-            public void onResponse(Call<ImagesTransport> call, Response<ImagesTransport> response) {
+            public void onResponse(Call<BackdropTransport> call, Response<BackdropTransport> response) {
                 if (response.isSuccessful()) {
                     callback.onLoad(response.body().getBackdrops());
                 } else {
@@ -51,7 +52,7 @@ public class BackdropServiceApiEndpoint implements BackdropServiceApi {
             }
 
             @Override
-            public void onFailure(Call<ImagesTransport> call, Throwable t) {
+            public void onFailure(Call<BackdropTransport> call, Throwable t) {
                 t.printStackTrace();
                 callback.errorLoading(t);
             }

@@ -2,184 +2,175 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="/home/cedulio/.gradle/caches/modules-2/files-2.1/io.reactivex/rxjava/1.1.6/2586312cd2b8a511e4c6236736f5a039fc0f2273/rxjava-1.1.6.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="2586312cd2b8a511e4c6236736f5a039fc0f2273">
-        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/transforms/dex/prod/debug/folders/1000/10/rxjava-1.1.6_7e7ea2de6d0daa90938064d4b206e2ac15d637d7/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/cedulio/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
-        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/transforms/dex/prod/debug/folders/1000/10/picasso-2.5.2_0e01d89a904904628d3173af0d9a737b584b72e1/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
+        is-multidex="false"
         jar="/home/cedulio/dev/projetos/lux/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/jars/classes.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="23.0.3"
         sha1="09c5e804bc67fc0580360043dff067df574a60d4">
-        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/transforms/dex/prod/debug/folders/1000/10/com.android.support-recyclerview-v7-23.1.1_6da2a467b5108acfa80024c7f7cd1d50442c3352/classes.dex" />
+        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/pre-dexed/mock/debug/com.android.support-recyclerview-v7-23.1.1_6da2a467b5108acfa80024c7f7cd1d50442c3352.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="/home/cedulio/dev/Android/android-studio/gradle/m2repository/com/google/guava/guava/18.0/guava-18.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="cce0823396aa693798f8882e64213b1772032b09">
-        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/transforms/dex/prod/debug/folders/1000/10/guava-18.0_523fbe2d648203a29ea64c2b6f7232e5cf45a2ce/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
+        is-multidex="false"
         jar="/home/cedulio/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.2.0/f7873a2ebde246a45c2a8d6f3247108b4c88a879/okhttp-3.2.0.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="23.0.3"
         sha1="f7873a2ebde246a45c2a8d6f3247108b4c88a879">
-        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/transforms/dex/prod/debug/folders/1000/10/okhttp-3.2.0_c0c3086933dca3cb2aba2736a8726049891a4509/classes.dex" />
+        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/pre-dexed/mock/debug/okhttp-3.2.0_c0c3086933dca3cb2aba2736a8726049891a4509.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="/home/cedulio/dev/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/home/cedulio/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
+        jumboMode="false"
         optimize="true"
         revision="23.0.3"
-        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
-        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/transforms/dex/prod/debug/folders/1000/10/support-annotations-23.1.1_75de4c237e0ef4db919525845322324f794073fd/classes.dex" />
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/pre-dexed/mock/debug/picasso-2.5.2_0e01d89a904904628d3173af0d9a737b584b72e1.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="/home/cedulio/dev/projetos/lux/app/build/intermediates/exploded-aar/io.reactivex/rxandroid/1.2.1/jars/classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/home/cedulio/.gradle/caches/modules-2/files-2.1/io.reactivex/rxjava/1.1.6/2586312cd2b8a511e4c6236736f5a039fc0f2273/rxjava-1.1.6.jar"
+        jumboMode="false"
         optimize="true"
         revision="23.0.3"
-        sha1="5a2386ad9bfff580b206a7fe305cdccd00798159">
-        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/transforms/dex/prod/debug/folders/1000/10/io.reactivex-rxandroid-1.2.1_914d01345b26a3fe6b34e874a13031ec52a375c3/classes.dex" />
+        sha1="2586312cd2b8a511e4c6236736f5a039fc0f2273">
+        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/pre-dexed/mock/debug/rxjava-1.1.6_7e7ea2de6d0daa90938064d4b206e2ac15d637d7.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="/home/cedulio/dev/projetos/lux/app/build/intermediates/exploded-aar/com.android.support/palette-v7/23.1.1/jars/classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/home/cedulio/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/18.0/cce0823396aa693798f8882e64213b1772032b09/guava-18.0.jar"
+        jumboMode="false"
         optimize="true"
         revision="23.0.3"
-        sha1="a978650837318cf056bf3383ff02fe7a3b891f20">
-        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/transforms/dex/prod/debug/folders/1000/10/com.android.support-palette-v7-23.1.1_ae55d25d8150e68397cb91a0951d8c4ba94cad47/classes.dex" />
+        sha1="cce0823396aa693798f8882e64213b1772032b09">
+        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/pre-dexed/mock/debug/guava-18.0_7e35d9602245432d13e873e62406aaca8748464b.jar" />
     </item>
     <item
-        is-multidex="true"
+        is-multidex="false"
         jar="/home/cedulio/dev/projetos/lux/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/jars/classes.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="23.0.3"
         sha1="379471b2bd17d9737c050345c08e8c7d16589784">
-        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/transforms/dex/prod/debug/folders/1000/10/com.android.support-design-23.1.1_45639b4192191c0c9bd497dd0ecedd23c824a979/classes.dex" />
+        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/pre-dexed/mock/debug/com.android.support-design-23.1.1_45639b4192191c0c9bd497dd0ecedd23c824a979.jar" />
     </item>
     <item
-        is-multidex="true"
+        is-multidex="false"
+        jar="/home/cedulio/dev/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/pre-dexed/mock/debug/support-annotations-23.1.1_75de4c237e0ef4db919525845322324f794073fd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/cedulio/dev/projetos/lux/app/build/intermediates/exploded-aar/com.android.support/palette-v7/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="a978650837318cf056bf3383ff02fe7a3b891f20">
+        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/pre-dexed/mock/debug/com.android.support-palette-v7-23.1.1_ae55d25d8150e68397cb91a0951d8c4ba94cad47.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/home/cedulio/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.0.2/f8d87f15b94b8d74e7ccf61d7eedb558811cdb30/converter-gson-2.0.2.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="23.0.3"
         sha1="f8d87f15b94b8d74e7ccf61d7eedb558811cdb30">
-        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/transforms/dex/prod/debug/folders/1000/10/converter-gson-2.0.2_7929028af4eaf256620e3901d6e11855b4a76db0/classes.dex" />
+        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/pre-dexed/mock/debug/converter-gson-2.0.2_7929028af4eaf256620e3901d6e11855b4a76db0.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="/home/cedulio/dev/projetos/lux/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/home/cedulio/dev/projetos/lux/app/build/intermediates/jacoco/jacocoagent.jar"
+        jumboMode="false"
         optimize="true"
         revision="23.0.3"
-        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
-        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/transforms/dex/prod/debug/folders/1000/10/com.android.support-appcompat-v7-23.1.1_5cce3fea7e6a3811da334a2b93bf3fd48fb9be18/classes.dex" />
+        sha1="fdca30f45b60c6ba724c26a9ce127975e26d4bcb">
+        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/pre-dexed/mock/debug/jacocoagent_a325f6270293113874f356913f6fdd60d89b0410.jar" />
     </item>
     <item
-        is-multidex="true"
+        is-multidex="false"
         jar="/home/cedulio/dev/projetos/lux/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="23.0.3"
         sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
-        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/transforms/dex/prod/debug/folders/1000/10/internal_impl-23.1.1_0dbb3e64efda9a3d438a0d614257483c24fa5725/classes.dex" />
+        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/pre-dexed/mock/debug/internal_impl-23.1.1_0dbb3e64efda9a3d438a0d614257483c24fa5725.jar" />
     </item>
     <item
-        is-multidex="true"
+        is-multidex="false"
+        jar="/home/cedulio/dev/projetos/lux/app/build/intermediates/exploded-aar/io.reactivex/rxandroid/1.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="5a2386ad9bfff580b206a7fe305cdccd00798159">
+        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/pre-dexed/mock/debug/io.reactivex-rxandroid-1.2.1_914d01345b26a3fe6b34e874a13031ec52a375c3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/cedulio/dev/projetos/lux/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/pre-dexed/mock/debug/com.android.support-appcompat-v7-23.1.1_5cce3fea7e6a3811da334a2b93bf3fd48fb9be18.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/home/cedulio/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.0.2/43eeae0b9fb087bb3194ba59ab63a38a32fbf3e/retrofit-2.0.2.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="23.0.3"
         sha1="043eeae0b9fb087bb3194ba59ab63a38a32fbf3e">
-        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/transforms/dex/prod/debug/folders/1000/10/retrofit-2.0.2_79596b583168c5f33c608fa271591907d1b6ba51/classes.dex" />
+        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/pre-dexed/mock/debug/retrofit-2.0.2_79596b583168c5f33c608fa271591907d1b6ba51.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="/home/cedulio/dev/projetos/lux/app/build/intermediates/incremental-classes/prod/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="06f6ee13ea784deaef17217a0d9c93cc82071ae2">
-        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/transforms/dex/prod/debug/folders/1000/10/instant-run-bootstrap_31ea161ec58f44426b9b858127e92c0f20b54614/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
+        is-multidex="false"
         jar="/home/cedulio/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.6.2/f1bc476cc167b18e66c297df599b2377131a8947/gson-2.6.2.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="23.0.3"
         sha1="f1bc476cc167b18e66c297df599b2377131a8947">
-        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/transforms/dex/prod/debug/folders/1000/10/gson-2.6.2_9791749683e053864154133507969f37bc7da087/classes.dex" />
+        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/pre-dexed/mock/debug/gson-2.6.2_9791749683e053864154133507969f37bc7da087.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="/home/cedulio/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/98476622f10715998eacf9240d6b479f12c66143/okio-1.6.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="98476622f10715998eacf9240d6b479f12c66143">
-        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/transforms/dex/prod/debug/folders/1000/10/okio-1.6.0_e17c04f2f7480469030ec40080a0bc0175af3674/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
+        is-multidex="false"
         jar="/home/cedulio/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.4/5fe28b9518e58819180a43a850fbc0dd24b7c050/commons-lang3-3.4.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="23.0.3"
         sha1="5fe28b9518e58819180a43a850fbc0dd24b7c050">
-        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/transforms/dex/prod/debug/folders/1000/10/commons-lang3-3.4_ba65e8663fff6730ceb784278c270d9b3e1152cb/classes.dex" />
+        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/pre-dexed/mock/debug/commons-lang3-3.4_ba65e8663fff6730ceb784278c270d9b3e1152cb.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="/home/cedulio/dev/projetos/lux/app/build/intermediates/exploded-aar/com.android.support.test.espresso/espresso-idling-resource/2.2.2/jars/classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/home/cedulio/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/98476622f10715998eacf9240d6b479f12c66143/okio-1.6.0.jar"
+        jumboMode="false"
         optimize="true"
         revision="23.0.3"
-        sha1="a890ee8445927649d9ed50f625a315d8758688be">
-        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/transforms/dex/prod/debug/folders/1000/10/com.android.support.test.espresso-espresso-idling-resource-2.2.2_a43719b2e7cf4ccdc752d102a1ca746a48a639f4/classes.dex" />
+        sha1="98476622f10715998eacf9240d6b479f12c66143">
+        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/pre-dexed/mock/debug/okio-1.6.0_e17c04f2f7480469030ec40080a0bc0175af3674.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="/home/cedulio/dev/projetos/lux/app/build/intermediates/incremental-runtime-classes/prod/debug/instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="db0c1b6a77776393dc99ec3154dd7cd31a32c33f">
-        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/transforms/dex/prod/debug/folders/1000/10/instant-run_0df2cca4e643f4248ea62d5200e070f4a8a0ce0b/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
+        is-multidex="false"
         jar="/home/cedulio/dev/projetos/lux/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
-        jumboMode="true"
+        jumboMode="false"
         optimize="true"
         revision="23.0.3"
         sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
-        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/transforms/dex/prod/debug/folders/1000/10/com.android.support-support-v4-23.1.1_430b6b8357871e23b2cdb430f1ae02ae85587526/classes.dex" />
+        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/pre-dexed/mock/debug/com.android.support-support-v4-23.1.1_430b6b8357871e23b2cdb430f1ae02ae85587526.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/cedulio/dev/projetos/lux/app/build/intermediates/exploded-aar/com.android.support.test.espresso/espresso-idling-resource/2.2.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.3"
+        sha1="a890ee8445927649d9ed50f625a315d8758688be">
+        <dex dex="/home/cedulio/dev/projetos/lux/app/build/intermediates/pre-dexed/mock/debug/com.android.support.test.espresso-espresso-idling-resource-2.2.2_a43719b2e7cf4ccdc752d102a1ca746a48a639f4.jar" />
     </item>
 
 </items>

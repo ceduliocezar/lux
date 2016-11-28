@@ -1,7 +1,7 @@
 package com.ceduliocezar.lux.data;
 
 
-import com.ceduliocezar.lux.backdrop.ImagesTransport;
+import com.ceduliocezar.lux.data.backdrop.BackdropTransport;
 import com.ceduliocezar.lux.data.genre.GenreTransport;
 import com.ceduliocezar.lux.data.movie.Movie;
 import com.ceduliocezar.lux.data.movie.MovieTransport;
@@ -26,5 +26,5 @@ public interface MovieDBRESTApi {
     Call<Movie> getMovie(@Path("movie_id") Integer movieId, @Query("api_key") String apikey);
 
     @GET("movie/{movie_id}/images")
-    Call<ImagesTransport> getMovieImages(@Path("movie_id") Integer movieId, @Query("api_key") String apikey);
+    Call<BackdropTransport> getMovieImages(@Path("movie_id") Integer movieId, @Query("api_key") String apikey);
 }

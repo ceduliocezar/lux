@@ -20,4 +20,19 @@ public class BackdropTransport {
     private List<Backdrop> backdrops = new ArrayList<>();
 
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public List<Backdrop> getBackdrops() {
+        return backdrops;
+    }
+
+    public void setBackdrops(List<Backdrop> backdrops) {
+        this.backdrops = backdrops;
+    }
 }
