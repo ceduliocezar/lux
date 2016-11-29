@@ -30,6 +30,5 @@ test:
     # copy the test results to the test results directory.
     - cp -r app/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
 
-  test:
-    post:
-      - bash <(curl -s https://codecov.io/bash)
+  post:
+    - bash <(curl -s https://codecov.io/bash)
