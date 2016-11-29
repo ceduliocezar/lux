@@ -21,7 +21,15 @@ test:
     - ./gradlew test
     # assemble
     - ./gradlew assemble
+
+    - ./gradlew jacocoTestReport
+
+
     # copy the build outputs to artifacts
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
     # copy the test results to the test results directory.
     - cp -r app/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
+
+  test:
+    post:
+      - bash <(curl -s https://codecov.io/bash)
