@@ -1,5 +1,7 @@
 package com.ceduliocezar.lux.movie.list;
 
+import android.support.test.espresso.UiController;
+import android.support.test.espresso.ViewAction;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -20,8 +22,10 @@ import org.junit.runner.RunWith;
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.swipeDown;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayingAtLeast;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
@@ -51,13 +55,8 @@ public class MoviesFragmentTest {
     @Test
     public void scrollMovieGrid_loadNextPage() throws Exception {
 
-        onData(instanceOf(Movie.class))
-                .inAdapterView(allOf(withId(R.id.movie_grid), isDisplayed()))
-                .atPosition(19)
-                .check(matches(isDisplayed()));
-
-        onView(withId(R.id.movie_grid)).check(matches(hasNumberOfItems(40)));
-
+        scrollToItem(19);
+        checkNumberOfItems(40);
     }
 
     @Test
@@ -66,6 +65,56 @@ public class MoviesFragmentTest {
         onData(is(instanceOf(Movie.class))).atPosition(0).onChildView(withId(R.id.movie_genre))
                 .check(matches(not(withText(""))));
 
+    }
+
+    @Test
+    public void refresh_movies() throws Exception {
+
+        scrollToItem(19);
+        checkNumberOfItems(40);
+        scrollToItem(39);
+        checkNumberOfItems(60);
+
+        scrollToItem(0);
+        pullToRefresh();
+
+        checkNumberOfItems(20);
+
+    }
+
+    private void checkNumberOfItems(int expctedSize) {
+        onView(withId(R.id.movie_grid)).check(matches(hasNumberOfItems(expctedSize)));
+    }
+
+    private void pullToRefresh() {
+        onView(withId(R.id.swipeContainer))
+                .perform(withCustomConstraints(swipeDown(), isDisplayingAtLeast(100)));
+    }
+
+    private void scrollToItem(int position) {
+        onData(instanceOf(Movie.class))
+                .inAdapterView(allOf(withId(R.id.movie_grid), isDisplayed()))
+                .atPosition(position)
+                .check(matches(isDisplayed()));
+    }
+
+    public static ViewAction withCustomConstraints(final ViewAction action, final Matcher<View> constraints) {
+        return new ViewAction() {
+            @Override
+            public Matcher<View> getConstraints() {
+                return constraints;
+            }
+
+            @Override
+            public String getDescription() {
+                return action.getDescription();
+            }
+
+            @Override
+            public void perform(UiController uiController, View view) {
+                action.perform(uiController, view);
+            }
+        };
     }
 
     public static Matcher hasNumberOfItems(final int expectedSize) {
