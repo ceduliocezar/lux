@@ -83,7 +83,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## Code Coverage Report
 
-[![codecovreport](https://codecov.io/gh/ceduliocezar/lux/branch/master/graphs/tree.svg)](https://codecov.io/gh/ceduliocezar/lux)
+[![codecovreport](https://codecov.io/gh/ceduliocezar/lux/branch/master/graphs/tree.svg)](https://codecov.io/gh/ceduliocezar/lux/branch/master/graphs/tree.svg)
 
 ## Acknowledgments
 
