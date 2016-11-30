@@ -11,6 +11,7 @@ import android.widget.GridView;
 import com.ceduliocezar.lux.R;
 import com.ceduliocezar.lux.data.movie.Movie;
 import com.ceduliocezar.lux.home.HomeActivity;
+import com.ceduliocezar.lux.movies.FakeMoviesServiceApiImpl;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -79,7 +80,17 @@ public class MoviesFragmentTest {
         pullToRefresh();
 
         checkNumberOfItems(20);
+    }
 
+    @Test
+    public void reach_end_of_items() throws Exception {
+        scrollToItem(19);
+        scrollToItem(39);
+        scrollToItem(59);
+        scrollToItem(79);
+        scrollToItem(99);
+
+        checkNumberOfItems(FakeMoviesServiceApiImpl.MAX_NUM_PAGE * FakeMoviesServiceApiImpl.MOVIE_DB_PAGE_SIZE);
     }
 
     private void checkNumberOfItems(int expctedSize) {

@@ -13,8 +13,8 @@ import java.util.List;
 public class FakeMoviesServiceApiImpl implements MoviesServiceApi {
 
     private static final ArrayList<Movie> MOVIES_SERVICE_DATA = new ArrayList<>();
-    private static final int MOVIE_DB_PAGE_SIZE = 20;
-    private static final int MAX_NUM_PAGE = 5;
+    public static final int MOVIE_DB_PAGE_SIZE = 20;
+    public static final int MAX_NUM_PAGE = 5;
     private static final Integer[] FAKE_GENRES = {1, 2, 3, 4};
     private static final String FAKE_OVERVIEW = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do"
             + " eiusmod tempor incididunt ut labore et dolore magna aliqua. "
