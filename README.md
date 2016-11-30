@@ -1,5 +1,4 @@
-[![CircleCI](https://circleci.com/gh/ceduliocezar/lux.svg?style=svg)](https://circleci.com/gh/ceduliocezar/lux)
-# lux
+[![CircleCI](https://circleci.com/gh/ceduliocezar/lux.svg?style=svg)](https://circleci.com/gh/ceduliocezar/lux) [![codecov](https://codecov.io/gh/ceduliocezar/lux/branch/master/graph/badge.svg)](https://codecov.io/gh/ceduliocezar/lux)
 
 Fully test Android Client for [The Movie DB Api](https://developers.themoviedb.org/3).
 
