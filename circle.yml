@@ -23,7 +23,7 @@ test:
     - ./gradlew assemble
 
     - ./gradlew jacocoTestReport
-
+    - ./gradlew connectedCheck
 
     # copy the build outputs to artifacts
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
