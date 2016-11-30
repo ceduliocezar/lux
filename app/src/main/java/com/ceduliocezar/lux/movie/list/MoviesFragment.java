@@ -124,7 +124,7 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
                 showMovieDetail(position);
             }
         });
-        gridView.setOnScrollListener(new EndlessScrollListener() {
+        gridView.setOnScrollListener(new EndlessScrollListener(new EndlessScrollListener.ScrollCallback() {
             @Override
             public boolean onLoadMore(int page, int totalItemsCount) {
                 if (page <= maxPage) {
@@ -133,9 +133,8 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
                 } else {
                     return false;
                 }
-
             }
-        });
+        }));
     }
 
     private void showMovieDetail(int position) {

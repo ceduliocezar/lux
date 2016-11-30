@@ -4,27 +4,22 @@ package com.ceduliocezar.lux.custom.ui;
  * Created by cedulio on 09/08/2016.
  */
 
+import android.support.annotation.NonNull;
 import android.widget.AbsListView;
 
-public abstract class EndlessScrollListener implements AbsListView.OnScrollListener {
+import static com.google.common.base.Preconditions.checkNotNull;
 
+public class EndlessScrollListener implements AbsListView.OnScrollListener {
+
+    private final ScrollCallback callback;
     private int visibleThreshold = 5;
     private int currentPage = 0;
     private int previousTotalItemCount = 0;
     private boolean loading = true;
     private int startingPageIndex = 0;
 
-    public EndlessScrollListener() {
-    }
-
-    public EndlessScrollListener(int visibleThreshold) {
-        this.visibleThreshold = visibleThreshold;
-    }
-
-    public EndlessScrollListener(int visibleThreshold, int startPage) {
-        this.visibleThreshold = visibleThreshold;
-        this.startingPageIndex = startPage;
-        this.currentPage = startPage;
+    public EndlessScrollListener(@NonNull ScrollCallback callback) {
+        this.callback = checkNotNull(callback, "scroll callback can not be null");
     }
 
     @Override
@@ -51,20 +46,26 @@ public abstract class EndlessScrollListener implements AbsListView.OnScrollListe
         // the visibleThreshold and need to reload more data.
         // If we do need to reload some more data, we execute onLoadMore to fetch the data.
         if (!loading && (firstVisibleItem + visibleItemCount + visibleThreshold) >= totalItemCount) {
-            loading = onLoadMore(currentPage + 1, totalItemCount);
+            System.out.println("onLoadMore: currentPage: " + (currentPage + 1) + " " +
+                    "totalItemCount:" + totalItemCount);
+            loading = callback.onLoadMore(currentPage + 1, totalItemCount);
         }
     }
-
-    /**
-     *  Called when user reaches threshold
-     * @param page
-     * @param totalItemsCount
-     * @return true if loading more data
-     */
-    public abstract boolean onLoadMore(int page, int totalItemsCount);
 
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
         // Don't take any action on changed
+    }
+
+    public interface ScrollCallback {
+
+        /**
+         * Called when user reaches threshold
+         *
+         * @param page
+         * @param totalItemsCount
+         * @return true if loading more data
+         */
+        boolean onLoadMore(int page, int totalItemsCount);
     }
 }
