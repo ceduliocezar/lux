@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:elevation="1dp"
     android:fitsSystemWindows="true"
-    tools:context=".movie.detail.MovieDetailActivity">
+    tools:context=".presentation.movie.detail.MovieDetailActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"

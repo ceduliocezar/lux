@@ -11,15 +11,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".movie.detail.MovieDetailActivity"
-            android:parentActivityName=".movie.detail.MovieDetailActivity"
+            android:name=".presentation.movie.detail.MovieDetailActivity"
+            android:parentActivityName=".presentation.movie.detail.MovieDetailActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".movie.detail.MovieDetailActivity" />
+                android:value=".presentation.movie.detail.MovieDetailActivity" />
         </activity>
         <activity
-            android:name=".home.HomeActivity"
+            android:name=".presentation.home.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -16,7 +16,7 @@ import com.ceduliocezar.lux.data.thumbnail.ThumbnailProvider;
 import com.ceduliocezar.lux.data.video.VideosRepository;
 import com.ceduliocezar.lux.data.video.VideosRepositoryImpl;
 import com.ceduliocezar.lux.genre.GenresServiceApiEndpoint;
-import com.ceduliocezar.lux.movie.detail.MovieDetailActivity;
+import com.ceduliocezar.lux.presentation.movie.detail.MovieDetailActivity;
 import com.ceduliocezar.lux.movies.MoviesServiceApiEndpoint;
 import com.ceduliocezar.lux.poster.PosterProviderImpl;
 import com.ceduliocezar.lux.thumbnail.YoutubeThumbnailProvider;
