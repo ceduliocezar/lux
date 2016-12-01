@@ -1,4 +1,4 @@
-package com.ceduliocezar.lux.data;
+package com.ceduliocezar.lux.data.cloud;
 
 
 import com.ceduliocezar.lux.data.backdrop.BackdropTransport;

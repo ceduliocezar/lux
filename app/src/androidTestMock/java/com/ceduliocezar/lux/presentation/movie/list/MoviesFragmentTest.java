@@ -10,8 +10,8 @@ import android.widget.GridView;
 
 import com.ceduliocezar.lux.R;
 import com.ceduliocezar.lux.data.movie.Movie;
-import com.ceduliocezar.lux.presentation.home.HomeActivity;
 import com.ceduliocezar.lux.movies.FakeMoviesServiceApiImpl;
+import com.ceduliocezar.lux.presentation.home.HomeActivity;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;

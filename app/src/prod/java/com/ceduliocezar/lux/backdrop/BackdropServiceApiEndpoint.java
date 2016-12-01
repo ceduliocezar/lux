@@ -4,8 +4,8 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.ceduliocezar.lux.R;
-import com.ceduliocezar.lux.data.MovieAPIFactory;
-import com.ceduliocezar.lux.data.MovieDBRESTApi;
+import com.ceduliocezar.lux.data.cloud.MovieAPIFactory;
+import com.ceduliocezar.lux.data.cloud.MovieDBRESTApi;
 import com.ceduliocezar.lux.data.backdrop.Backdrop;
 import com.ceduliocezar.lux.data.backdrop.BackdropServiceApi;
 import com.ceduliocezar.lux.data.backdrop.BackdropTransport;
