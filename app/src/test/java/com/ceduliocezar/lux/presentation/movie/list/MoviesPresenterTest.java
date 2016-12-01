@@ -175,7 +175,7 @@ public class MoviesPresenterTest {
 
         InOrder inOrder = Mockito.inOrder(moviesView);
 
-        inOrder.verify(moviesView).onLoadGenres(GENRES);
+        inOrder.verify(moviesView).showGenres(GENRES);
     }
 
     @Test
@@ -203,7 +203,7 @@ public class MoviesPresenterTest {
 
         InOrder inOrder = Mockito.inOrder(moviesView);
 
-        inOrder.verify(moviesView).onLoadGenres(EMPTY_GENRES);
+        inOrder.verify(moviesView).showGenres(EMPTY_GENRES);
     }
 
 }

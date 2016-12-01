@@ -3,6 +3,7 @@ package com.ceduliocezar.lux.presentation.movie.list;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
@@ -14,16 +15,15 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ceduliocezar.lux.Injection;
 import com.ceduliocezar.lux.R;
-import com.ceduliocezar.lux.presentation.custom.ui.EndlessScrollListener;
 import com.ceduliocezar.lux.data.genre.Genre;
 import com.ceduliocezar.lux.data.genre.GenresRepository;
 import com.ceduliocezar.lux.data.movie.Movie;
 import com.ceduliocezar.lux.data.movie.MoviesRepository;
 import com.ceduliocezar.lux.data.poster.PosterProvider;
+import com.ceduliocezar.lux.presentation.custom.ui.EndlessScrollListener;
 import com.ceduliocezar.lux.presentation.movie.detail.MovieDetailActivity;
 
 import org.apache.commons.lang3.StringUtils;
@@ -45,6 +45,7 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     private MoviesContract.UserActionsListener userActionsListener;
     private int maxPage = 0;
     private GridView gridView;
+    private Snackbar retrySnackbar;
 
 
     public MoviesFragment() {
@@ -66,8 +67,22 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     public void onResume() {
         super.onResume();
 
+        initLoad();
+    }
+
+    private void initLoad() {
+
+        removeRetry();
         userActionsListener.loadMovies();
         userActionsListener.loadGenres();
+    }
+
+    private void removeRetry() {
+        if (retrySnackbar != null) {
+            retrySnackbar.dismiss();
+        }
+
+        retrySnackbar = null;
     }
 
     @Override
@@ -146,7 +161,8 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     private void startRefresh() {
         adapter.clear();
         adapter.notifyDataSetChanged();
-        userActionsListener.loadMovies();
+
+        initLoad();
     }
 
     @Override
@@ -172,7 +188,17 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     @Override
     public void showError(Throwable e) {
         Log.d("error", Log.getStackTraceString(e));
-        Toast.makeText(getActivity(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+
+        retrySnackbar = Snackbar
+                .make(gridView, e.getMessage(), Snackbar.LENGTH_INDEFINITE)
+                .setAction(R.string.retry, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        initLoad();
+                    }
+                });
+
+        retrySnackbar.show();
     }
 
     @Override
@@ -182,7 +208,7 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     }
 
     @Override
-    public void onLoadGenres(List<Genre> genres) {
+    public void showGenres(List<Genre> genres) {
         this.genres = genres;
         this.gridView.invalidateViews();
     }

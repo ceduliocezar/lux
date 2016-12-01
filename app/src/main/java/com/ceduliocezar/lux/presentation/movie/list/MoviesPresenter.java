@@ -89,7 +89,7 @@ public class MoviesPresenter implements MoviesContract.UserActionsListener {
             @Override
             public void onLoadGenres(List<Genre> genres) {
                 EspressoResourceIdling.decrement();
-                moviesView.onLoadGenres(genres);
+                moviesView.showGenres(genres);
             }
 
             @Override
