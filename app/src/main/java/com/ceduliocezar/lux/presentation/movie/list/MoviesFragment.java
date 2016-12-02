@@ -27,11 +27,12 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnItemClick;
 
 /**
  * Created by cedulio on 05/06/16.
  */
-public class MoviesFragment extends Fragment implements MoviesContract.View {
+public class MoviesFragment extends Fragment implements MoviesContract.View, EndlessScrollListener.ScrollCallback {
 
 
     private MovieAdapter adapter;
@@ -140,26 +141,14 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
                 android.R.color.holo_red_light);
     }
 
+    @OnItemClick(R.id.movie_grid)
+    public void onMovieClick(AdapterView<?> parent, int position) {
+        showMovieDetail(position);
+    }
+
     private void initGridView() {
         gridView.setAdapter(adapter);
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                showMovieDetail(position);
-            }
-        });
-        gridView.setOnScrollListener(new EndlessScrollListener(new EndlessScrollListener.ScrollCallback() {
-            @Override
-            public boolean onLoadMore(int page, int totalItemsCount) {
-                if (page <= maxPage) {
-                    userActionsListener.loadPage(page);
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }));
+        gridView.setOnScrollListener(new EndlessScrollListener(this));
     }
 
     private void showMovieDetail(int position) {
@@ -237,4 +226,13 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
         swipeContainer.setRefreshing(false);
     }
 
+    @Override
+    public boolean onLoadMore(int page, int totalItemsCount) {
+        if (page <= maxPage) {
+            userActionsListener.loadPage(page);
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

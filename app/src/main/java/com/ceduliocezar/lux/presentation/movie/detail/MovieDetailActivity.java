@@ -115,6 +115,7 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
     private void initToolbar() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     private void loadParams() {
@@ -179,8 +180,6 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
         this.movie = movie;
 
         this.tvOverview.setText(movie.getOverview());
-        this.toolbar.setTitle(movie.getTitle());
-        this.setSupportActionBar(toolbar);
         this.tvMovieYear.setText(formatReleaseYear(movie));
         this.tvMovieTitle.setText(movie.getOriginalTitle());
     }

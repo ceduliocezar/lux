@@ -50,7 +50,9 @@ Tests for components related to Android Platform as Activities, Fragments and Se
 
 * [Retrofit 2](https://square.github.io/retrofit/) - A type-safe HTTP client for Android and Java
 * [google-gson](https://github.com/google/gson) -  A Java serialization/deserialization library that can convert Java Objects into JSON and back. 
-* [RxAndroid](https://github.com/ReactiveX/RxAndroid) -  RxJava bindings for Android 
+* [RxAndroid](https://github.com/ReactiveX/RxAndroid) -  RxJava bindings for Android
+* [Butterknife](https://github.com/JakeWharton/butterknife) -  Butter Knife - Field and method binding for Android views which uses annotation processing to generate boilerplate code for you.
+
 
 ## Contributing
 
