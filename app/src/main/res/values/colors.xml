@@ -8,4 +8,5 @@
     <color name="secondaryText">#727272</color>
 
     <color name="legend_background">#CC000000</color>
+    <color name="darkBackground">#727272</color>
 </resources>
