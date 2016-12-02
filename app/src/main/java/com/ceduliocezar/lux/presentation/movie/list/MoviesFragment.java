@@ -11,10 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.ceduliocezar.lux.Injection;
 import com.ceduliocezar.lux.R;
@@ -22,14 +19,14 @@ import com.ceduliocezar.lux.data.genre.Genre;
 import com.ceduliocezar.lux.data.genre.GenresRepository;
 import com.ceduliocezar.lux.data.movie.Movie;
 import com.ceduliocezar.lux.data.movie.MoviesRepository;
-import com.ceduliocezar.lux.data.poster.PosterProvider;
 import com.ceduliocezar.lux.presentation.custom.ui.EndlessScrollListener;
 import com.ceduliocezar.lux.presentation.movie.detail.MovieDetailActivity;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by cedulio on 05/06/16.
@@ -38,15 +35,20 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
 
 
     private MovieAdapter adapter;
-    private List<Genre> genres = new ArrayList<>();
 
-    private SwipeRefreshLayout swipeContainer;
+    @BindView(R.id.swipeContainer)
+    SwipeRefreshLayout swipeContainer;
 
     private MoviesContract.UserActionsListener userActionsListener;
     private int maxPage = 0;
-    private GridView gridView;
-    private Snackbar retrySnackbar;
 
+    @BindView(R.id.movie_grid)
+    GridView gridView;
+
+    @BindView(R.id.movie_load_progress)
+    View movieLoadProgress;
+
+    private Snackbar retrySnackbar;
 
     public MoviesFragment() {
 
@@ -55,8 +57,16 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        adapter = new MovieAdapter(new ArrayList<Movie>());
+        initAdapter();
+        initUserActionsListener();
+    }
 
+    private void initAdapter() {
+        adapter = new MovieAdapter(new ArrayList<Movie>(), new ArrayList<Genre>(), Injection
+                .providesPosterProvider());
+    }
+
+    private void initUserActionsListener() {
         MoviesRepository moviesRepository = Injection.providesMoviesRepository(getContext());
         GenresRepository genresRepository = Injection.providesGenreRepository(getContext());
 
@@ -67,10 +77,10 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     public void onResume() {
         super.onResume();
 
-        initLoad();
+        startLoad();
     }
 
-    private void initLoad() {
+    private void startLoad() {
 
         removeRetry();
         userActionsListener.loadMovies();
@@ -103,14 +113,15 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_movies, container, false);
 
-        initGridView(rootView);
-        initSwipeContainer(rootView);
+        ButterKnife.bind(this, rootView);
+
+        initGridView();
+        initSwipeContainer();
 
         return rootView;
     }
 
-    private void initSwipeContainer(View rootView) {
-        swipeContainer = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeContainer);
+    private void initSwipeContainer() {
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 
             @Override
@@ -129,8 +140,7 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
                 android.R.color.holo_red_light);
     }
 
-    private void initGridView(View rootView) {
-        gridView = (GridView) rootView.findViewById(R.id.movie_grid);
+    private void initGridView() {
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -162,7 +172,7 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
         adapter.clear();
         adapter.notifyDataSetChanged();
 
-        initLoad();
+        startLoad();
     }
 
     @Override
@@ -194,7 +204,7 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
                 .setAction(R.string.retry, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        initLoad();
+                        startLoad();
                     }
                 });
 
@@ -209,7 +219,7 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
 
     @Override
     public void showGenres(List<Genre> genres) {
-        this.genres = genres;
+        this.adapter.setGenres(genres);
         this.gridView.invalidateViews();
     }
 
@@ -219,114 +229,12 @@ public class MoviesFragment extends Fragment implements MoviesContract.View {
     }
 
     public void showPageLoad() {
-        getView().findViewById(R.id.movie_load_progress).setVisibility(View.VISIBLE);
+        this.movieLoadProgress.setVisibility(View.VISIBLE);
     }
 
     public void hidePageLoad() {
-        getView().findViewById(R.id.movie_load_progress).setVisibility(View.GONE);
+        movieLoadProgress.setVisibility(View.GONE);
         swipeContainer.setRefreshing(false);
     }
 
-    private class MovieAdapter extends BaseAdapter {
-
-        private final PosterProvider posterProvider;
-        private List<Movie> movies;
-
-        public MovieAdapter(List<Movie> movies) {
-            this.movies = movies;
-            this.posterProvider = Injection.providesPosterProvider();
-        }
-
-        @Override
-        public int getCount() {
-            return movies.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return movies.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return movies.get(position).getId();
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-
-            Movie movie = movies.get(position);
-
-            if (convertView == null) {
-                convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_item, null);
-            }
-
-            initImageView(convertView, movie);
-            initGenreView(convertView, movie);
-            initTitleView(convertView, movie);
-            initYearView(convertView, movie);
-            initRateView(convertView, movie);
-
-            return convertView;
-        }
-
-        private void initRateView(View convertView, Movie movie) {
-            TextView tvRateNumber = (TextView) convertView.findViewById(R.id.movie_rate_number);
-            tvRateNumber.setText(String.valueOf(movie.getVoteAverage()));
-        }
-
-        private void initYearView(View convertView, Movie movie) {
-            TextView tvYear = (TextView) convertView.findViewById(R.id.movie_year);
-            tvYear.setText(getReleaseYear(movie));
-        }
-
-        private void initTitleView(View convertView, Movie movie) {
-            TextView tvTitle = (TextView) convertView.findViewById(R.id.movie_title);
-            tvTitle.setText(movie.getTitle());
-        }
-
-        private void initGenreView(View convertView, Movie movie) {
-            TextView tvGenres = (TextView) convertView.findViewById(R.id.movie_genre);
-            tvGenres.setText(getGenres(movie));
-        }
-
-        private void initImageView(View convertView, Movie movie) {
-            ImageView imageView = (ImageView) convertView.findViewById(R.id.movie_image);
-
-            posterProvider.loadImage(movie.getPosterPath(), imageView, getContext());
-        }
-
-        private String getReleaseYear(Movie movie) {
-
-
-            if (movie.getReleaseDate().isEmpty()) {
-                return "";
-            }
-
-            return movie.getReleaseDate().substring(0, 4);
-        }
-
-        public void addAll(List<Movie> movies) {
-            this.movies.addAll(movies);
-            notifyDataSetChanged();
-        }
-
-        public void clear() {
-            this.movies.clear();
-        }
-    }
-
-    private String getGenres(Movie movie) {
-
-
-        List<String> genresString = new ArrayList<>();
-        for (Genre genre : genres) {
-            for (Integer id : movie.getGenreIds()) {
-                if (genre.getId() == id) {
-                    genresString.add(genre.getName());
-                }
-            }
-        }
-        return StringUtils.join(genresString, ", ");
-    }
 }

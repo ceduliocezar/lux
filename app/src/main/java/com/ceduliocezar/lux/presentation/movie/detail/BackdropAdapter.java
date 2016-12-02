@@ -13,6 +13,9 @@ import com.ceduliocezar.lux.data.backdrop.BackdropImageProvider;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
@@ -69,13 +72,15 @@ public class BackdropAdapter extends RecyclerView.Adapter<BackdropAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public ImageView imageView;
+        @BindView(R.id.backdrop_image)
+        ImageView imageView;
         public View view;
 
         public ViewHolder(View view) {
             super(view);
             this.view = view;
-            this.imageView = (ImageView) view.findViewById(R.id.backdrop_image);
+
+            ButterKnife.bind(this, view);
 
         }
     }

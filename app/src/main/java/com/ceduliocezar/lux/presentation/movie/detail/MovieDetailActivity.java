@@ -18,38 +18,60 @@ import android.widget.Toast;
 
 import com.ceduliocezar.lux.Injection;
 import com.ceduliocezar.lux.R;
-import com.ceduliocezar.lux.presentation.custom.ui.DividerItemDecoration;
 import com.ceduliocezar.lux.data.backdrop.Backdrop;
 import com.ceduliocezar.lux.data.backdrop.BackdropImageProvider;
 import com.ceduliocezar.lux.data.movie.Movie;
 import com.ceduliocezar.lux.data.video.Video;
+import com.ceduliocezar.lux.presentation.custom.ui.DividerItemDecoration;
 import com.ceduliocezar.lux.presentation.util.EspressoResourceIdling;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 import static com.ceduliocezar.lux.Injection.providesBackdropImageProvider;
 
-public class MovieDetailActivity extends AppCompatActivity implements MovieDetailContract.View, VideoAdapter.VideoAdapterListener, BackdropAdapter.BackdropAdapterListener {
+public class MovieDetailActivity extends AppCompatActivity implements MovieDetailContract.View,
+        VideoAdapter.VideoAdapterListener,
+        BackdropAdapter.BackdropAdapterListener {
 
     public static final String MOVIE_ID_PARAM = "MOVIE_ID_PARAM";
 
-    private int movieId = 0;
-    private TextView tvOverview;
-    private Toolbar toolbar;
-    private RecyclerView recyclerViewVideos;
-    private VideoAdapter videosAdapter;
-    private TextView tvMovieYear;
-    private View loadingVideos;
-    private View loadingBackdropsView;
-    private RecyclerView recyclerBackdropsImages;
-    private TextView tvMovieTitle;
-    private ImageView movieImageToolbar;
+    @BindView(R.id.movie_overview)
+    TextView tvOverview;
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+    @BindView(R.id.videos_recycler)
+    RecyclerView recyclerViewVideos;
+
+    @BindView(R.id.movie_year)
+    TextView tvMovieYear;
+
+    @BindView(R.id.loading_videos)
+    View loadingVideos;
+
+    @BindView(R.id.loading_images)
+    View loadingBackdropsView;
+
+    @BindView(R.id.images_recycler)
+    RecyclerView recyclerBackdropsImages;
+
+    @BindView(R.id.movie_title)
+    TextView tvMovieTitle;
+    @BindView(R.id.movie_image)
+    ImageView movieImageToolbar;
+
+    private int movieId = 0;
+
+    private VideoAdapter videosAdapter;
     private BackdropAdapter backdropsAdapter;
     private Movie movie;
     private List<Backdrop> backdrops;
-    private MovieDetailPresenter userActionsListener;
+    private MovieDetailContract.UserActionsListener userActionsListener;
     private List<Video> videos = new ArrayList<>();
 
 
@@ -58,10 +80,12 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
 
+        ButterKnife.bind(this);
+
+        initToolbar();
 
         loadParams();
         initUserActionListener();
-        initViews();
 
         loadBackdrops();
         loadMovie();
@@ -88,26 +112,9 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
                 Injection.providesBackdropsRepository(this));
     }
 
-    private void initViews() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+    private void initToolbar() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        tvOverview = (TextView) findViewById(R.id.movie_overview);
-
-        tvMovieYear = (TextView) findViewById(R.id.movie_year);
-
-        recyclerViewVideos = (RecyclerView) findViewById(R.id.videos_recycler);
-
-        loadingVideos = findViewById(R.id.loading_videos);
-
-
-        loadingBackdropsView = findViewById(R.id.loading_images);
-        recyclerBackdropsImages = (RecyclerView) findViewById(R.id.images_recycler);
-
-        tvMovieTitle = (TextView) findViewById(R.id.movie_title);
-
-        movieImageToolbar = (ImageView) findViewById(R.id.movie_image);
     }
 
     private void loadParams() {
@@ -150,8 +157,6 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
         recyclerViewVideos.setHasFixedSize(true);
         recyclerViewVideos.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         recyclerViewVideos.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL_LIST));
-
-
     }
 
     @Override
@@ -197,11 +202,12 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
     @Override
     public void watchYoutubeVideo(Video video) {
         Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + video.getKey()));
-        Intent webIntent = new Intent(Intent.ACTION_VIEW,
-                Uri.parse("http://www.youtube.com/watch?v=" + video.getKey()));
+
         try {
             startActivity(appIntent);
         } catch (ActivityNotFoundException ex) {
+            Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("http://www.youtube.com/watch?v=" + video.getKey()));
             startActivity(webIntent);
         }
     }
@@ -233,6 +239,11 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
         }
     }
 
+    @Override
+    public void showFullScreenBackdrop(Backdrop backdrop) {
+        // TODO: 02/12/16
+    }
+
     private void showMovieImageToolbar(Backdrop backdrop) {
         BackdropImageProvider backdropImageProvider = Injection.providesBackdropImageProvider(this);
 
@@ -246,6 +257,6 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
 
     @Override
     public void onClickBackdrop(Backdrop backdrop) {
-        // TODO: 27/11/16
+        userActionsListener.userClickedBackdrop(backdrop);
     }
 }

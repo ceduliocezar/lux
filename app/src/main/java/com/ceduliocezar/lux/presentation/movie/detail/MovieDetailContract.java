@@ -1,5 +1,7 @@
 package com.ceduliocezar.lux.presentation.movie.detail;
 
+import android.support.annotation.NonNull;
+
 import com.ceduliocezar.lux.data.backdrop.Backdrop;
 import com.ceduliocezar.lux.data.movie.Movie;
 import com.ceduliocezar.lux.data.video.Video;
@@ -37,6 +39,8 @@ public class MovieDetailContract {
         void hideLoadingBackdrops();
 
         void showBackdrops(List<Backdrop> backdrops);
+
+        void showFullScreenBackdrop(Backdrop backdrop);
     }
 
     interface UserActionsListener {
@@ -45,5 +49,9 @@ public class MovieDetailContract {
         void loadMovie(int movieId);
 
         void loadBackdrops(int movieId);
+
+        void userClickedVideo(@NonNull Video video);
+
+        void userClickedBackdrop(Backdrop backdrop);
     }
 }

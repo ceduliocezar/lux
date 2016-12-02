@@ -121,8 +121,14 @@ public class MovieDetailPresenter implements MovieDetailContract.UserActionsList
         });
     }
 
-    public void userClickedVideo(Video video) {
+    public void userClickedVideo(@NonNull Video video) {
         checkNotNull(video, "video can not be null");
         view.watchYoutubeVideo(video);
+    }
+
+    @Override
+    public void userClickedBackdrop(Backdrop backdrop) {
+        checkNotNull(backdrop, "backdrop can not be null.");
+        view.showFullScreenBackdrop(backdrop);
     }
 }

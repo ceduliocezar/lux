@@ -77,8 +77,8 @@ dependencies {
     compile "com.squareup.picasso:picasso:$rootProject.ext.picassoVersion"
     compile "org.apache.commons:commons-lang3:$rootProject.ext.commonsLangVersion"
 
-    compile "io.reactivex:rxandroid:$rootProject.ext.rxAndroidVersion"
-    compile "io.reactivex:rxjava:$rootProject.ext.rxJavaVersion"
+    compile "com.jakewharton:butterknife:$rootProject.ext.buttterKnifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.buttterKnifeVersion"
 
     // Dependencies for local unit tests
     testCompile "junit:junit:$rootProject.ext.junitVersion"

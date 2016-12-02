@@ -9,43 +9,26 @@ import android.support.v7.app.AppCompatActivity;
 import com.ceduliocezar.lux.R;
 import com.ceduliocezar.lux.presentation.util.EspressoResourceIdling;
 
-public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class HomeActivity extends AppCompatActivity {
 
     private static final int FEED_POSITION = 1;
     private HomeFragmentAdapter mSectionsPagerAdapter;
 
-    private ViewPager mViewPager;
+    @BindView(R.id.container)
+    ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        ButterKnife.bind(this);
+
         mSectionsPagerAdapter = new HomeFragmentAdapter(getSupportFragmentManager());
-        mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-        mViewPager.addOnPageChangeListener(this);
-        mViewPager.post(new Runnable() {
-            @Override
-            public void run() {
-                mViewPager.setCurrentItem(FEED_POSITION);
-            }
-        });
-    }
-
-    @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-    }
-
-    @Override
-    public void onPageSelected(int position) {
-
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int state) {
-
     }
 
     @VisibleForTesting

@@ -45,6 +45,5 @@ ext {
     gsonVersion = '2.6.2'
     picassoVersion = '2.5.2'
     commonsLangVersion = '3.4'
-    rxAndroidVersion = '1.2.1'
-    rxJavaVersion = '1.1.6'
+    buttterKnifeVersion = '8.4.0'
 }

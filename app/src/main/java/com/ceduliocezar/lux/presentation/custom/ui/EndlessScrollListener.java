@@ -46,8 +46,6 @@ public class EndlessScrollListener implements AbsListView.OnScrollListener {
         // the visibleThreshold and need to reload more data.
         // If we do need to reload some more data, we execute onLoadMore to fetch the data.
         if (!loading && (firstVisibleItem + visibleItemCount + visibleThreshold) >= totalItemCount) {
-            System.out.println("onLoadMore: currentPage: " + (currentPage + 1) + " " +
-                    "totalItemCount:" + totalItemCount);
             loading = callback.onLoadMore(currentPage + 1, totalItemCount);
         }
     }

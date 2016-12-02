@@ -14,6 +14,9 @@ import com.ceduliocezar.lux.data.video.Video;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
@@ -70,15 +73,18 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView tvTitle;
-        public ImageView trailerImage;
-        public View view;
+        @BindView(R.id.video_title)
+        TextView tvTitle;
+
+        @BindView(R.id.video_image)
+        ImageView trailerImage;
+
+        View view;
 
         public ViewHolder(View view) {
             super(view);
+            ButterKnife.bind(this, view);
             this.view = view;
-            this.tvTitle = (TextView) view.findViewById(R.id.video_title);
-            this.trailerImage = (ImageView) view.findViewById(R.id.video_image);
         }
     }
 }
