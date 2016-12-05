@@ -2,8 +2,8 @@ package com.ceduliocezar.lux;
 
 import android.content.Context;
 
-import com.ceduliocezar.lux.backdrop.BackdropImageProviderImpl;
-import com.ceduliocezar.lux.backdrop.BackdropServiceApiEndpoint;
+import com.ceduliocezar.lux.data.backdrop.BackdropImageProviderImpl;
+import com.ceduliocezar.lux.data.backdrop.BackdropServiceApiEndpoint;
 import com.ceduliocezar.lux.data.backdrop.BackdropImageProvider;
 import com.ceduliocezar.lux.data.backdrop.BackdropRepository;
 import com.ceduliocezar.lux.data.backdrop.BackdropRepositoryImpl;
@@ -17,9 +17,9 @@ import com.ceduliocezar.lux.data.video.VideosRepository;
 import com.ceduliocezar.lux.data.video.VideosRepositoryImpl;
 import com.ceduliocezar.lux.genre.GenresServiceApiEndpoint;
 import com.ceduliocezar.lux.presentation.movie.detail.MovieDetailActivity;
-import com.ceduliocezar.lux.movies.MoviesServiceApiEndpoint;
-import com.ceduliocezar.lux.poster.PosterProviderImpl;
-import com.ceduliocezar.lux.thumbnail.YoutubeThumbnailProvider;
+import com.ceduliocezar.lux.data.movies.MoviesServiceApiEndpoint;
+import com.ceduliocezar.lux.data.poster.PosterProviderImpl;
+import com.ceduliocezar.lux.data.thumbnail.YoutubeThumbnailProvider;
 import com.ceduliocezar.lux.videos.VideoServiceApiEndpoint;
 
 /**

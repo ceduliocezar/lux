@@ -1,4 +1,4 @@
-package com.ceduliocezar.lux.movies;
+package com.ceduliocezar.lux.data.movies;
 
 import com.ceduliocezar.lux.data.movie.Movie;
 import com.ceduliocezar.lux.data.movie.MoviesServiceApi;

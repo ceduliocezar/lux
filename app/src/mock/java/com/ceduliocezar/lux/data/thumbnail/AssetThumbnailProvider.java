@@ -1,9 +1,8 @@
-package com.ceduliocezar.lux.thumbnail;
+package com.ceduliocezar.lux.data.thumbnail;
 
 import android.content.Context;
 import android.widget.ImageView;
 
-import com.ceduliocezar.lux.data.thumbnail.ThumbnailProvider;
 import com.ceduliocezar.lux.data.video.Video;
 import com.squareup.picasso.Picasso;
 

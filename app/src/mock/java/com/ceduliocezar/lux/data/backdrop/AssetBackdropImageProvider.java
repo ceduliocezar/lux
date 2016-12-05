@@ -1,10 +1,8 @@
-package com.ceduliocezar.lux.backdrop;
+package com.ceduliocezar.lux.data.backdrop;
 
 import android.content.Context;
 import android.widget.ImageView;
 
-import com.ceduliocezar.lux.data.backdrop.Backdrop;
-import com.ceduliocezar.lux.data.backdrop.BackdropImageProvider;
 import com.squareup.picasso.Picasso;
 
 /**

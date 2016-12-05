@@ -1,4 +1,4 @@
-package com.ceduliocezar.lux.movies;
+package com.ceduliocezar.lux.data.movies;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

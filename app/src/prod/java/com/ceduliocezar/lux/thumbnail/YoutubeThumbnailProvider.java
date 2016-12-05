@@ -1,4 +1,4 @@
-package com.ceduliocezar.lux.thumbnail;
+package com.ceduliocezar.lux.data.thumbnail;
 
 import android.content.Context;
 import android.widget.ImageView;

@@ -20,17 +20,19 @@ public class MoviesPresenter implements MoviesContract.UserActionsListener {
 
     private static final int FIRST_PAGE = 1;
     private final MoviesRepository moviesRepository;
-    private final MoviesContract.View moviesView;
+    private MoviesContract.View moviesView;
     private final GenresRepository genresRepository;
 
     public MoviesPresenter(@NonNull MoviesRepository moviesRepository,
-                           @NonNull GenresRepository genresRepository,
-                           @NonNull MoviesContract.View moviesView) {
+                           @NonNull GenresRepository genresRepository) {
 
         this.moviesRepository = checkNotNull(moviesRepository, "movies repository can not be null");
-        this.moviesView = checkNotNull(moviesView, "movies view can not be null");
         this.genresRepository = checkNotNull(genresRepository, "genres repository can not be null");
 
+    }
+
+    public void setView(@NonNull MoviesContract.View moviesView){
+        this.moviesView = checkNotNull(moviesView, "movies view can not be null");
     }
 
     @Override

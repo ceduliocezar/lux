@@ -58,7 +58,8 @@ public class MoviesPresenterTest {
 
         MockitoAnnotations.initMocks(this);
 
-        presenter = new MoviesPresenter(moviesRepository, genresRepository, moviesView);
+        presenter = new MoviesPresenter(moviesRepository, genresRepository);
+        presenter.setView(moviesView);
     }
 
 

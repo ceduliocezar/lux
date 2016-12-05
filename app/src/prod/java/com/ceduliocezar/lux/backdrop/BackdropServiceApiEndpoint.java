@@ -1,4 +1,4 @@
-package com.ceduliocezar.lux.backdrop;
+package com.ceduliocezar.lux.data.backdrop;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

@@ -1,4 +1,4 @@
-package com.ceduliocezar.lux.poster;
+package com.ceduliocezar.lux.data.poster;
 
 import android.content.Context;
 import android.widget.ImageView;

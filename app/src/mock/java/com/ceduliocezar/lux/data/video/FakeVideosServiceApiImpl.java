@@ -1,9 +1,6 @@
-package com.ceduliocezar.lux.video;
+package com.ceduliocezar.lux.data.video;
 
 import android.support.annotation.NonNull;
-
-import com.ceduliocezar.lux.data.video.Video;
-import com.ceduliocezar.lux.data.video.VideoServiceApi;
 
 import java.util.ArrayList;
 import java.util.List;

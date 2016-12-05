@@ -1,7 +1,4 @@
-package com.ceduliocezar.lux.backdrop;
-
-import com.ceduliocezar.lux.data.backdrop.Backdrop;
-import com.ceduliocezar.lux.data.backdrop.BackdropServiceApi;
+package com.ceduliocezar.lux.data.backdrop;
 
 import java.util.ArrayList;
 import java.util.List;

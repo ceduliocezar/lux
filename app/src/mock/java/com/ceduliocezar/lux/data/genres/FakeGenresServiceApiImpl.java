@@ -1,4 +1,4 @@
-package com.ceduliocezar.lux.genres;
+package com.ceduliocezar.lux.data.genres;
 
 import android.support.v4.util.ArrayMap;
 

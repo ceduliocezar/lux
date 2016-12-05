@@ -16,12 +16,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ceduliocezar.lux.Injection;
 import com.ceduliocezar.lux.LuxApplication;
 import com.ceduliocezar.lux.R;
 import com.ceduliocezar.lux.data.backdrop.Backdrop;
 import com.ceduliocezar.lux.data.backdrop.BackdropImageProvider;
 import com.ceduliocezar.lux.data.movie.Movie;
+import com.ceduliocezar.lux.data.thumbnail.ThumbnailProvider;
 import com.ceduliocezar.lux.data.video.Video;
 import com.ceduliocezar.lux.presentation.custom.ui.DividerItemDecoration;
 import com.ceduliocezar.lux.presentation.util.EspressoResourceIdling;
@@ -33,8 +33,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.ceduliocezar.lux.Injection.providesBackdropImageProvider;
 
 public class MovieDetailActivity extends AppCompatActivity implements MovieDetailContract.View,
         VideoAdapter.VideoAdapterListener,
@@ -80,6 +78,12 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
     @Inject
     MovieDetailContract.UserActionsListener userActionsListener;
 
+    @Inject
+    ThumbnailProvider thumbnailProvider;
+
+    @Inject
+    BackdropImageProvider backdropImageProvider;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,15 +115,11 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
     }
 
     private void initUserActionListener() {
-//        this.userActionsListener = new MovieDetailPresenter(this,
-//                Injection.providesVideosRepository(this),
-//                Injection.providesMoviesRepository(this),
-//                Injection.providesBackdropsRepository(this));
         this.userActionsListener.setView(this);
     }
 
     private void initToolbar() {
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
@@ -158,7 +158,7 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
     public void showVideos(List<Video> videos) {
         this.videos = videos;
 
-        videosAdapter = new VideoAdapter(videos, this, Injection.providesThumbnailProvider());
+        videosAdapter = new VideoAdapter(videos, this, thumbnailProvider);
 
         recyclerViewVideos.setAdapter(videosAdapter);
         recyclerViewVideos.setHasFixedSize(true);
@@ -231,7 +231,7 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
     public void showBackdrops(List<Backdrop> backdrops) {
         this.backdrops = backdrops;
 
-        backdropsAdapter = new BackdropAdapter(this.backdrops, this, providesBackdropImageProvider(this));
+        backdropsAdapter = new BackdropAdapter(this.backdrops, this, backdropImageProvider);
 
 
         recyclerBackdropsImages.setAdapter(backdropsAdapter);
@@ -250,8 +250,6 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
     }
 
     private void showMovieImageToolbar(Backdrop backdrop) {
-        BackdropImageProvider backdropImageProvider = Injection.providesBackdropImageProvider(this);
-
         backdropImageProvider.load(movieImageToolbar, backdrop, this);
     }
 

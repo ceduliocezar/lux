@@ -2,6 +2,8 @@ package com.ceduliocezar.lux.data.movie;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
@@ -13,6 +15,7 @@ public class MoviesRepositoryImpl implements MoviesRepository {
 
     private final MoviesServiceApi moviesServiceApi;
 
+    @Inject
     public MoviesRepositoryImpl(MoviesServiceApi moviesServiceApi) {
         this.moviesServiceApi = moviesServiceApi;
     }
