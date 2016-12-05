@@ -21,23 +21,25 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 
 public class MovieDetailPresenter implements MovieDetailContract.UserActionsListener {
-    private final MovieDetailContract.View view;
+    private MovieDetailContract.View view;
     private final VideosRepository videosRepository;
     private final MoviesRepository moviesRepository;
     private final Context context;
     private final BackdropRepository backdropRepository;
 
-    public MovieDetailPresenter(@NonNull MovieDetailContract.View view,
-                                @NonNull Context context,
+    public MovieDetailPresenter(@NonNull Context context,
                                 @NonNull VideosRepository videosRepository,
                                 @NonNull MoviesRepository moviesRepository,
                                 @NonNull BackdropRepository backdropRepository) {
 
-        this.view = checkNotNull(view, "movie detail view can not be null");
         this.videosRepository = checkNotNull(videosRepository, "videos repository can not be null");
         this.moviesRepository = checkNotNull(moviesRepository, "movies repository can not be null");
         this.backdropRepository = checkNotNull(backdropRepository, "backdrop repository can not be null");
         this.context = checkNotNull(context, "context can not be null");
+    }
+
+    public void setView(@NonNull MovieDetailContract.View view){
+        this.view = checkNotNull(view, "movie detail view can not be null");
     }
 
     @Override

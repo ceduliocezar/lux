@@ -36,7 +36,7 @@ public class Injection {
     }
 
     public static VideosRepository providesVideosRepository(Context context) {
-        return new VideosRepositoryImpl(new FakeVideosServiceApiImpl(context));
+        return new VideosRepositoryImpl(new FakeVideosServiceApiImpl());
     }
 
     public static GenresRepository providesGenreRepository(Context context) {

@@ -4,7 +4,6 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.VisibleForTesting;
 import android.support.test.espresso.IdlingResource;
@@ -13,13 +12,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ceduliocezar.lux.Injection;
+import com.ceduliocezar.lux.LuxApplication;
 import com.ceduliocezar.lux.R;
 import com.ceduliocezar.lux.data.backdrop.Backdrop;
 import com.ceduliocezar.lux.data.backdrop.BackdropImageProvider;
@@ -30,6 +28,8 @@ import com.ceduliocezar.lux.presentation.util.EspressoResourceIdling;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -74,9 +74,11 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
     private BackdropAdapter backdropsAdapter;
     private Movie movie;
     private List<Backdrop> backdrops;
-    private MovieDetailContract.UserActionsListener userActionsListener;
+
     private List<Video> videos = new ArrayList<>();
 
+    @Inject
+    MovieDetailContract.UserActionsListener userActionsListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +86,7 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
         setContentView(R.layout.activity_movie_detail);
 
         ButterKnife.bind(this);
+        ((LuxApplication) getApplication()).getAppComponent().inject(this);
 
         initToolbar();
 
@@ -108,15 +111,15 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
     }
 
     private void initUserActionListener() {
-        this.userActionsListener = new MovieDetailPresenter(this,
-                this,
-                Injection.providesVideosRepository(this),
-                Injection.providesMoviesRepository(this),
-                Injection.providesBackdropsRepository(this));
+//        this.userActionsListener = new MovieDetailPresenter(this,
+//                Injection.providesVideosRepository(this),
+//                Injection.providesMoviesRepository(this),
+//                Injection.providesBackdropsRepository(this));
+        this.userActionsListener.setView(this);
     }
 
     private void initToolbar() {
-        setSupportActionBar(toolbar);
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
     }

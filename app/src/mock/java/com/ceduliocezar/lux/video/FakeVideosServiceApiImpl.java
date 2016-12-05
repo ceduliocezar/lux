@@ -1,6 +1,5 @@
 package com.ceduliocezar.lux.video;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.ceduliocezar.lux.data.video.Video;
@@ -15,10 +14,7 @@ import java.util.List;
 
 public class FakeVideosServiceApiImpl implements VideoServiceApi {
 
-    private final Context context;
-
-    public FakeVideosServiceApiImpl(Context context) {
-        this.context = context;
+    public FakeVideosServiceApiImpl() {
     }
 
 
