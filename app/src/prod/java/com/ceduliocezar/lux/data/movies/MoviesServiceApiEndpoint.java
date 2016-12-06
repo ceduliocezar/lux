@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.ceduliocezar.lux.R;
-import com.ceduliocezar.lux.data.cloud.MovieAPIFactory;
 import com.ceduliocezar.lux.data.cloud.MovieDBRESTApi;
 import com.ceduliocezar.lux.data.movie.Movie;
 import com.ceduliocezar.lux.data.movie.MovieTransport;
@@ -12,9 +11,14 @@ import com.ceduliocezar.lux.data.movie.MoviesServiceApi;
 
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Created by cedulio on 08/08/2016.
@@ -24,9 +28,11 @@ public class MoviesServiceApiEndpoint implements MoviesServiceApi {
     private final Context context;
     private final MovieDBRESTApi service;
 
-    public MoviesServiceApiEndpoint(Context applicationContext) {
-        this.context = applicationContext.getApplicationContext();
-        this.service = MovieAPIFactory.create(context);
+    @Inject
+    public MoviesServiceApiEndpoint(@NonNull @Named("applicationContext") Context context,
+                                    @NonNull MovieDBRESTApi service) {
+        this.context = checkNotNull(context, "context can not be null");
+        this.service = checkNotNull(service, "service can not be null");
     }
 
     @Override

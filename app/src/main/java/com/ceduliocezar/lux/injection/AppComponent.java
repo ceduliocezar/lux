@@ -13,7 +13,7 @@ import dagger.Component;
 
 @Singleton
 @Component(modules = {AppModule.class, DataModule.class, PresentationModule.class,
-        RepositoryModule.class})
+        RepositoryModule.class, NetModule.class})
 public interface AppComponent {
 
     void inject(MovieDetailActivity activity);

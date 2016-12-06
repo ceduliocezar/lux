@@ -4,13 +4,11 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.ceduliocezar.lux.R;
-import com.ceduliocezar.lux.data.cloud.MovieAPIFactory;
 import com.ceduliocezar.lux.data.cloud.MovieDBRESTApi;
-import com.ceduliocezar.lux.data.backdrop.Backdrop;
-import com.ceduliocezar.lux.data.backdrop.BackdropServiceApi;
-import com.ceduliocezar.lux.data.backdrop.BackdropTransport;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,8 +24,9 @@ public class BackdropServiceApiEndpoint implements BackdropServiceApi {
     private final MovieDBRESTApi service;
     private Context context;
 
-    public BackdropServiceApiEndpoint(Context context) {
-        this.service = MovieAPIFactory.create(context);
+    @Inject
+    public BackdropServiceApiEndpoint(Context context, MovieDBRESTApi service) {
+        this.service = service;
         this.context = context;
     }
 

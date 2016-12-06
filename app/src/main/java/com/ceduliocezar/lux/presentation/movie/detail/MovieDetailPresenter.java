@@ -14,6 +14,8 @@ import com.ceduliocezar.lux.presentation.util.EspressoResourceIdling;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
@@ -27,6 +29,7 @@ public class MovieDetailPresenter implements MovieDetailContract.UserActionsList
     private final Context context;
     private final BackdropRepository backdropRepository;
 
+    @Inject
     public MovieDetailPresenter(@NonNull Context context,
                                 @NonNull VideosRepository videosRepository,
                                 @NonNull MoviesRepository moviesRepository,

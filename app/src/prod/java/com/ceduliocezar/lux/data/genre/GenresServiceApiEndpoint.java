@@ -1,15 +1,13 @@
-package com.ceduliocezar.lux.genre;
+package com.ceduliocezar.lux.data.genre;
 
 import android.content.Context;
 
 import com.ceduliocezar.lux.R;
-import com.ceduliocezar.lux.data.cloud.MovieAPIFactory;
 import com.ceduliocezar.lux.data.cloud.MovieDBRESTApi;
-import com.ceduliocezar.lux.data.genre.Genre;
-import com.ceduliocezar.lux.data.genre.GenreTransport;
-import com.ceduliocezar.lux.data.genre.GenresServiceApi;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,15 +20,16 @@ import retrofit2.Response;
 public class GenresServiceApiEndpoint implements GenresServiceApi {
 
     private final Context context;
+    private final MovieDBRESTApi service;
 
-    public GenresServiceApiEndpoint(Context context) {
+    @Inject
+    public GenresServiceApiEndpoint(Context context, MovieDBRESTApi service) {
         this.context = context.getApplicationContext();
+        this.service = service;
     }
 
     @Override
     public void getGenres(final GenresServiceCallback<List<Genre>> callback) {
-
-        MovieDBRESTApi service = MovieAPIFactory.create(context);
 
         Call<GenreTransport> response = service.getGenres(context.getString(R.string.MOVIE_DB_API_KEY));
 

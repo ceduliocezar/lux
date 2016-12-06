@@ -1,13 +1,14 @@
-package com.ceduliocezar.lux.videos;
+package com.ceduliocezar.lux.data.videos;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.ceduliocezar.lux.R;
-import com.ceduliocezar.lux.data.cloud.MovieAPIFactory;
 import com.ceduliocezar.lux.data.cloud.MovieDBRESTApi;
 import com.ceduliocezar.lux.data.video.VideoServiceApi;
 import com.ceduliocezar.lux.data.video.VideosTransport;
+
+import javax.inject.Inject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,9 +23,10 @@ public class VideoServiceApiEndpoint implements VideoServiceApi {
     private final Context context;
     private final MovieDBRESTApi service;
 
-    public VideoServiceApiEndpoint(Context context) {
+    @Inject
+    public VideoServiceApiEndpoint(Context context, MovieDBRESTApi service) {
         this.context = context;
-        this.service = MovieAPIFactory.create(context);
+        this.service = service;
     }
 
 
