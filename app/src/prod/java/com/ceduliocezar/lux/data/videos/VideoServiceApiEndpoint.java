@@ -34,7 +34,7 @@ public class VideoServiceApiEndpoint implements VideoServiceApi {
     public void getVideos(int movieId, final VideosServiceCallback callback) {
 
 
-        Call<VideosTransport> call = service.getVideos(movieId, getAPIKey());
+        Call<VideosTransport> call = service.getVideos(movieId);
 
         call.enqueue(new Callback<VideosTransport>() {
             @Override

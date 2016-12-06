@@ -3,6 +3,7 @@ package com.ceduliocezar.lux.injection;
 import android.content.Context;
 
 import com.ceduliocezar.lux.R;
+import com.ceduliocezar.lux.data.cloud.ApiKeyInterceptor;
 import com.ceduliocezar.lux.data.cloud.ConnectivityCheckInterceptor;
 import com.ceduliocezar.lux.data.cloud.ConnectivityChecker;
 import com.ceduliocezar.lux.data.cloud.MovieDBRESTApi;
@@ -38,29 +39,12 @@ public class NetModule {
         return new ConnectivityCheckInterceptor(connectivityChecker);
     }
 
-//    @Provides
-//    @Singleton
-//    @Named("apiKeyInterceptor")
-//    Interceptor apiKeyInterceptor(@Named("applicationContext") final Context context) {
-//        return new Interceptor() {
-//            @Override
-//            public Response intercept(Chain chain) throws IOException {
-//                Request original = chain.request();
-//                HttpUrl originalHttpUrl = original.url();
-//
-//                HttpUrl url = originalHttpUrl.newBuilder()
-//                        .addQueryParameter("api_key", context.getString(R.string.MOVIE_DB_API_KEY))
-//                        .build();
-//
-//                // Request customization: add request headers
-//                Request.Builder requestBuilder = original.newBuilder()
-//                        .url(url);
-//
-//                Request request = requestBuilder.build();
-//                return chain.proceed(request);
-//            }
-//        };
-//    }
+    @Provides
+    @Singleton
+    @Named("apiKeyInterceptor")
+    Interceptor apiKeyInterceptor(@Named("applicationContext") final Context context) {
+        return new ApiKeyInterceptor(context);
+    }
 
     @Provides
     @Singleton
@@ -95,11 +79,12 @@ public class NetModule {
 
     @Provides
     @Singleton
-
-    OkHttpClient okHttpClient(@Named("connectivityCheckInterceptor") Interceptor connectivityCheckInterceptor) {
+    OkHttpClient okHttpClient(@Named("connectivityCheckInterceptor") Interceptor connectivityCheckInterceptor,
+                              @Named("apiKeyInterceptor") Interceptor apiKeyInterceptor) {
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(connectivityCheckInterceptor)
+                .addInterceptor(apiKeyInterceptor)
                 .build();
 
         return okHttpClient;

@@ -7,8 +7,9 @@ import com.ceduliocezar.lux.R;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -19,6 +20,7 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
@@ -33,13 +35,11 @@ public class ApiKeyInterceptorTest {
     @Mock
     private Context context;
 
+    @Captor
+    private ArgumentCaptor<Request> requestArgumentCaptor;
+
     private ApiKeyInterceptor interceptor;
     private Interceptor.Chain chain;
-    private okhttp3.Request request;
-    private okhttp3.HttpUrl url;
-    private okhttp3.HttpUrl.Builder urlBuilder;
-    @Mock
-    private okhttp3.Request.Builder requestBuilder;
 
     @Before
     public void setup() {
@@ -47,9 +47,6 @@ public class ApiKeyInterceptorTest {
         MockitoAnnotations.initMocks(this);
 
         chain = PowerMockito.mock(Interceptor.Chain.class);
-        request = PowerMockito.mock(Request.class);
-        url = PowerMockito.mock(HttpUrl.class);
-        urlBuilder = PowerMockito.mock(okhttp3.HttpUrl.Builder.class);
         interceptor = new ApiKeyInterceptor(context);
     }
 
@@ -63,15 +60,13 @@ public class ApiKeyInterceptorTest {
 
         when(context.getString(R.string.MOVIE_DB_API_KEY)).thenReturn(fakeApiKey);
         when(chain.request()).thenReturn(request);
-        when()
-
-        Request.Builder spyRequestBuilder  = Mockito.spy(request.newBuilder());
-        Request spyRequest  = Mockito.spy(spyRequestBuilder.build());
 
         interceptor.intercept(chain);
 
+        verify(chain).proceed(requestArgumentCaptor.capture());
+
         String expected = fakeApiKey;
-        String actual = spyRequest.url().queryParameter(ApiKeyInterceptor.API_KEY_PARAM_KEY);
+        String actual = requestArgumentCaptor.getValue().url().queryParameter(ApiKeyInterceptor.API_KEY_PARAM_KEY);
 
         assertEquals(expected, actual);
     }

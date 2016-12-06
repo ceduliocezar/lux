@@ -2,7 +2,6 @@ package com.ceduliocezar.lux.data.genre;
 
 import android.content.Context;
 
-import com.ceduliocezar.lux.R;
 import com.ceduliocezar.lux.data.cloud.MovieDBRESTApi;
 
 import java.util.List;
@@ -31,7 +30,7 @@ public class GenresServiceApiEndpoint implements GenresServiceApi {
     @Override
     public void getGenres(final GenresServiceCallback<List<Genre>> callback) {
 
-        Call<GenreTransport> response = service.getGenres(context.getString(R.string.MOVIE_DB_API_KEY));
+        Call<GenreTransport> response = service.getGenres();
 
         response.enqueue(new Callback<GenreTransport>() {
             @Override

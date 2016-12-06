@@ -3,7 +3,6 @@ package com.ceduliocezar.lux.data.movies;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.ceduliocezar.lux.R;
 import com.ceduliocezar.lux.data.cloud.MovieDBRESTApi;
 import com.ceduliocezar.lux.data.movie.Movie;
 import com.ceduliocezar.lux.data.movie.MovieTransport;
@@ -38,7 +37,7 @@ public class MoviesServiceApiEndpoint implements MoviesServiceApi {
     @Override
     public void getMovies(final int page, final MoviesServiceCallback<List<Movie>> callback) {
 
-        Call<MovieTransport> response = service.orderByPopularity(getAPIKey(), page);
+        Call<MovieTransport> response = service.orderByPopularity(page);
         response.enqueue(new Callback<MovieTransport>() {
             @Override
             public void onResponse(Call<MovieTransport> call, Response<MovieTransport> response) {
@@ -66,7 +65,7 @@ public class MoviesServiceApiEndpoint implements MoviesServiceApi {
 
     @Override
     public void getMovie(int movieId, final MovieServiceCallback callback) {
-        Call<Movie> call = service.getMovie(movieId, getAPIKey());
+        Call<Movie> call = service.getMovie(movieId);
 
         call.enqueue(new Callback<Movie>() {
             @Override
@@ -88,10 +87,5 @@ public class MoviesServiceApiEndpoint implements MoviesServiceApi {
                 callback.errorLoadingMovie(t);
             }
         });
-    }
-
-    @NonNull
-    private String getAPIKey() {
-        return context.getString(R.string.MOVIE_DB_API_KEY);
     }
 }

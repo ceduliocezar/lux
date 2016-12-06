@@ -1,9 +1,7 @@
 package com.ceduliocezar.lux.data.backdrop;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 
-import com.ceduliocezar.lux.R;
 import com.ceduliocezar.lux.data.cloud.MovieDBRESTApi;
 
 import java.util.List;
@@ -33,7 +31,7 @@ public class BackdropServiceApiEndpoint implements BackdropServiceApi {
     @Override
     public void getBackdrops(int movieId, final BackdropServiceApiCallback<List<Backdrop>> callback) {
 
-        Call<BackdropTransport> call = service.getMovieImages(movieId, getAPIKey());
+        Call<BackdropTransport> call = service.getMovieImages(movieId);
 
         call.enqueue(new Callback<BackdropTransport>() {
             @Override
@@ -57,10 +55,5 @@ public class BackdropServiceApiEndpoint implements BackdropServiceApi {
             }
         });
 
-    }
-
-    @NonNull
-    private String getAPIKey() {
-        return context.getString(R.string.MOVIE_DB_API_KEY);
     }
 }
