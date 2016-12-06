@@ -76,11 +76,12 @@ public class MovieDetailPresenterTest {
     public void setup() {
         MockitoAnnotations.initMocks(this);
 
-        movieDetailPresenter = new MovieDetailPresenter(view,
-                context,
+        movieDetailPresenter = new MovieDetailPresenter(context,
                 videosRepository,
                 moviesRepository,
                 backdropRepository);
+
+        movieDetailPresenter.setView(view);
     }
 
     @Test

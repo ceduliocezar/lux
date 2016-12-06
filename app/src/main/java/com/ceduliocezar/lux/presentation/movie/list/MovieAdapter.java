@@ -1,5 +1,6 @@
 package com.ceduliocezar.lux.presentation.movie.list;
 
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +34,10 @@ public class MovieAdapter extends BaseAdapter {
     private List<Movie> movies;
     private List<Genre> genres;
 
-    public MovieAdapter(List<Movie> movies, List<Genre> genres, PosterProvider posterProvider) {
+    public MovieAdapter(@NonNull List<Movie> movies,
+                        @NonNull List<Genre> genres,
+                        @NonNull PosterProvider posterProvider) {
+
         this.movies = checkNotNull(movies, "movies can not be null");
         this.genres = checkNotNull(genres, "genres can not be null");
         this.posterProvider = checkNotNull(posterProvider, "poster provider can not be null");

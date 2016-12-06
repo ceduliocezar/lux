@@ -13,17 +13,18 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-import com.ceduliocezar.lux.Injection;
+import com.ceduliocezar.lux.LuxApplication;
 import com.ceduliocezar.lux.R;
 import com.ceduliocezar.lux.data.genre.Genre;
-import com.ceduliocezar.lux.data.genre.GenresRepository;
 import com.ceduliocezar.lux.data.movie.Movie;
-import com.ceduliocezar.lux.data.movie.MoviesRepository;
+import com.ceduliocezar.lux.data.poster.PosterProvider;
 import com.ceduliocezar.lux.presentation.custom.ui.EndlessScrollListener;
 import com.ceduliocezar.lux.presentation.movie.detail.MovieDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,7 +41,6 @@ public class MoviesFragment extends Fragment implements MoviesContract.View, End
     @BindView(R.id.swipeContainer)
     SwipeRefreshLayout swipeContainer;
 
-    private MoviesContract.UserActionsListener userActionsListener;
     private int maxPage = 0;
 
     @BindView(R.id.movie_grid)
@@ -51,27 +51,23 @@ public class MoviesFragment extends Fragment implements MoviesContract.View, End
 
     private Snackbar retrySnackbar;
 
+    @Inject
+    MoviesContract.UserActionsListener userActionsListener;
+
+    @Inject
+    PosterProvider posterProvider;
+
     public MoviesFragment() {
 
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initAdapter();
-        initUserActionsListener();
-    }
 
     private void initAdapter() {
-        adapter = new MovieAdapter(new ArrayList<Movie>(), new ArrayList<Genre>(), Injection
-                .providesPosterProvider());
+        adapter = new MovieAdapter(new ArrayList<Movie>(), new ArrayList<Genre>(), posterProvider);
     }
 
     private void initUserActionsListener() {
-        MoviesRepository moviesRepository = Injection.providesMoviesRepository(getContext());
-        GenresRepository genresRepository = Injection.providesGenreRepository(getContext());
-
-        userActionsListener = new MoviesPresenter(moviesRepository, genresRepository, this);
+        userActionsListener.setView(this);
     }
 
     @Override
@@ -113,8 +109,13 @@ public class MoviesFragment extends Fragment implements MoviesContract.View, End
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_movies, container, false);
-
         ButterKnife.bind(this, rootView);
+
+        ((LuxApplication) getActivity().getApplication()).getAppComponent().inject(this);
+
+        initAdapter();
+        initUserActionsListener();
+
 
         initGridView();
         initSwipeContainer();

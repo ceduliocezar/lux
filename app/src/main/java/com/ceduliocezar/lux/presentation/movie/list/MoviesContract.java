@@ -22,9 +22,10 @@ public class MoviesContract {
         void showNoMoviesFoundView();
     }
 
-    interface UserActionsListener{
+    public interface UserActionsListener{
         void loadMovies();
         void loadPage(int page);
         void loadGenres();
+        void setView(MoviesContract.View view);
     }
 }

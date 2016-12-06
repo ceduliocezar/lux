@@ -1,6 +1,12 @@
 package com.ceduliocezar.lux.data.genre;
 
+import android.support.annotation.NonNull;
+
 import java.util.List;
+
+import javax.inject.Inject;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Created by cedulio on 25/11/16.
@@ -10,8 +16,9 @@ public class GenresRepositoryImpl implements GenresRepository {
 
     private final GenresServiceApi genresServiceApi;
 
-    public GenresRepositoryImpl(GenresServiceApi genresServiceApi) {
-        this.genresServiceApi = genresServiceApi;
+    @Inject
+    public GenresRepositoryImpl(@NonNull GenresServiceApi genresServiceApi) {
+        this.genresServiceApi = checkNotNull(genresServiceApi, "genres service api can not be null");
     }
 
     @Override

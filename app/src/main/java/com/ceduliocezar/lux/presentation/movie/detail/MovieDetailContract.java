@@ -43,7 +43,7 @@ public class MovieDetailContract {
         void showFullScreenBackdrop(Backdrop backdrop);
     }
 
-    interface UserActionsListener {
+    public interface UserActionsListener {
         void loadVideos(int movieId);
 
         void loadMovie(int movieId);
@@ -53,5 +53,7 @@ public class MovieDetailContract {
         void userClickedVideo(@NonNull Video video);
 
         void userClickedBackdrop(Backdrop backdrop);
+
+        void setView(MovieDetailContract.View view);
     }
 }

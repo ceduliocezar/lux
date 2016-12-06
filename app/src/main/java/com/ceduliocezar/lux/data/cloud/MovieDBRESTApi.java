@@ -14,17 +14,17 @@ import retrofit2.http.Query;
 
 public interface MovieDBRESTApi {
     @GET("discover/movie?sort_by=popularity.desc")
-    Call<MovieTransport> orderByPopularity(@Query("api_key") String apiKey, @Query("page") int page);
+    Call<MovieTransport> orderByPopularity(@Query("page") int page);
 
     @GET("genre/movie/list")
-    Call<GenreTransport> getGenres(@Query("api_key") String apiKey);
+    Call<GenreTransport> getGenres();
 
     @GET("movie/{movie_id}/videos")
-    Call<VideosTransport> getVideos(@Path("movie_id") Integer movieId, @Query("api_key") String apiKey);
+    Call<VideosTransport> getVideos(@Path("movie_id") Integer movieId);
 
     @GET("movie/{movie_id}")
-    Call<Movie> getMovie(@Path("movie_id") Integer movieId, @Query("api_key") String apikey);
+    Call<Movie> getMovie(@Path("movie_id") Integer movieId);
 
     @GET("movie/{movie_id}/images")
-    Call<BackdropTransport> getMovieImages(@Path("movie_id") Integer movieId, @Query("api_key") String apikey);
+    Call<BackdropTransport> getMovieImages(@Path("movie_id") Integer movieId);
 }

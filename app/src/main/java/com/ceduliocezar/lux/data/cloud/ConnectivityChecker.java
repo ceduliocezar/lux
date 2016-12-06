@@ -4,6 +4,11 @@ import android.app.Service;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.annotation.NonNull;
+
+import javax.inject.Inject;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Created by ceduliocezar on 01/12/16.
@@ -14,8 +19,9 @@ public class ConnectivityChecker {
 
     private final Context context;
 
-    public ConnectivityChecker(Context context) {
-        this.context = context;
+    @Inject
+    public ConnectivityChecker(@NonNull Context context) {
+        this.context = checkNotNull(context, "context can not be null");
     }
 
 
