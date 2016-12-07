@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/ceduliocezar/lux.svg?style=svg)](https://circleci.com/gh/ceduliocezar/lux) [![codecov](https://codecov.io/gh/ceduliocezar/lux/branch/master/graph/badge.svg)](https://codecov.io/gh/ceduliocezar/lux)
+# lux
 
 Fully test Android Client for [The Movie DB Api](https://developers.themoviedb.org/3).
 
@@ -13,8 +13,9 @@ These instructions will get you a copy of the project up and running on your loc
 - Screengrab.
 
 ### Building
+[![CircleCI](https://circleci.com/gh/ceduliocezar/lux.svg?style=svg)](https://circleci.com/gh/ceduliocezar/lux)
 
-Build all dev and production variants.
+Build dev and production variants.
 
 ```
 ./gradlew assemble
@@ -23,12 +24,17 @@ Build all dev and production variants.
 Artifacts will be placed at:
 
 ```
-./app/build/outputs/apk
+./app/build/outputs/apk/
 ```
 
 ## Tests
 
 There are two types of tests, Local Unit Tests and Android Instrumented Tests.
+
+### Coverage
+[![codecov](https://codecov.io/gh/ceduliocezar/lux/branch/master/graph/badge.svg)](https://codecov.io/gh/ceduliocezar/lux)
+
+[![codecovreport](https://codecov.io/gh/ceduliocezar/lux/branch/master/graphs/tree.svg)](https://codecov.io/gh/ceduliocezar/lux/branch/master/graphs/tree.svg)
 
 ### Local Unit Test
 
@@ -69,6 +75,11 @@ We use [SemVer](http://semver.org/) for versioning.
 
 See also the list of [contributors](https://github.com/ceduliocezar/lux/graphs/contributors) who participated in this project.
 
+## Acknowledgments
+
+* [The Movie DB Api](https://developers.themoviedb.org/3)
+* [Flaticon](https://github.com/ReactiveX/RxAndroid) -  The largest database of free icons available in PNG, SVG, EPS, PSD and BASE 64 formats.
+
 ## License
 
 ```
@@ -83,12 +94,3 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ```
-
-## Code Coverage Report
-
-[![codecovreport](https://codecov.io/gh/ceduliocezar/lux/branch/master/graphs/tree.svg)](https://codecov.io/gh/ceduliocezar/lux/branch/master/graphs/tree.svg)
-
-## Acknowledgments
-
-* [The Movie DB Api](https://developers.themoviedb.org/3)
-* [Flaticon](https://github.com/ReactiveX/RxAndroid) -  The largest database of free icons available in PNG, SVG, EPS, PSD and BASE 64 formats.
